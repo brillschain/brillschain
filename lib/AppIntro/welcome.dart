@@ -88,24 +88,30 @@ class _WelcomePageState extends State<WelcomePage>
           _buildHeaderButton('Services'),
           _buildHeaderButton('Featuers'),
           _buildHeaderButton('Contact Us'),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamed(AppRoutes.LoginRoute);
             },
-            child: Text(
+            child: const Text(
               'Login',
-              style: TextStyle(color: Colors.lightGreen),
+              style: TextStyle(
+                color: Colors.lightGreen,
+                fontSize: 20,
+              ),
             ),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamed(AppRoutes.SignUpRoute);
             },
-            child: Text(
+            child: const Text(
               'Sign up',
-              style: TextStyle(color: Colors.lightGreen),
+              style: TextStyle(
+                color: Colors.lightGreen,
+                fontSize: 20,
+              ),
             ),
           ),
           SizedBox(width: 16),
