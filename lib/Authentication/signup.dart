@@ -3,8 +3,8 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:lottie/lottie.dart';
 import 'package:supplink/Providers/core/notifiers/authenticationnotifier.dart';
 import 'package:provider/provider.dart';
-import 'package:supplink/Authentication/authRoutes/AppRoutes.dart';
-import 'package:supplink/Backend/firebase/userDeatilsmaintain.dart';
+import 'package:supplink/Routes/Routes.dart';
+import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 
 // class WelcomePage extends StatefulWidget {
 //   @override

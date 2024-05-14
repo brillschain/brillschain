@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:supplink/Backend/firebase/allUserDetails.dart';
 import 'package:supplink/Backend/firebase/createContractFirebaseservice.dart';
-import 'package:supplink/Backend/firebase/userDeatilsmaintain.dart';
+import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 // import 'package:supplink/Backend/firebase/users.dart';
 import 'package:supplink/Home/drawer_pages/LanePages/colloborationview.dart';
 

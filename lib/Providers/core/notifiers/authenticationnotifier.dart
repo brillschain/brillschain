@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:provider/single_child_widget.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:supplink/Authentication/authRoutes/AppRoutes.dart';
+import 'package:supplink/Routes/Routes.dart';
 import 'package:supplink/Backend/firebase/fireBaseAuth.dart/authenticationService.dart';
 
 class Authenticationotifier extends ChangeNotifier {

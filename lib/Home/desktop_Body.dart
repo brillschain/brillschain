@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
-import 'package:supplink/Backend/firebase/userDeatilsmaintain.dart';
+import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 import 'package:supplink/Home/drawer_pages/EX_IM.dart';
 // import 'package:supplink/Home/drawer_pages/LanePages/contractViews.dart';
 import 'package:supplink/Home/drawer_pages/connections.dart';

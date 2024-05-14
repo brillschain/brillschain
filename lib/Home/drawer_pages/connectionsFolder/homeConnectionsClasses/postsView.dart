@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:supplink/Backend/firebase/userDeatilsmaintain.dart' as us;
+import 'package:supplink/Backend/firebase/userDetailsmaintain.dart' as us;
 import 'package:supplink/Home/posts/allpostextract.dart';
 import 'package:supplink/Trails/comments.dart';
 
 class AllUsersPosts extends StatefulWidget {
   const AllUsersPosts({Key? key}) : super(key: key);
+
+
 
   @override
   _AllUsersPostsState createState() => _AllUsersPostsState();

@@ -3,7 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 // import 'package:supplink/Backend/firebase/userDeatilsmaintain.dart';
 import 'package:supplink/Providers/core/notifiers/authenticationnotifier.dart';
-import 'package:supplink/Authentication/authRoutes/AppRoutes.dart';
+import 'package:supplink/Routes/Routes.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});

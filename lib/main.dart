@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:supplink/AppIntro/welcome.dart';
 // import 'package:supplink/Home/drawer_pages/dashBoard.dart';
 import 'package:supplink/Providers/authAppProvider.dart';
-import 'package:supplink/Authentication/authRoutes/AppRoutes.dart';
+import 'package:supplink/Routes/Routes.dart';
 // import 'package:supplink/Providers/firebase/firebase_providers.dart';
 // import 'package:supplink/Trails/comments.dart';
 import 'package:supplink/firebase_options.dart';

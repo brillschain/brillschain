@@ -12,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:supplink/Backend/firebase/userDeatilsmaintain.dart';
+import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 // import 'package:supplink/Home/desktop_Body.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/userLocation.dart';
 

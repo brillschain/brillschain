@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 // import 'package:http/http.dart' as http;
 // import 'package:supplink/Authentication/authRoutes/AppRoutes.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
-import 'package:supplink/Backend/firebase/userDeatilsmaintain.dart';
+import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 import 'package:supplink/Trails/comments.dart';
 
 class MyPosts extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:supplink/Authentication/authRoutes/AppRoutes.dart';
+import 'package:supplink/Routes/Routes.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
