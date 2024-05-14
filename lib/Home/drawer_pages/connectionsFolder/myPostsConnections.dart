@@ -210,7 +210,7 @@ class PostBottom extends StatelessWidget {
                 },
                 // onPressed: () =>
                 //     Navigator.of(context).pushNamed(AppRoutes.CommentsRoute),
-                icon: Icon(Icons.mode_comment_rounded)),
+                icon: const Icon(Icons.mode_comment_rounded)),
             IconButton(onPressed: () {}, icon: Icon(Icons.ios_share)),
             IconButton(onPressed: () {}, icon: Icon(Icons.golf_course)),
           ],
