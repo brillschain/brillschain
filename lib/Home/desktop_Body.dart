@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
 import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 import 'package:supplink/Home/drawer_pages/EX_IM.dart';
@@ -9,6 +10,8 @@ import 'package:supplink/Home/drawer_pages/check_updates.dart';
 // import 'package:supplink/Home/constants.dart';
 import 'package:supplink/Home/drawer_pages/laneWorks.dart';
 import 'package:supplink/Home/drawer_pages/profile.dart';
+import 'package:supplink/Providers/user_provider.dart';
+import 'package:supplink/models/user_model.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/my_connections.dart';
 // import 'package:provider/provider.dart';
 
@@ -26,25 +29,31 @@ class DesktopBodyState extends State<DesktopBody> {
   @override
   void initState() {
     super.initState();
-    FetchCurrentUserDetails();
+    // FetchCurrentUserDetails();
+    currentUserDetails();
   }
 
-  void FetchCurrentUserDetails() async {
-    UserDetailsTable userDetailsTable = UserDetailsTable();
-    Map<String, dynamic>? currentUser =
-        await userDetailsTable.fetchCurrentUserDetails();
-    print('current user: ${currentUser}');
-    Map<String, dynamic>? profile = await userDetailsTable.fetchprofileurl();
-    // print(profile);
-    String url = profile == null ? '' : profile['Profileurl'];
-    Map<String, dynamic> details = currentUser ?? {};
-    // print(url);
-    // print('desktop body');
-    setState(() {
-      curUserdetails = details;
-      profilepic = url;
-    });
+  currentUserDetails() async {
+    UserProvider userProvider = Provider.of(context, listen: false);
+    await userProvider.refreshUserData();
   }
+
+  // void FetchCurrentUserDetails() async {
+  //   UserDetailsTable userDetailsTable = UserDetailsTable();
+  //   Map<String, dynamic>? currentUser =
+  //       await userDetailsTable.fetchCurrentUserDetails();
+  //   print('current user: ${currentUser}');
+  //   Map<String, dynamic>? profile = await userDetailsTable.fetchprofileurl();
+  //   // print(profile);
+  //   String url = profile == null ? '' : profile['Profileurl'];
+  //   Map<String, dynamic> details = currentUser ?? {};
+  //   // print(url);
+  //   // print('desktop body');
+  //   setState(() {
+  //     curUserdetails = details;
+  //     profilepic = url;
+  //   });
+  // }
 
   // void updateProfilePicture(String newUrl) {
   //   print('profile pic updated in desktop');
@@ -148,27 +157,30 @@ class DesktopBodyState extends State<DesktopBody> {
   }
 
   Widget createDrawerHeader() {
-    return profilepic == ''
+    final UserData userData = Provider.of<UserProvider>(context).getUser;
+    return userData.profileUrl == ''
         ? UserAccountsDrawerHeader(
             accountName: Text(
-              curUserdetails!.isEmpty ? '' : curUserdetails!['Name'],
-              style: TextStyle(color: Colors.white),
+              userData.name.isEmpty ? '' : userData.name,
+              style: const TextStyle(color: Colors.white),
             ),
             accountEmail: Text(
-                curUserdetails!.isEmpty ? '' : curUserdetails!['Email'],
-                style: TextStyle(color: Colors.white)),
+              userData.email.isEmpty ? '' : userData.email,
+              style: const TextStyle(color: Colors.white),
+            ),
           )
         : UserAccountsDrawerHeader(
             accountName: Text(
-              curUserdetails!.isEmpty ? '' : curUserdetails!['Name'],
+              userData.name.isEmpty ? '' : userData.name,
               style: TextStyle(color: Colors.black),
             ),
             accountEmail: Text(
-                curUserdetails!.isEmpty ? '' : curUserdetails!['Email'],
-                style: TextStyle(color: Colors.black)),
+              userData.email.isEmpty ? '' : userData.email,
+              style: const TextStyle(color: Colors.black),
+            ),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(profilepic
+                image: NetworkImage(userData.profileUrl
                     // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGHBxyJ__hFyYKK3b5st1p1YRKWGSYZngEAw&usqp=CAU",
                     ),
                 fit: BoxFit.fill,

@@ -68,6 +68,7 @@ dependencies:
   appflowy_board: ^0.1.1
   shimmer: ^3.0.0
   latlong2: ^0.9.1
+  uuid: ^4.4.0
 
   # image_picker: ^0.8.4
 

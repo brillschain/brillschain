@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserDetails {
+class UserData {
   final String uid;
   final String name;
   final String email;
@@ -14,7 +14,7 @@ class UserDetails {
   final List following;
   final List followers;
 
-  UserDetails({
+  UserData({
     required this.uid,
     required this.name,
     required this.email,
@@ -30,17 +30,34 @@ class UserDetails {
   });
 
   Map<String, dynamic> toJson() => {
-        'Auth_id': uid,
-        'Email': email,
-        'Phone': phoneno,
-        'Location': coordinates,
-        'Domain': domain,
-        'Name': name,
-        'ProfileUrl': profileUrl,
-        'Village': address,
-        'Pincode': pincode,
-        'User_id': username,
+        'uid': uid,
+        'email': email,
+        'phoneno': phoneno,
+        'coordinates': coordinates,
+        'domain': domain,
+        'name': name,
+        'profileUrl': profileUrl,
+        'address': address,
+        'pincode': pincode,
+        'username': username,
         'following': following,
         'followers': followers,
       };
+
+  static UserData fromSnapshot(DocumentSnapshot documentSnapshot) {
+    var snapshot = documentSnapshot.data() as Map<String, dynamic>;
+    return UserData(
+        uid: snapshot['uid'],
+        name: snapshot['name'],
+        email: snapshot['email'],
+        coordinates: snapshot['coordinates'],
+        profileUrl: snapshot['profileUrl'],
+        domain: snapshot['domain'],
+        address: snapshot['address'],
+        phoneno: snapshot['phoneno'],
+        username: snapshot['username'],
+        following: snapshot['following'],
+        followers: snapshot['followers'],
+        pincode: snapshot['pincode']);
+  }
 }

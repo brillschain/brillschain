@@ -286,20 +286,6 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Center(
 //         child: Container(
 //           width: 500,
@@ -399,13 +385,44 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
 //         ),
 //       ),
 
+// import 'package:flutter/material.dart';
+// // import 'package:path_to_auth_button/auth_button.dart';
+// import 'package:supplink/Home/widgets/auth_button.dart'; // Import the AuthButton widget
 
+// class LoginView extends StatefulWidget {
+//   const LoginView({super.key});
 
+//   @override
+//   State<LoginView> createState() => _LoginViewState();
+// }
 
+// class _LoginViewState extends State<LoginView> {
+//   bool _isLoading = false; // Control loading state
 
-
-
-
-
-
-
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: AuthButton(
+//           function: () async {
+//             // Perform some asynchronous operation
+//             // For example, fetch data from an API
+//             setState(() {
+//               _isLoading = true; // Set loading state to true
+//             });
+//             await Future.delayed(
+//                 Duration(seconds: 5)); // Simulating a network request
+//             setState(() {
+//               _isLoading =
+//                   false; // Set loading state to false after operation completes
+//             });
+//           },
+//           text: 'Submit',
+//           color: Colors.blue,
+//           textColor: Colors.white,
+//           isloading: _isLoading, // Pass isLoading to the AuthButton widget
+//         ),
+//       ),
+//     );
+//   }
+// }
