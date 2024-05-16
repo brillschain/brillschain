@@ -23,8 +23,8 @@ class FireBaseFireStoreMethods {
   Future<UserData> getUserData() async {
     User user = _firebaseAuth.currentUser!;
     UserData? userData;
+    print('current user ${user.displayName}');
     try {
-      print('current user ${user.displayName}');
       DocumentSnapshot snap =
           await _firestore.collection("Users").doc(user.uid).get();
       userData = UserData.fromSnapshot(snap);
