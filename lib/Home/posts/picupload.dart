@@ -11,10 +11,10 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 
 class ImageUploads extends StatefulWidget {
-  ImageUploads({Key? key}) : super(key: key);
+  const ImageUploads({super.key});
 
   @override
-  _ImageUploadsState createState() => _ImageUploadsState();
+  State<ImageUploads> createState() => _ImageUploadsState();
 }
 
 class _ImageUploadsState extends State<ImageUploads> {

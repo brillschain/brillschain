@@ -3,10 +3,12 @@ import 'dart:js_interop';
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:lottie/lottie.dart';
-import 'package:supplink/Backend/auth/signup_auth.dart';
+import 'package:supplink/Backend/auth/user_auth.dart';
 import 'package:supplink/Home/widgets/auth_button.dart';
+import 'package:supplink/Home/widgets/auth_layout.dart';
 import 'package:supplink/Home/widgets/auth_text_field.dart';
 import 'package:supplink/Home/widgets/domain_selector_list.dart';
+import 'package:supplink/Home/widgets/main_app_bar.dart';
 import 'package:supplink/Providers/core/notifiers/authenticationnotifier.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Routes/Routes.dart';
@@ -97,7 +99,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
     phoneNoController.dispose();
   }
 
-  final AuthSignUp authSignUp = AuthSignUp();
+  final UserAuthentication authSignUp = UserAuthentication();
   Future<String> signUpUser() async {
     setState(() {
       isLoading = true;
@@ -141,108 +143,16 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
     // final Authenticationotifier authenticationotifier =
     //     Provider.of<Authenticationotifier>(context);
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Row(
-          children: [
-            // FadeTransition(
-            //   opacity: _animation,
-            //   child: Text(
-            //     'Wave Technologies',
-            //     style: TextStyle(
-            //       color: Colors.white,
-            //       fontSize: 24,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.only(left: 110, top: 30),
-              child: FadeTransition(
-                opacity: _titleAnimation,
-                child: const Text(
-                  'Wave Supply chain Solutions',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 238, 170, 245),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          _buildHeaderButton('Home'),
-          _buildHeaderButton('Services'),
-          _buildHeaderButton('Featuers'),
-          _buildHeaderButton('Contact Us'),
-          const SizedBox(width: 16),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.LoginRoute);
-            },
-            child: const Text(
-              'Login',
-              style: TextStyle(color: Colors.lightGreen),
-            ),
-          ),
-          const SizedBox(width: 8),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.SignUpRoute);
-            },
-            child: const Text(
-              'Sign up',
-              style: TextStyle(color: Colors.lightGreen),
-            ),
-          ),
-          const SizedBox(width: 16),
-        ],
-      ),
-      body: Stack(
-        children: [
-          // Lottie.asset(
-          //   'assets/Animation - 1711652608670.json',
-          //   fit: BoxFit.cover,
-          //   width: double.infinity,
-          //   height: double.infinity,
-          // ),
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  const Color.fromARGB(255, 8, 132, 163).withOpacity(0.9),
-                  const Color.fromARGB(255, 52, 82, 132).withOpacity(0.4),
-                  const Color.fromARGB(255, 19, 108, 135).withOpacity(0.1),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            top: 4.0,
-            left: 4.0,
-            child: FadeTransition(
-              opacity: _titleAnimation,
-              child: Lottie.asset(
-                'AppTitle.json',
-                width: 150,
-                height: 80,
-                repeat: false,
-                animate: true,
-              ),
-            ),
-          ),
-          Center(
+        extendBodyBehindAppBar: true,
+        appBar: const MainAppBar(),
+        body: AuthPageLayout(
+          childWidget: Center(
             child: Container(
+              margin: const EdgeInsets.only(top: 50),
               decoration: const BoxDecoration(
                   color: Colors.transparent, shape: BoxShape.rectangle),
               height: 500,
-              width: 450,
+              width: 500,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: Center(
                 child: Theme(
@@ -341,11 +251,71 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
                               }
                             },
                             text: 'Signup',
-                            color: Colors.black,
+                            backgroundcolor: Colors.white60,
                             textColor: Colors.deepPurple,
                             isloading: isLoading,
+                            width: 250,
                           ),
-                          // ElevatedButton(
+                          const SizedBox(height: 10),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(AppRoutes.LoginRoute);
+                            },
+                            child: Text('Already have an account? Login'),
+                          ),
+                        ]),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ));
+  }
+
+  Widget _buildHeaderButton(String text) {
+    return TextButton(
+      onPressed: () {},
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          decoration: TextDecoration.underline,
+        ),
+      ),
+    );
+  }
+}
+
+// ElevatedButton authButton(
+//     Authenticationotifier authenticationotifier, BuildContext context) {
+//   return ElevatedButton(
+//     onPressed: () async {},
+//     style: ButtonStyle(
+//       side: MaterialStatePropertyAll(
+//         BorderSide(color: Colors.black),
+//       ),
+//       shape: MaterialStatePropertyAll(
+//         RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(10),
+//         ),
+//       ),
+//       fixedSize: const MaterialStatePropertyAll(
+//         Size.fromWidth(250),
+//       ),
+//       padding: MaterialStatePropertyAll(
+//         EdgeInsets.symmetric(vertical: 20),
+//       ),
+//     ),
+//     child: Text('Signup'),
+//   );
+// }
+
+
+ // ElevatedButton(
                           //   onPressed: () async {
                           //     String email = emailController.text;
                           //     String password = passwordController.text;
@@ -429,63 +399,3 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
                           //   ),
                           //   child: Text('Signup'),
                           // ),
-
-                          const SizedBox(height: 10),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(AppRoutes.LoginRoute);
-                            },
-                            child: Text('Already have an account? Login'),
-                          ),
-                        ]),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeaderButton(String text) {
-    return TextButton(
-      onPressed: () {},
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          decoration: TextDecoration.underline,
-        ),
-      ),
-    );
-  }
-}
-
-// ElevatedButton authButton(
-//     Authenticationotifier authenticationotifier, BuildContext context) {
-//   return ElevatedButton(
-//     onPressed: () async {},
-//     style: ButtonStyle(
-//       side: MaterialStatePropertyAll(
-//         BorderSide(color: Colors.black),
-//       ),
-//       shape: MaterialStatePropertyAll(
-//         RoundedRectangleBorder(
-//           borderRadius: BorderRadius.circular(10),
-//         ),
-//       ),
-//       fixedSize: const MaterialStatePropertyAll(
-//         Size.fromWidth(250),
-//       ),
-//       padding: MaterialStatePropertyAll(
-//         EdgeInsets.symmetric(vertical: 20),
-//       ),
-//     ),
-//     child: Text('Signup'),
-//   );
-// }

@@ -22,7 +22,7 @@ class AppRoutes {
   static final Routes = {
     LoginRoute: (context) => const LoginView(),
     SignUpRoute: (context) => const SignUp(),
-    Myhomepage: (context) => DesktopBody(),
+    Myhomepage: (context) => const DesktopBody(),
     // PhonePageRoute: (context) => PhoneNumberAuthView(),
     // LaneViewRoute: (context) => LaneView(),
     CommentsRoute: (context) => CommentPage(),

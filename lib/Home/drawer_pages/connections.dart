@@ -7,6 +7,7 @@ import 'package:supplink/Home/drawer_pages/connectionsFolder/my_connections.dart
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/newPostsConnections.dart';
 import 'package:supplink/Home/drawer_pages/connectionsFolder/settingsConnections.dart';
 import 'package:supplink/Home/posts/picupload.dart';
+import 'package:supplink/Home/posts/post_upload.dart';
 
 class Connections extends StatefulWidget {
   const Connections({super.key});
@@ -24,12 +25,12 @@ class _ConnectionsState extends State<Connections> {
     });
   }
 
-  List _connectionPages = [
+  final List _connectionPages = [
     HomeConnections(),
     // MyPostsConnections(),
     MyPosts(),
     // NewPostsConnections(),
-    ImageUploads(),
+    PostUpload(),
     MessagesConnections(),
     SettingsConnections(),
   ];

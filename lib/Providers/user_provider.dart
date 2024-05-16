@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -10,8 +12,15 @@ class UserProvider extends ChangeNotifier {
   UserData? _userData;
   UserData get getUser => _userData!;
   Future<void> refreshUserData() async {
-    UserData userData = await FireBaseFireStoreMethods().getUserData();
-    _userData = userData;
+    try {
+      UserData userData = await FireBaseFireStoreMethods().getUserData();
+      _userData = userData;
+      print(1);
+      print(userData);
+    } catch (e) {
+      print('provider');
+      print(e.toString());
+    }
     notifyListeners();
   }
 }

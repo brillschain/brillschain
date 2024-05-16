@@ -46,6 +46,7 @@ class UserData {
 
   static UserData fromSnapshot(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
+    print(1);
     return UserData(
         uid: snapshot['uid'],
         name: snapshot['name'],

@@ -2,9 +2,11 @@ import 'dart:core';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PostDetails {
+class PostData {
   final String description;
   final String uid;
+  final String name;
+  final String address;
   final String username;
   final String postId;
   final DateTime datePublished;
@@ -12,7 +14,7 @@ class PostDetails {
   final String profileUrl;
   final likes;
 
-  PostDetails(
+  PostData(
       {required this.description,
       required this.uid,
       required this.username,
@@ -20,6 +22,8 @@ class PostDetails {
       required this.datePublished,
       required this.postUrl,
       required this.likes,
+      required this.name,
+      required this.address,
       required this.profileUrl});
 
   Map<String, dynamic> toJson() => {
@@ -29,12 +33,14 @@ class PostDetails {
         'datePublished': datePublished,
         'postUrl': postUrl,
         'profileUrl': profileUrl,
+        'name': name,
+        'address': address,
         'likes': likes
       };
 
-  static PostDetails fromSnapshot(DocumentSnapshot documentSnapshot) {
+  static PostData fromSnapshot(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
-    return PostDetails(
+    return PostData(
         description: snapshot['description'],
         username: snapshot['username'],
         postId: snapshot['postId'],
@@ -42,6 +48,8 @@ class PostDetails {
         postUrl: snapshot['postUrl'],
         profileUrl: snapshot['profileUrl'],
         uid: documentSnapshot["uid"],
-        likes: snapshot['likes']);
+        likes: snapshot['likes'],
+        name: snapshot['name'],
+        address: snapshot['address']);
   }
 }

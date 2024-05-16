@@ -16,7 +16,7 @@ import 'package:supplink/models/user_model.dart';
 // import 'package:provider/provider.dart';
 
 class DesktopBody extends StatefulWidget {
-  DesktopBody({super.key});
+  const DesktopBody({super.key});
   @override
   State<DesktopBody> createState() => DesktopBodyState();
 }
@@ -30,13 +30,13 @@ class DesktopBodyState extends State<DesktopBody> {
   void initState() {
     super.initState();
     // FetchCurrentUserDetails();
-    currentUserDetails();
+    // currentUserDetails();
   }
 
-  currentUserDetails() async {
-    UserProvider userProvider = Provider.of(context, listen: false);
-    await userProvider.refreshUserData();
-  }
+  // currentUserDetails() async {
+  //   UserProvider userProvider = Provider.of(context, listen: false);
+  //   await userProvider.refreshUserData();
+  // }
 
   // void FetchCurrentUserDetails() async {
   //   UserDetailsTable userDetailsTable = UserDetailsTable();
@@ -83,17 +83,18 @@ class DesktopBodyState extends State<DesktopBody> {
   @override
   Widget build(BuildContext context) {
     // final SelectedIndexProvider selectedIndexProvider = Provider.of<SelectedIndexProvider>(context);
+    UserData userData = Provider.of<UserProvider>(context).getUser;
 
     return Row(
       children: [
-        navi(),
+        navi(userData),
         // myDrawer,
         Expanded(child: pages_[selectedIndex]),
       ],
     );
   }
 
-  Widget navi() {
+  Widget navi(UserData userData) {
     // final SelectedIndexProvider selectedIndexProvider = Provider.of<SelectedIndexProvider>(context);
 
     return Drawer(
@@ -101,7 +102,7 @@ class DesktopBodyState extends State<DesktopBody> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          createDrawerHeader(),
+          createDrawerHeader(userData),
           createDrawerBodyItem(
               icon: Icons.dashboard,
               text: 'DashBoard',
@@ -156,8 +157,7 @@ class DesktopBodyState extends State<DesktopBody> {
     );
   }
 
-  Widget createDrawerHeader() {
-    final UserData userData = Provider.of<UserProvider>(context).getUser;
+  Widget createDrawerHeader(UserData userData) {
     return userData.profileUrl == ''
         ? UserAccountsDrawerHeader(
             accountName: Text(

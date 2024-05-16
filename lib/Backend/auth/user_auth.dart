@@ -6,7 +6,7 @@ import 'package:supplink/models/user_model.dart';
 
 import '../firebase/userDetailsmaintain.dart';
 
-class AuthSignUp {
+class UserAuthentication {
   final FirebaseAuth auth = FirebaseAuth.instance;
   late GeoPoint geoPoint;
   FireBaseFireStoreMethods fireBaseFireStoreMethods =
@@ -72,6 +72,34 @@ class AuthSignUp {
         res = 'The account already exists for that email.';
       } else if (e.code == "invalid-email") {
         res = "Email is Badly Formated";
+      } else {
+        res = e.message.toString();
+      }
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+
+  Future<String> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    String res = "Some error has occured";
+    try {
+      await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      res = 'success';
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        res = 'No user found for that email';
+      } else if (e.code == 'wrong-password') {
+        res = 'Invalid Password ';
+      } else if (e.message.toString() ==
+          "The supplied auth credential is incorrect, malformed or has expired.") {
+        res = "Invalid credential";
       } else {
         res = e.message.toString();
       }

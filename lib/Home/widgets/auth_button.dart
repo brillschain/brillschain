@@ -5,18 +5,18 @@ import 'package:lottie/lottie.dart';
 class AuthButton extends StatefulWidget {
   final Function function;
   final String text;
-  final Color color;
+  final Color backgroundcolor;
   final Color textColor;
   final bool isloading;
-
-  const AuthButton({
-    super.key,
-    required this.function,
-    required this.text,
-    required this.color,
-    required this.textColor,
-    required this.isloading,
-  });
+  final double width;
+  const AuthButton(
+      {super.key,
+      required this.function,
+      required this.text,
+      required this.backgroundcolor,
+      required this.textColor,
+      required this.isloading,
+      required this.width});
 
   @override
   State<AuthButton> createState() => _AuthButtonState();
@@ -28,20 +28,21 @@ class _AuthButtonState extends State<AuthButton> {
     return ElevatedButton(
       onPressed: () => widget.function(),
       style: ButtonStyle(
-        side: MaterialStatePropertyAll(
-          BorderSide(color: widget.color),
+        side: const MaterialStatePropertyAll(
+          BorderSide(color: Colors.black),
         ),
         shape: MaterialStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        fixedSize: const MaterialStatePropertyAll(
-          Size.fromWidth(250),
+        fixedSize: MaterialStatePropertyAll(
+          Size.fromWidth(widget.width),
         ),
         padding: const MaterialStatePropertyAll(
           EdgeInsets.symmetric(vertical: 20),
         ),
+        backgroundColor: MaterialStatePropertyAll(widget.backgroundcolor),
       ),
       child: widget.isloading
           ? Container(

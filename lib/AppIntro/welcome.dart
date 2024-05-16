@@ -1,5 +1,6 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
+import 'package:supplink/Home/widgets/main_app_bar.dart';
 import 'package:supplink/Routes/Routes.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -62,61 +63,7 @@ class _WelcomePageState extends State<WelcomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 110, top: 30),
-              child: FadeTransition(
-                opacity: _titleAnimation,
-                child: const Text(
-                  'Wave Supply chain Solutions',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 238, 170, 245),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          _buildHeaderButton('Home'),
-          _buildHeaderButton('Services'),
-          _buildHeaderButton('Featuers'),
-          _buildHeaderButton('Contact Us'),
-          const SizedBox(width: 16),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.LoginRoute);
-            },
-            child: const Text(
-              'Login',
-              style: TextStyle(
-                color: Colors.lightGreen,
-                fontSize: 20,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.SignUpRoute);
-            },
-            child: const Text(
-              'Sign up',
-              style: TextStyle(
-                color: Colors.lightGreen,
-                fontSize: 20,
-              ),
-            ),
-          ),
-          SizedBox(width: 16),
-        ],
-      ),
+      appBar: const MainAppBar(),
       body: Stack(
         children: [
           Lottie.asset(
@@ -210,21 +157,6 @@ class _WelcomePageState extends State<WelcomePage>
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHeaderButton(String text) {
-    return TextButton(
-      onPressed: () {},
-      child: Text(
-        text,
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-          decoration: TextDecoration.underline,
-        ),
       ),
     );
   }
