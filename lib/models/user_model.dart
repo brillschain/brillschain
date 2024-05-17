@@ -46,19 +46,19 @@ class UserData {
 
   static UserData fromSnapshot(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
-    print(1);
+    // print(1);
     return UserData(
         uid: snapshot['uid'],
         name: snapshot['name'],
         email: snapshot['email'],
         coordinates: snapshot['coordinates'],
-        profileUrl: snapshot['profileUrl'],
+        profileUrl: snapshot['profileUrl'] ?? "",
         domain: snapshot['domain'],
         address: snapshot['address'],
         phoneno: snapshot['phoneno'],
-        username: snapshot['username'],
-        following: snapshot['following'],
-        followers: snapshot['followers'],
+        username: snapshot['username'] ?? "",
+        following: snapshot['following'] ?? [],
+        followers: snapshot['followers'] ?? [],
         pincode: snapshot['pincode']);
   }
 }

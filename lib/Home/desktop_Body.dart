@@ -23,8 +23,8 @@ class DesktopBody extends StatefulWidget {
 
 class DesktopBodyState extends State<DesktopBody> {
   int selectedIndex = 0;
-  String profilepic = '';
-  Map<String, dynamic>? curUserdetails = {};
+  // String profilepic = '';
+  // Map<String, dynamic>? curUserdetails = {};
 
   @override
   void initState() {

@@ -15,11 +15,8 @@ class UserProvider extends ChangeNotifier {
     try {
       UserData userData = await FireBaseFireStoreMethods().getUserData();
       _userData = userData;
-      print(1);
-      print(userData);
     } catch (e) {
-      print('provider');
-      print(e.toString());
+      print("error in provider ${e.toString()}");
     }
     notifyListeners();
   }

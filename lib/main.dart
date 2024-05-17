@@ -1,12 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/AppIntro/welcome.dart';
+import 'package:supplink/Home/desktop_Body.dart';
 import 'package:supplink/Providers/authAppProvider.dart';
 import 'package:supplink/Routes/Routes.dart';
 // import 'package:supplink/Providers/firebase/firebase_providers.dart';
 // import 'package:supplink/Trails/comments.dart';
 import 'package:supplink/firebase_options.dart';
+import 'package:supplink/responsive/mobile_screen.dart';
+import 'package:supplink/responsive/responsive_screen.dart';
 
 void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -24,7 +28,28 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "BrillsChain",
         routes: AppRoutes.Routes,
-        home: WelcomePage(),
+        home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return const ResponsiveLayout(
+                    webScreenLayout: DesktopBody(),
+                    mobileScreenLayout: MobileScreen());
+              } else if (snapshot.hasError) {
+                return const Center(
+                  child: Text("error will loading the data"),
+                );
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                      // color: primaryColor,
+                      ),
+                );
+              }
+
+              return WelcomePage();
+            }),
       ),
     );
   }

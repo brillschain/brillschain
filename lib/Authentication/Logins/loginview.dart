@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Backend/auth/user_auth.dart';
+import 'package:supplink/Home/desktop_Body.dart';
 import 'package:supplink/Home/widgets/auth_button.dart';
 import 'package:supplink/Home/widgets/auth_layout.dart';
 import 'package:supplink/Home/widgets/auth_text_field.dart';
@@ -73,14 +74,14 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
     _titleAnimationController.forward();
   }
 
-  currentUserDetails() async {
-    try {
-      UserProvider userProvider = Provider.of(context, listen: false);
-      await userProvider.refreshUserData();
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  // currentUserDetails() async {
+  //   try {
+  //     UserProvider userProvider = Provider.of(context, listen: false);
+  //     await userProvider.refreshUserData();
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -153,12 +154,12 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                         //     password: password,
                         //     context: context);
                         if (res == "success") {
-                          currentUserDetails();
+                          // currentUserDetails();
                           // Navigator.of(context).pushNamed(AppRoutes.Myhomepage);
                           Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(
                             builder: (context) => const ResponsiveLayout(
-                              webScreenLayout: WebScreen(),
+                              webScreenLayout: DesktopBody(),
                               mobileScreenLayout: MobileScreen(),
                             ),
                           ));

@@ -330,7 +330,7 @@ class _ProfileState extends State<Profile> {
         obscureText: isPassword,
         enabled: isEditing,
         controller: controller,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           suffixIcon: isPassword
               ? IconButton(onPressed: () {}, icon: Icon(Icons.remove_red_eye))
@@ -369,7 +369,7 @@ class UserProfileHandler {
       }).then((_) {
         // print("ProfileDetails updated successfully!");
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('Profile updated'),
             duration: Duration(seconds: 2),
           ),
