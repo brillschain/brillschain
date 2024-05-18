@@ -57,7 +57,7 @@ class FireStorePostMethods {
   }
 
   //comments upload
-  Future<void> postComments(String postId, String commentText, String uid,
+  Future<String> postComments(String postId, String commentText, String uid,
       String profileUrl, String username) async {
     String res = "error in comment upload";
     try {
@@ -83,7 +83,7 @@ class FireStorePostMethods {
     } catch (e) {
       res = e.toString();
     }
-    // return res;
+    return res;
   }
 
   //post deleting

@@ -31,6 +31,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
     setState(() {
       isloading = false;
     });
+    await userProvider.refreshAllUserData();
   }
 
   @override

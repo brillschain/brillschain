@@ -1,29 +1,14 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
-import 'package:dropdown_search/dropdown_search.dart';
-import 'package:lottie/lottie.dart';
+// import 'package:dropdown_search/dropdown_search.dart';
+// import 'package:lottie/lottie.dart';
 import 'package:supplink/Backend/auth/user_auth.dart';
 import 'package:supplink/Home/widgets/auth_button.dart';
 import 'package:supplink/Home/widgets/auth_layout.dart';
 import 'package:supplink/Home/widgets/auth_text_field.dart';
 import 'package:supplink/Home/widgets/domain_selector_list.dart';
 import 'package:supplink/Home/widgets/main_app_bar.dart';
-import 'package:supplink/Providers/core/notifiers/authenticationnotifier.dart';
-import 'package:provider/provider.dart';
 import 'package:supplink/Routes/Routes.dart';
-import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 import 'package:supplink/utils/snackbars.dart';
-
-// class WelcomePage extends StatefulWidget {
-//   @override
-//   _WelcomePageState createState() => _WelcomePageState();
-// }
-
-// class _WelcomePageState extends State<WelcomePage>
-//     with TickerProviderStateMixin {
-
-// }
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

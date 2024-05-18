@@ -69,6 +69,7 @@ dependencies:
   shimmer: ^3.0.0
   latlong2: ^0.9.1
   uuid: ^4.4.0
+  flutter_svg: ^2.0.10+1
 
   # image_picker: ^0.8.4
 

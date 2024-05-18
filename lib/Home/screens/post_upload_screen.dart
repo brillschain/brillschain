@@ -200,7 +200,7 @@ class _PostUploadState extends State<PostUpload> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text('cancle'),
+                child: const Text('cancel'),
               )
             ],
           );

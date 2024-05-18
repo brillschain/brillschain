@@ -8,9 +8,12 @@ import 'package:flutter_map/flutter_map.dart';
 // import 'package:flutter_map_marker_popup/extension_api.dart';
 // import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
+import 'package:provider/provider.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseCredentials/.dart';
 import 'package:supplink/Backend/firebase/allUserDetails.dart';
+import 'package:supplink/Providers/user_provider.dart';
+import 'package:supplink/models/user_model.dart';
 // import 'package:geocoding/geocoding.dart';
 // import 'package:async/async.dart';
 
@@ -23,29 +26,31 @@ class MapView extends StatefulWidget {
 
 class _MapViewState extends State<MapView> {
   bool infoWindowVisible = false;
-  UserDetails? selectedUser;
-  List<UserDetails> fetchedUsers = [];
+  UserData? selectedUser;
+  List<UserData> fetchedUsers = [];
 
   @override
   void initState() {
     super.initState();
-    fetchUserDetails();
+    // fetchUserDetails();
   }
 
-  Future<void> fetchUserDetails() async {
-    AllUserDetailsExtract allUserDetailsExtract = AllUserDetailsExtract();
-    List<UserDetails> fetchedusersdetails =
-        await allUserDetailsExtract.fetchAllUserDetails();
-    setState(() {
-      fetchedUsers = fetchedusersdetails;
-    });
-  }
+  // Future<void> fetchUserDetails() async {
+  //   AllUserDetailsExtract allUserDetailsExtract = AllUserDetailsExtract();
+  //   List<UserDetails> fetchedusersdetails =
+  //       await allUserDetailsExtract.fetchAllUserDetails();
+  //   setState(() {
+  //     fetchedUsers = fetchedusersdetails;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    print('build widget');
+    List<UserData> fetchedUsers =
+        Provider.of<UserProvider>(context).getAllUserData;
+    // print('build widget');
     if (fetchedUsers.isEmpty) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
       );
     }
@@ -80,11 +85,11 @@ class _MapViewState extends State<MapView> {
   }
 
   // Marker buildMarker(LatLng coordinates, String word) {
-  Marker buildMarker(UserDetails userInfo) {
+  Marker buildMarker(UserData userInfo) {
     // print('build marker');
     final user = FirebaseAuth.instance.currentUser;
-    double lat = userInfo.location.latitude;
-    double lng = userInfo.location.longitude;
+    double lat = userInfo.coordinates.latitude;
+    double lng = userInfo.coordinates.longitude;
     LatLng latLng = LatLng(lat, lng);
     return Marker(
       point: latLng,
@@ -106,13 +111,13 @@ class _MapViewState extends State<MapView> {
                 },
                 child: Column(
                   children: [
-                    user?.uid == userInfo.authId
-                        ? Icon(
+                    user?.uid == userInfo.uid
+                        ? const Icon(
                             Icons.location_pin,
                             color: Colors.blue,
                             size: 30,
                           )
-                        : Icon(
+                        : const Icon(
                             Icons.location_pin,
                             color: Colors.red,
                             size: 30,
@@ -147,9 +152,10 @@ class _MapViewState extends State<MapView> {
   Widget popupView() {
     // print("in the widget");
     return Positioned(
-        top: 1, // Adjust the top position as needed
-        left: 350,
+        top: 150, // Adjust the top position as needed
+        left: 200,
         right: 1,
+        bottom: 10,
         child: Container(
           height: 320,
           width: 200,
@@ -160,19 +166,22 @@ class _MapViewState extends State<MapView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    selectedUser!.profile.isNotEmpty
+                    selectedUser!.profileUrl.isNotEmpty
                         ? CircleAvatar(
                             backgroundImage:
-                                NetworkImage(selectedUser!.profile),
+                                NetworkImage(selectedUser!.profileUrl),
                             radius: 25,
                           )
-                        : Icon(
+                        : const Icon(
                             Icons.account_circle_sharp,
                             size: 50,
                           ),
                   ],
                 ),
-
+                const SizedBox(
+                  height: 10,
+                ),
+                const Divider(),
                 // Text('Hello!'),
                 Text("Name: ${selectedUser!.name}"),
                 Text("Domain: ${selectedUser!.domain}"),

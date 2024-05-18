@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -45,21 +46,27 @@ class _AuthButtonState extends State<AuthButton> {
         backgroundColor: MaterialStatePropertyAll(widget.backgroundcolor),
       ),
       child: widget.isloading
-          ? Container(
-              padding: const EdgeInsets.only(bottom: 50),
-              height: 30,
-              child: OverflowBox(
-                minHeight: 50,
-                maxHeight: 50,
-                maxWidth: 120,
-                minWidth: 100,
-                child: Lottie.asset('animation/loading_animation.json',
-                    fit: BoxFit.cover
-                    // height: 200,
-                    // width: 150,
-                    ),
+          ? Center(
+              child: CupertinoActivityIndicator(
+                color: widget.textColor,
+                radius: 15,
               ),
             )
+          // ? Container(
+          //     padding: const EdgeInsets.only(bottom: 50),
+          //     height: 30,
+          //     child: OverflowBox(
+          //       minHeight: 50,
+          //       maxHeight: 50,
+          //       maxWidth: 120,
+          //       minWidth: 100,
+          //       child: Lottie.asset('animation/loading_animation.json',
+          //           fit: BoxFit.cover
+          //           // height: 200,
+          //           // width: 150,
+          //           ),
+          //     ),
+          //   )
           : Text(
               widget.text,
               style: TextStyle(

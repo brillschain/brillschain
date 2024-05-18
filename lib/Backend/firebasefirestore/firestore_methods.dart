@@ -28,4 +28,17 @@ class FireBaseFireStoreMethods {
 
     return UserData.fromSnapshot(snap);
   }
+
+  Future<List<UserData>> getAllUserData() async {
+    List<UserData> allUserData = [];
+    try {
+      QuerySnapshot querySnapshot = await _firestore.collection('Users').get();
+      for (QueryDocumentSnapshot userDocs in querySnapshot.docs) {
+        allUserData.add(UserData.fromSnapshot(userDocs));
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    return allUserData;
+  }
 }

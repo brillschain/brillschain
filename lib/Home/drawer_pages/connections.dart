@@ -6,8 +6,7 @@ import 'package:supplink/Home/drawer_pages/connectionsFolder/myPostsConnections.
 import 'package:supplink/Home/drawer_pages/connectionsFolder/my_connections.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/newPostsConnections.dart';
 import 'package:supplink/Home/drawer_pages/connectionsFolder/settingsConnections.dart';
-import 'package:supplink/Home/posts/picupload.dart';
-import 'package:supplink/Home/posts/post_upload.dart';
+import 'package:supplink/Home/screens/post_upload_screen.dart';
 
 class Connections extends StatefulWidget {
   const Connections({super.key});
@@ -71,6 +70,7 @@ class _ConnectionsState extends State<Connections> {
           onTap: changeSelectBottomNavi,
         ),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.blue,
           actions: <Widget>[
             Row(

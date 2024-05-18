@@ -23,45 +23,6 @@ class DesktopBody extends StatefulWidget {
 
 class DesktopBodyState extends State<DesktopBody> {
   int selectedIndex = 0;
-  // String profilepic = '';
-  // Map<String, dynamic>? curUserdetails = {};
-
-  @override
-  void initState() {
-    super.initState();
-    // FetchCurrentUserDetails();
-    // currentUserDetails();
-  }
-
-  // currentUserDetails() async {
-  //   UserProvider userProvider = Provider.of(context, listen: false);
-  //   await userProvider.refreshUserData();
-  // }
-
-  // void FetchCurrentUserDetails() async {
-  //   UserDetailsTable userDetailsTable = UserDetailsTable();
-  //   Map<String, dynamic>? currentUser =
-  //       await userDetailsTable.fetchCurrentUserDetails();
-  //   print('current user: ${currentUser}');
-  //   Map<String, dynamic>? profile = await userDetailsTable.fetchprofileurl();
-  //   // print(profile);
-  //   String url = profile == null ? '' : profile['Profileurl'];
-  //   Map<String, dynamic> details = currentUser ?? {};
-  //   // print(url);
-  //   // print('desktop body');
-  //   setState(() {
-  //     curUserdetails = details;
-  //     profilepic = url;
-  //   });
-  // }
-
-  // void updateProfilePicture(String newUrl) {
-  //   print('profile pic updated in desktop');
-  //   setState(() {
-  //     profilepic = newUrl;
-  //   });
-  // }
-
   void setSelectedIndex(int index) {
     setState(() {
       selectedIndex = index;

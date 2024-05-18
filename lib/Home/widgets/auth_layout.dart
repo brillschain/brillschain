@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:supplink/Routes/Routes.dart';
 
 class AuthPageLayout extends StatefulWidget {
@@ -42,6 +43,12 @@ class _AuthPageLayoutState extends State<AuthPageLayout>
     });
 
     _titleAnimationController.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _titleAnimationController.dispose();
   }
 
   @override
