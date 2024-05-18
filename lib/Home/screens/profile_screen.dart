@@ -47,86 +47,110 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text("Username"),
-        centerTitle: false,
-      ),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Stack(
-                      children: [
-                        pickedImage != null
-                            ? CircleAvatar(
-                                radius: 50,
-                                backgroundImage: MemoryImage(pickedImage!),
-                              )
-                            : CircleAvatar(
-                                radius: 50,
-                                backgroundImage:
-                                    NetworkImage(userData!.profileUrl),
-                              )
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(
-                          style: const TextStyle(
-                            color: Colors.black,
+    return isLoading
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              title: Text("Username"),
+              centerTitle: false,
+            ),
+            body: ListView(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Stack(
+                            children: [
+                              pickedImage != null
+                                  ? CircleAvatar(
+                                      radius: 50,
+                                      backgroundImage:
+                                          MemoryImage(pickedImage!),
+                                    )
+                                  : CircleAvatar(
+                                      radius: 50,
+                                      backgroundImage:
+                                          NetworkImage(userData!.profileUrl),
+                                    ),
+                              Positioned(
+                                  // top: 0,
+                                  right: 0,
+                                  bottom: 0,
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      await _selectImage(context);
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                              width: 4, color: Colors.white),
+                                          color: Colors.blue[200]),
+                                      child: const Icon(Icons.edit),
+                                    ),
+                                  ))
+                            ],
                           ),
-                          children: [
-                            TextSpan(
-                                text: userData!.name,
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          RichText(
+                            textAlign: TextAlign.start,
+                            text: TextSpan(
                                 style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                )),
-                            TextSpan(
-                                text: userData!.domain,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                )),
-                            TextSpan(
-                                text: userData!.address,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                )),
-                            TextSpan(
-                                text: userData!.phoneno.toString(),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                )),
-                            const TextSpan(
-                                text: "About",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                )),
-                          ]),
-                    ),
-                  ],
-                ),
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                      text: userData!.name,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      )),
+                                  TextSpan(
+                                      text: userData!.domain,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      )),
+                                  TextSpan(
+                                      text: userData!.address,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      )),
+                                  TextSpan(
+                                      text: userData!.phoneno.toString(),
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      )),
+                                  const TextSpan(
+                                      text: "About",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      )),
+                                ]),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
-          )
-        ],
-      ),
-    );
+          );
   }
 
   _selectImage(BuildContext context) {

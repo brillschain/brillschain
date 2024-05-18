@@ -260,15 +260,15 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
                 Container(
-                    // padding: EdgeInsets.symmetric(vertical: ),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
-                  DateFormat.yMMMd()
-                      .format(widget.snapshot['datePublished'].toDate()),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
-                ))
+                      DateFormat.yMMMd()
+                          .format(widget.snapshot['datePublished'].toDate()),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black54,
+                      ),
+                    ))
               ],
             ),
           )

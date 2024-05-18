@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
@@ -10,6 +11,7 @@ import 'package:supplink/Home/drawer_pages/check_updates.dart';
 // import 'package:supplink/Home/constants.dart';
 import 'package:supplink/Home/drawer_pages/laneWorks.dart';
 import 'package:supplink/Home/drawer_pages/profile.dart';
+import 'package:supplink/Home/screens/profile_screen.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/my_connections.dart';
@@ -33,7 +35,10 @@ class DesktopBodyState extends State<DesktopBody> {
     const DashBoard(),
     const EX_IM(),
     const Check_Updates(),
-    const Profile(),
+    // const Profile(),
+    ProfileScreen(
+      uid: FirebaseAuth.instance.currentUser!.uid,
+    ),
     const Connections(),
     const LaneWorks(),
     // const ContractView()
