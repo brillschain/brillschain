@@ -2,10 +2,16 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
+import 'package:supplink/Home/widgets/like_animation.dart';
+import 'package:supplink/Providers/user_provider.dart';
+import 'package:supplink/models/user_model.dart';
 
 class CommentCard extends StatefulWidget {
+  final String postId;
   final snapshot;
-  const CommentCard({super.key, required this.snapshot});
+  const CommentCard({super.key, required this.snapshot, required this.postId});
 
   @override
   State<CommentCard> createState() => _CommentCardState();
@@ -14,6 +20,7 @@ class CommentCard extends StatefulWidget {
 class _CommentCardState extends State<CommentCard> {
   @override
   Widget build(BuildContext context) {
+    UserData userData = Provider.of<UserProvider>(context).getUser;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
       child: Row(
@@ -58,9 +65,43 @@ class _CommentCardState extends State<CommentCard> {
           ),
           Container(
             padding: const EdgeInsets.all(8),
-            child: const Icon(
-              Icons.favorite_border,
-              size: 24,
+            child: Column(
+              children: [
+                LikeAnimation(
+                  isAnimating: widget.snapshot['likes'].contains(userData.uid),
+                  smallLike: true,
+                  child: IconButton(
+                    onPressed: () async {
+                      await FireStorePostMethods().likeComment(
+                          widget.postId,
+                          userData.uid,
+                          widget.snapshot['likes'],
+                          widget.snapshot['commentId']);
+                    },
+                    icon: widget.snapshot['likes'].contains(userData.uid)
+                        ? const Icon(
+                            Icons.favorite,
+                            size: 32,
+                            color: Colors.red,
+                          )
+                        : const Icon(
+                            Icons.favorite_border_outlined,
+                            size: 32,
+                            color: Colors.black,
+                          ),
+                  ),
+                ),
+                DefaultTextStyle(
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2!
+                      .copyWith(fontWeight: FontWeight.w800),
+                  child: Text(
+                    '${widget.snapshot['likes'].length}',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
+              ],
             ),
           )
         ],

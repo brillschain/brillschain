@@ -48,7 +48,7 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
-    final UserData userDetails = Provider.of<UserProvider>(context).getUser;
+    final UserData userData = Provider.of<UserProvider>(context).getUser;
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -111,7 +111,7 @@ class _PostCardState extends State<PostCard> {
           GestureDetector(
             onDoubleTap: () async {
               await FireStorePostMethods().likePost(widget.snapshot['postId'],
-                  userDetails.uid, widget.snapshot['likes']);
+                  userData.uid, widget.snapshot['likes']);
               setState(() {
                 isLikeAnimating = true;
               });
@@ -152,16 +152,16 @@ class _PostCardState extends State<PostCard> {
           Row(
             children: [
               LikeAnimation(
-                isAnimating: widget.snapshot['likes'].contains(userDetails.uid),
+                isAnimating: widget.snapshot['likes'].contains(userData.uid),
                 smallLike: true,
                 child: IconButton(
                   onPressed: () async {
                     await FireStorePostMethods().likePost(
                         widget.snapshot['postId'],
-                        userDetails.uid,
+                        userData.uid,
                         widget.snapshot['likes']);
                   },
-                  icon: widget.snapshot['likes'].contains(userDetails.uid)
+                  icon: widget.snapshot['likes'].contains(userData.uid)
                       ? const Icon(
                           Icons.favorite,
                           size: 32,

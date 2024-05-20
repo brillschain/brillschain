@@ -55,6 +55,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   return CommentCard(
+                    postId: widget.snapshot['postId'],
                     snapshot: snapshot.data!.docs[index].data(),
                   );
                 });
@@ -86,15 +87,14 @@ class _CommentsScreenState extends State<CommentsScreen> {
               InkWell(
                 onTap: () async {
                   var res = await FireStorePostMethods().postComments(
-                      widget.snapshot['postId'],
-                      commentController.text,
-                      userDetails.uid,
-                      userDetails.username,
-                      userDetails.profileUrl);
-                  setState(() {
-                    commentController.clear();
-                  });
-                  showSnackBar(context, res);
+                    widget.snapshot['postId'],
+                    commentController.text,
+                    userDetails.uid,
+                    userDetails.profileUrl,
+                    userDetails.username,
+                  );
+
+                  // showSnackBar(context, res);
                 },
                 child: Container(
                   padding:

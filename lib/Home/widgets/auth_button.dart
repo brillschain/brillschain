@@ -49,7 +49,7 @@ class _AuthButtonState extends State<AuthButton> {
           ? Center(
               child: CupertinoActivityIndicator(
                 color: widget.textColor,
-                radius: 15,
+                radius: 10,
               ),
             )
           // ? Container(

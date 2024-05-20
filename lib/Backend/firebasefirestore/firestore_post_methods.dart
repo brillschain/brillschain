@@ -69,6 +69,7 @@ class FireStorePostMethods {
             profileUrl: profileUrl,
             commentText: commentText,
             commentId: commentId,
+            likes: [],
             timestamp: DateTime.now());
         await _firestore
             .collection('posts')
@@ -84,6 +85,35 @@ class FireStorePostMethods {
       res = e.toString();
     }
     return res;
+  }
+
+//like comment
+
+  Future<void> likeComment(
+      String postId, String uid, List likes, String commentId) async {
+    try {
+      if (likes.contains(uid)) {
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .update({
+          'likes': FieldValue.arrayRemove([uid]),
+        });
+      } else {
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .update({
+          'likes': FieldValue.arrayUnion([uid]),
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   //post deleting
