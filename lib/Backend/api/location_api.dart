@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class FetchLocation {
-  Future<List> getCordinates(int loc_pin) async {
-    Map<String, dynamic> json_data = {'pin': loc_pin as int};
+  Future<List> getCordinates(int locPin) async {
+    Map<String, dynamic> jsonData = {'pin': locPin};
 
-    String jsonData = jsonEncode(json_data);
+    String jsonData_ = jsonEncode(jsonData);
 
     final http.Response response = await http.post(
       Uri.parse('http://127.0.0.1:5001/api/post_pin'),
@@ -15,7 +15,7 @@ class FetchLocation {
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonData,
+      body: jsonData_,
     );
     Map<String, dynamic> coordinates = json.decode(response.body);
     print(coordinates);

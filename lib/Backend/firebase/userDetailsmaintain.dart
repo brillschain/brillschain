@@ -22,14 +22,14 @@ class UserDetailsTable {
 
     Set<String> userIdsSet = {};
 
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       Map<String, dynamic> m = doc.data() as Map<String, dynamic>;
 
       String userId = m['User_id'] ?? '';
       if (userId.isNotEmpty) {
         userIdsSet.add(userId);
       }
-    });
+    }
 
     String baseUserId =
         userName.toLowerCase().replaceAll(' ', '') + getRandomNumberString(3);
@@ -61,7 +61,7 @@ class UserDetailsTable {
       String domain,
       String village,
       context,
-      String user_id) async {
+      String userId) async {
     CollectionReference users =
         FirebaseFirestore.instance.collection('AllUsers');
     try {
@@ -70,7 +70,7 @@ class UserDetailsTable {
       geoPoint = GeoPoint(coordinates[0], coordinates[1]);
     } catch (e) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('invalid pin code')));
+          .showSnackBar(const SnackBar(content: Text('invalid pin code')));
     }
     // print('users collection');
     return users
@@ -84,7 +84,7 @@ class UserDetailsTable {
           'Name': name,
           'Village': village,
           'Pincode': location,
-          'User_id': user_id
+          'User_id': userId
         })
         .then((value) => print("User added successfully!"))
         .catchError((error) => print("Failed to add user: $error"));
@@ -269,7 +269,7 @@ class UserDetailsTable {
   }
 
   Future<void> addUsersInDomaines(
-      String user_id, String domain, String username) async {
+      String userId, String domain, String username) async {
     CollectionReference users =
         FirebaseFirestore.instance.collection('DomainWiseUsers');
 
@@ -281,7 +281,7 @@ class UserDetailsTable {
         if (document.id == domain) {
           return users
               .doc(domain)
-              .update({user_id: username})
+              .update({userId: username})
               .then((value) => print("User email updated successfully!"))
               .catchError(
                   (error) => print("Failed to update user email: $error"));
@@ -290,7 +290,7 @@ class UserDetailsTable {
 
       return users
           .doc(domain)
-          .set({user_id: username})
+          .set({userId: username})
           .then((value) => print("User email updated successfully!"))
           .catchError((error) => print("Failed to update user email: $error"));
     } catch (e) {
@@ -325,10 +325,10 @@ class CurrentUserPostDetails {
 
 //function to fetch the latlon using pincode from the api(api at to complete)
 class FetchLocation {
-  Future<List> getCordinates(int loc_pin) async {
-    Map<String, dynamic> json_data = {'pin': loc_pin as int};
+  Future<List> getCordinates(int locPin) async {
+    Map<String, dynamic> jsonData = {'pin': locPin};
 
-    String jsonData = jsonEncode(json_data);
+    String jsonData_ = jsonEncode(jsonData);
 
     final http.Response response = await http.post(
       Uri.parse('http://127.0.0.1:5001/api/post_pin'),
@@ -337,7 +337,7 @@ class FetchLocation {
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonData,
+      body: jsonData_,
     );
     Map<String, dynamic> coordinates = json.decode(response.body);
     print(coordinates);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/messages/messages.dart';
+import 'package:supplink/Home/messages/messages.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/messages/messages.dart';
 // import 'package:timeago/timeago.dart' as timeago;
 

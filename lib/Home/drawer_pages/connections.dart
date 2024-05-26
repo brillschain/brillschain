@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnections.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/messages/messagesConnections.dart';
-// import 'package:supplink/Home/drawer_pages/connectionsFolder/messages/messagesConnections.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/myPostsConnections.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/my_connections.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/newPostsConnections.dart';
 import 'package:supplink/Home/drawer_pages/connectionsFolder/settingsConnections.dart';
+import 'package:supplink/Home/messages/messagesConnections.dart';
 import 'package:supplink/Home/screens/post_upload_screen.dart';
 
 class Connections extends StatefulWidget {
@@ -25,13 +22,16 @@ class _ConnectionsState extends State<Connections> {
   }
 
   final List _connectionPages = [
-    HomeConnections(),
+    const HomeConnections(),
     // MyPostsConnections(),
-    MyPosts(),
+    // MyPosts(),//TODO add search
+    Container(
+      color: Colors.blue,
+    ),
     // NewPostsConnections(),
-    PostUpload(),
-    MessagesConnections(),
-    SettingsConnections(),
+    const PostUpload(),
+    const MessagesConnections(),
+    const SettingsConnections(),
   ];
 
   @override
@@ -77,10 +77,10 @@ class _ConnectionsState extends State<Connections> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: ((context) => My_connections())));
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: ((context) => My_connections())));
                     },
-                    child: Text(
+                    child: const Text(
                       'Connects',
                       style: TextStyle(
                         color: Colors.white,
@@ -88,7 +88,7 @@ class _ConnectionsState extends State<Connections> {
                     )),
                 TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'New Connects',
                       style: TextStyle(
                         color: Colors.white,

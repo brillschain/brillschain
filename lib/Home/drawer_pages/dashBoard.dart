@@ -1,7 +1,7 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:supplink/Home/constants.dart';
+import 'package:supplink/utils/constants.dart';
 import 'package:editable/editable.dart';
 import 'package:scrollable_table_view/scrollable_table_view.dart';
 // import 'package:supplink/main.dart';
@@ -157,7 +157,7 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                   ),
                   // Divider(),
-                  Expanded(child: MyHomePage(title: 'title'))
+                  const Expanded(child: MyHomePage(title: 'title'))
                 ],
               ),
             ),
@@ -170,9 +170,9 @@ class _DashBoardState extends State<DashBoard> {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
 
   final String title;
 
@@ -208,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             Expanded(
                 child: Container(
               height: 50,
-              color: Color.fromARGB(255, 48, 48, 48),
+              color: const Color.fromARGB(255, 48, 48, 48),
               child: TabBar(
                 labelColor: Colors.white,
                 unselectedLabelColor: Colors.white60,
@@ -216,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicatorWeight: BorderSide.strokeAlignOutside,
                 controller: tabController,
-                tabs: [
+                tabs: const [
                   Tab(text: "Imports"),
                   Tab(text: "Exports"),
                 ],
@@ -224,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             ))
           ],
         ),
-        Container(
+        SizedBox(
           height: 400,
           child: TabBarView(
             controller: tabController,

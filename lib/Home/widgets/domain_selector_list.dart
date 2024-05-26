@@ -26,10 +26,10 @@ class _DomainSelectorListState extends State<DomainSelectorList> {
         popupProps: const PopupProps.menu(
           showSearchBox: true,
         ),
-        dropdownButtonProps: DropdownButtonProps(
+        dropdownButtonProps: const DropdownButtonProps(
           color: Colors.blue,
         ),
-        dropdownDecoratorProps: DropDownDecoratorProps(
+        dropdownDecoratorProps: const DropDownDecoratorProps(
           textAlignVertical: TextAlignVertical.center,
           dropdownSearchDecoration: InputDecoration(
             labelText: "Domain",

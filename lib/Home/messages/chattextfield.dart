@@ -25,6 +25,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
   }
 
   // @override
+  @override
   void dispose() {
     super.dispose();
     msgController.dispose();

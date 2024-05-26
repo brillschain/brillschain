@@ -20,6 +20,6 @@ class EX_IM_navigation_drawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer();
+    return const Drawer();
   }
 }

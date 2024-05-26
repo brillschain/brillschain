@@ -6,8 +6,7 @@ class LaneView extends StatefulWidget {
   final String contractInfoCollectionName;
   final String laneDetaildocumentName;
 
-  const LaneView(this.contractInfoCollectionName, this.laneDetaildocumentName, {Key? key})
-      : super(key: key);
+  const LaneView(this.contractInfoCollectionName, this.laneDetaildocumentName, {super.key});
 
   @override
   State<LaneView> createState() => _LaneViewState();
@@ -46,7 +45,7 @@ void _update() async {
           title: const Text('Lane Works Data'),
         ),
         body: Scaffold(
-          appBar: TabBar(
+          appBar: const TabBar(
             labelColor: Colors.black,
             tabAlignment: TabAlignment.center,
             indicatorSize: TabBarIndicatorSize.tab,

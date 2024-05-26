@@ -2,20 +2,16 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Backend/firebase/users.dart';
-// import 'package:supplink/Backend/supaBaseDB/superbaseCredentials.dart';
-// import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
-// import 'package:supplink/Home/drawer_pages/connectionsFolder/messages/messagecard.dart';
-// import 'package:supplink/Backend/supaBaseDB/superbaseServices/Tables/users.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/messages/messagecard.dart';
+import 'package:supplink/Home/messages/messagecard.dart';
+
 import 'package:supplink/Providers/firebase/firebase_providers.dart';
 
 import 'package:timeago/timeago.dart' as timeago;
 
 class MessagesConnections extends StatefulWidget {
-  const MessagesConnections({Key? key}) : super(key: key);
+  const MessagesConnections({super.key});
 
   @override
   _MessagesConnectionsState createState() => _MessagesConnectionsState();
@@ -30,7 +26,7 @@ class _MessagesConnectionsState extends State<MessagesConnections> {
     return Scaffold(
       body: Row(
         children: [
-          Container(
+          SizedBox(
             width: 370,
             child: Card(
                 elevation: 2,
@@ -44,7 +40,7 @@ class _MessagesConnectionsState extends State<MessagesConnections> {
           Expanded(
             child: Stack(
               children: [
-                Container(
+                SizedBox(
                   height: double.infinity,
                   child: Card(
                     elevation: 1,
@@ -74,7 +70,7 @@ class ChatScreen extends StatefulWidget {
   final Function(User_Details) onChatSelected;
 
   // const ChatScreen({super.key, required this.onChatSelected});
-  const ChatScreen({Key? key, required this.onChatSelected}) : super(key: key);
+  const ChatScreen({super.key, required this.onChatSelected});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -124,8 +120,7 @@ class UserItem extends StatefulWidget {
   final Function(User_Details) onChatSelected;
 
   // const UserItem({super.key, required this.user, required this.onChatSelected});
-  const UserItem({Key? key, required this.user, required this.onChatSelected})
-      : super(key: key);
+  const UserItem({super.key, required this.user, required this.onChatSelected});
   final User_Details user;
 
   @override
@@ -153,7 +148,7 @@ class _UserItemState extends State<UserItem> {
                   widget.user.profile == '' ? Text(widget.user.name[0]) : null,
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 8, right: 5),
+              padding: const EdgeInsets.only(bottom: 8, right: 5),
               child: CircleAvatar(
                 radius: 5,
                 backgroundColor:
@@ -164,13 +159,13 @@ class _UserItemState extends State<UserItem> {
         ),
         title: Text(
           widget.user.name,
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
           'Last seen:${timeago.format(widget.user.lastseen)}',
           maxLines: 2,
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.black87,
               fontSize: 12,
               overflow: TextOverflow.ellipsis),
@@ -184,7 +179,7 @@ class HoverButton extends StatefulWidget {
   final VoidCallback onPressed;
   final Widget child;
 
-  HoverButton({required this.onPressed, required this.child});
+  const HoverButton({super.key, required this.onPressed, required this.child});
 
   @override
   _HoverButtonState createState() => _HoverButtonState();

@@ -4,6 +4,8 @@ import 'package:supplink/Home/widgets/main_app_bar.dart';
 import 'package:supplink/Routes/Routes.dart';
 
 class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
+
   @override
   _WelcomePageState createState() => _WelcomePageState();
 }
@@ -21,7 +23,7 @@ class _WelcomePageState extends State<WelcomePage>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
     );
     _animation = Tween<double>(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
@@ -33,7 +35,7 @@ class _WelcomePageState extends State<WelcomePage>
 
     _titleAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 4000),
+      duration: const Duration(milliseconds: 4000),
     );
 
     _titleAnimation = Tween<double>(begin: 1, end: 1).animate(
@@ -78,9 +80,9 @@ class _WelcomePageState extends State<WelcomePage>
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color.fromARGB(255, 8, 132, 163).withOpacity(0.9),
-                  Color.fromARGB(255, 52, 82, 132).withOpacity(0.4),
-                  Color.fromARGB(255, 19, 108, 135).withOpacity(0.1),
+                  const Color.fromARGB(255, 8, 132, 163).withOpacity(0.9),
+                  const Color.fromARGB(255, 52, 82, 132).withOpacity(0.4),
+                  const Color.fromARGB(255, 19, 108, 135).withOpacity(0.1),
                 ],
               ),
             ),
@@ -105,8 +107,8 @@ class _WelcomePageState extends State<WelcomePage>
               children: [
                 SlideTransition(
                   position: Tween<Offset>(
-                    begin: Offset(1.0, 0.0),
-                    end: Offset(0.0, 0.0),
+                    begin: const Offset(1.0, 0.0),
+                    end: const Offset(0.0, 0.0),
                   ).animate(_animationController),
                   child: Text(
                     'Efficient and Collaborating Supply Chain Management  \n       Minimizing loss, Maximizing Efficiency',

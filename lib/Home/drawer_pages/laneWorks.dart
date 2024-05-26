@@ -22,11 +22,11 @@ class _LaneWorksState extends State<LaneWorks> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('LaneWorks'),
+          title: const Text('LaneWorks'),
           automaticallyImplyLeading: false,
           // leadingWidth: 45,
         ),
-        body: SingleChildScrollView(
+        body: const SingleChildScrollView(
             child: Column(
           children: [LaneListView(), LaneListView()],
         )));
@@ -58,7 +58,7 @@ class _LaneSerachBoxState extends State<LaneSerachBox> {
         popupProps: const PopupProps.menu(
           showSearchBox: true,
         ),
-        dropdownButtonProps: DropdownButtonProps(
+        dropdownButtonProps: const DropdownButtonProps(
           color: Colors.blue,
         ),
         dropdownDecoratorProps: DropDownDecoratorProps(
@@ -96,39 +96,39 @@ class _LaneListViewState extends State<LaneListView> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Divider(),
-        Container(
+        const Divider(),
+        SizedBox(
           height: 50,
           child: Row(
             children: [
-              LaneSerachBox(),
-              Spacer(),
-              Container(
+              const LaneSerachBox(),
+              const Spacer(),
+              SizedBox(
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CreateColloboration()),
+                          builder: (context) => const CreateColloboration()),
                     );
                   },
-                  child: Text('Create Contract'),
+                  child: const Text('Create Contract'),
                 ),
               ),
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         SizedBox(
           height: 300,
           child: Container(
-              color: Color.fromARGB(221, 223, 225, 242),
-              child: ContractListView()),
+              color: const Color.fromARGB(221, 223, 225, 242),
+              child: const ContractListView()),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }
@@ -158,14 +158,14 @@ class _ContractListViewState extends State<ContractListView> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             height: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Shimmer.fromColors(
@@ -174,13 +174,13 @@ class _ContractListViewState extends State<ContractListView> {
                   child: Container(
                     width: 30,
                     height: 30,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
                     ),
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Shimmer.fromColors(
                   baseColor: Colors.grey,
                   highlightColor: Colors.white,
@@ -196,7 +196,7 @@ class _ContractListViewState extends State<ContractListView> {
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
           Shimmer.fromColors(
             baseColor: Colors.grey,
             highlightColor: Colors.white,
@@ -213,8 +213,8 @@ class _ContractListViewState extends State<ContractListView> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10),
-              Container(
+              const SizedBox(height: 10),
+              SizedBox(
                 width: 350,
                 child: Shimmer.fromColors(
                   baseColor: Colors.grey,
@@ -228,8 +228,8 @@ class _ContractListViewState extends State<ContractListView> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
-              Container(
+              const SizedBox(height: 10),
+              SizedBox(
                 width: 350,
                 child: Shimmer.fromColors(
                   baseColor: Colors.grey,
@@ -268,13 +268,13 @@ class _ContractListViewState extends State<ContractListView> {
               child: Text('Error: ${snapshot.error}'),
             );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No contract information available.'),
             );
           } else {
             final contractInfo = snapshot.data!;
             return ListView.builder(
-              physics: ClampingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: contractInfo.length,
@@ -302,7 +302,7 @@ class _ContractListViewState extends State<ContractListView> {
 class MemberCompanyDetails extends StatelessWidget {
   final Map<String, dynamic> contractInfo;
 
-  MemberCompanyDetails(this.contractInfo, {Key? key}) : super(key: key);
+  const MemberCompanyDetails(this.contractInfo, {super.key});
 
   int randomNumbers() {
     Random random = Random();
@@ -314,12 +314,12 @@ class MemberCompanyDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
+        const ListTile(
           leading: FlutterLogo(),
           title: Text('One-line with leading widget'),
         ),
-        Divider(),
-        Container(
+        const Divider(),
+        SizedBox(
           height: 155,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -327,7 +327,7 @@ class MemberCompanyDetails extends StatelessWidget {
               Expanded(
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 155,
                       child: ListView(
                         children: [
@@ -350,7 +350,7 @@ class MemberCompanyDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              const SizedBox(
                 height: 150,
                 child: AspectRatio(
                   aspectRatio: 1,
@@ -389,7 +389,7 @@ class MemberCompanyDetails extends StatelessWidget {
                     progressColor: Colors.purple.shade300,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 LinearPercentIndicator(
                   animation: true,
                   lineHeight: 20.0,

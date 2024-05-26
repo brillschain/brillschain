@@ -1,13 +1,14 @@
-import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
 import 'package:supplink/Home/screens/comment_screen.dart';
+import 'package:supplink/Home/widgets/custom_button.dart';
 import 'package:supplink/Home/widgets/like_animation.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
@@ -24,6 +25,8 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   bool isLikeAnimating = false;
   int commentsLength = 0;
+  bool isFollowing = false;
+  final User user = FirebaseAuth.instance.currentUser!;
   @override
   void initState() {
     super.initState();
@@ -37,9 +40,19 @@ class _PostCardState extends State<PostCard> {
           .doc(widget.snapshot['postId'])
           .collection('comments')
           .get();
+
       setState(() {
         commentsLength = querySnapshot.docs.length;
       });
+      // if (widget.snapshot['uid'] == user.uid) {
+      //   isFollowing = false;
+      // } else {
+      //   var usersnap = await FirebaseFirestore.instance
+      //       .collection('Users')
+      //       .doc(widget.snapshot['uid'])
+      //       .get();
+      //   isFollowing = usersnap.data()!['followers'].contains(user.uid);
+      // }
     } catch (e) {
       showSnackBar(context, e.toString());
       // print(e.toString());
@@ -75,6 +88,22 @@ class _PostCardState extends State<PostCard> {
                     ],
                   ),
                 )),
+                // isFollowing
+                //     ? CustomButton(
+                //         function: () async {
+                //           await FireBaseFireStoreMethods()
+                //               .followUser(user.uid, widget.snapshot['uid']);
+                //           setState(() {
+                //             isFollowing = true;
+                //           });
+                //         },
+                //         text: 'follow',
+                //         backgroundcolor: Colors.blue,
+                //         textColor: Colors.white,
+                //         width:
+                //             MediaQuery.of(context).size.width > 600 ? 200 : 150,
+                //       )
+                //     : const SizedBox(),
                 IconButton(
                     onPressed: () {
                       showDialog(
@@ -217,11 +246,11 @@ class _PostCardState extends State<PostCard> {
                 DefaultTextStyle(
                   style: Theme.of(context)
                       .textTheme
-                      .subtitle2!
+                      .titleSmall!
                       .copyWith(fontWeight: FontWeight.w800),
                   child: Text(
                     '${widget.snapshot['likes'].length} likes',
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
                 Container(
@@ -246,10 +275,6 @@ class _PostCardState extends State<PostCard> {
                     onTap: () {
                       commentDialog(context);
                     },
-
-                    // onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) =>
-                    //         CommentsScreen(snapshot: widget.snapshot))),
                     child: Text(
                       "view all $commentsLength comments ",
                       style: const TextStyle(

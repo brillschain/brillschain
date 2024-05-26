@@ -1,14 +1,6 @@
-// import 'dart:js';
-
-// import 'package:supplink/AppIntro/welcome.dart';
 import 'package:supplink/Authentication/Logins/loginview.dart';
-// import 'package:supplink/Authentication/Logins/phoneLoginView.dart';
 import 'package:supplink/Authentication/signup.dart';
 import 'package:supplink/Home/desktop_Body.dart';
-// import 'package:supplink/Home/drawer_pages/LanePages/laneview.dart';
-// import 'package:supplink/Home/drawer_pages/dashBoard.dart';
-import 'package:supplink/Trails/comments.dart';
-// import 'package:supplink/Trails/fakes/homepag.dart';
 
 class AppRoutes {
   static const String LoginRoute = '/login';
@@ -25,7 +17,7 @@ class AppRoutes {
     Myhomepage: (context) => const DesktopBody(),
     // PhonePageRoute: (context) => PhoneNumberAuthView(),
     // LaneViewRoute: (context) => LaneView(),
-    CommentsRoute: (context) => CommentPage(),
+
     // WelcomeRoute: (context) => WelcomePage(),
   };
 }

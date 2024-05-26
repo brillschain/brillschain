@@ -112,11 +112,11 @@ class ContractFirebaseService {
     }
   }
 
-  Future<void> createNewContract(List tobeCreatedContractAuth_Ids) async {
+  Future<void> createNewContract(List tobecreatedcontractauthIds) async {
     DateTime now = DateTime.now();
-    String randomString = generateRandomString(tobeCreatedContractAuth_Ids);
-    String documentName = "$randomString";
-    List myList = tobeCreatedContractAuth_Ids;
+    String randomString = generateRandomString(tobecreatedcontractauthIds);
+    String documentName = randomString;
+    List myList = tobecreatedcontractauthIds;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     DocumentSnapshot existingDoc =
@@ -162,11 +162,11 @@ class ContractFirebaseService {
     }
   }
 
-  String generateRandomString(List Auth_idlist) {
-    Auth_idlist.sort();
+  String generateRandomString(List authIdlist) {
+    authIdlist.sort();
     String s = '';
-    for (int i = 0; i < Auth_idlist.length; i++) {
-      s = s + Auth_idlist[i];
+    for (int i = 0; i < authIdlist.length; i++) {
+      s = s + authIdlist[i];
     }
     return s;
   }
@@ -183,9 +183,9 @@ class ContractFirebaseService {
         .collection('myContracts')
         .get();
 
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       contractIds.add(doc.id);
-    });
+    }
 
     return contractIds;
   }
@@ -227,12 +227,12 @@ class ContractFirebaseService {
         .collection(uid)
         .get();
     List<Map<String, dynamic>> documentData = [];
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       Map<String, dynamic> docData = doc.data() as Map<String, dynamic>;
       docData['operation'] = int.parse(doc.id.substring(doc.id.length - 1));
       docData['docName'] = doc.id;
       documentData.add(docData);
-    });
+    }
     return documentData;
   }
 
@@ -246,7 +246,6 @@ class ContractFirebaseService {
 
     List<String> userAuthIds = [];
     for (int i = 0; i < docData['my_list'].length; i++) {
-      ;
       userAuthIds.add(docData['my_list'][i] as String);
     }
 

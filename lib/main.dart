@@ -14,7 +14,7 @@ import 'package:supplink/responsive/responsive_screen.dart';
 
 void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "BrillsChain",
         routes: AppRoutes.Routes,
+        // home: ProfilePageTest(),
         home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
                 );
               }
 
-              return WelcomePage();
+              return const WelcomePage();
             }),
       ),
     );

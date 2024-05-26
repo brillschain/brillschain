@@ -43,7 +43,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
     );
     _animation = Tween<double>(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
@@ -55,7 +55,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
 
     _titleAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 4000),
+      duration: const Duration(milliseconds: 4000),
     );
 
     _titleAnimation = Tween<double>(begin: 0, end: 1).animate(

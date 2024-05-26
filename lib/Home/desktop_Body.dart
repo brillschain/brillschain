@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
-import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 import 'package:supplink/Home/drawer_pages/EX_IM.dart';
 // import 'package:supplink/Home/drawer_pages/LanePages/contractViews.dart';
 import 'package:supplink/Home/drawer_pages/connections.dart';
@@ -10,7 +8,6 @@ import 'package:supplink/Home/drawer_pages/dashBoard.dart';
 import 'package:supplink/Home/drawer_pages/check_updates.dart';
 // import 'package:supplink/Home/constants.dart';
 import 'package:supplink/Home/drawer_pages/laneWorks.dart';
-import 'package:supplink/Home/drawer_pages/profile.dart';
 import 'package:supplink/Home/screens/profile_screen.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
@@ -36,9 +33,10 @@ class DesktopBodyState extends State<DesktopBody> {
     const EX_IM(),
     const Check_Updates(),
     // const Profile(),
-    ProfileScreen(
-      uid: FirebaseAuth.instance.currentUser!.uid,
-    ),
+    // ProfileScreen(
+    //   uid: FirebaseAuth.instance.currentUser!.uid,
+    // ),
+    const ProfilePageTest(),
     const Connections(),
     const LaneWorks(),
     // const ContractView()
@@ -138,7 +136,7 @@ class DesktopBodyState extends State<DesktopBody> {
         : UserAccountsDrawerHeader(
             accountName: Text(
               userData.name.isEmpty ? '' : userData.name,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
             accountEmail: Text(
               userData.email.isEmpty ? '' : userData.email,

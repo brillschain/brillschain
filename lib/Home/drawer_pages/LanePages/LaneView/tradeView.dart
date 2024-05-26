@@ -9,8 +9,7 @@ class TradeView extends StatefulWidget {
   final String laneId;
 
   const TradeView(this.contractServerId, this.userAuthId, this.laneId,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   @override
   State<TradeView> createState() => _TradeViewState();
@@ -25,7 +24,7 @@ class _TradeViewState extends State<TradeView> {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.all(15),
+            margin: const EdgeInsets.all(15),
             child: Row(
               children: [
                 ElevatedButton(
@@ -40,9 +39,9 @@ class _TradeViewState extends State<TradeView> {
                       importsView = 1;
                     });
                   },
-                  child: Text('Imports'),
+                  child: const Text('Imports'),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: importsView == 0
@@ -55,13 +54,13 @@ class _TradeViewState extends State<TradeView> {
                       importsView = 0;
                     });
                   },
-                  child: Text('Exports'),
+                  child: const Text('Exports'),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 400,
               child: Card(
                 elevation: 2,

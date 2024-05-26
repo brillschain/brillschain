@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:supplink/Backend/firebase/users.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/messages/messages.dart';
+import 'package:supplink/Home/messages/messages.dart';
 
 class FirebaseProvider extends ChangeNotifier {
   List<User_Details> users = [];

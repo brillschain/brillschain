@@ -11,7 +11,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseCredentials/.dart';
-import 'package:supplink/Backend/firebase/allUserDetails.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
 // import 'package:geocoding/geocoding.dart';
@@ -98,7 +97,7 @@ class _MapViewState extends State<MapView> {
       child: Builder(
         builder: (BuildContext context) {
           return SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: 80,
               child: GestureDetector(
                 onTap: () {
@@ -156,7 +155,7 @@ class _MapViewState extends State<MapView> {
         left: 200,
         right: 1,
         bottom: 10,
-        child: Container(
+        child: SizedBox(
           height: 320,
           width: 200,
           child: AlertDialog(
@@ -198,7 +197,7 @@ class _MapViewState extends State<MapView> {
                     infoWindowVisible = false;
                   });
                 },
-                child: Text('Close'),
+                child: const Text('Close'),
               ),
             ],
           ),

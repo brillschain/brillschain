@@ -32,7 +32,7 @@ class Firestore {
   }
 
   Future<void> AddUsersInDomaines(
-      String user_id, String domain, String username) async {
+      String userId, String domain, String username) async {
     CollectionReference users =
         FirebaseFirestore.instance.collection('DomainWiseUsers');
 
@@ -44,7 +44,7 @@ class Firestore {
         if (document.id == domain) {
           users
               .doc(domain)
-              .update({user_id: username})
+              .update({userId: username})
               .then((value) => print("User email updated successfully!"))
               .catchError(
                   (error) => print("Failed to update user email: $error"));
@@ -54,7 +54,7 @@ class Firestore {
 
       users
           .doc(domain)
-          .set({user_id: username})
+          .set({userId: username})
           .then((value) => print("User email updated successfully!"))
           .catchError((error) => print("Failed to update user email: $error"));
     } catch (e) {

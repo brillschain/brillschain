@@ -1,21 +1,13 @@
 // import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 // import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Backend/firebase/firebase_firestore_services_msg.dart';
 import 'package:supplink/Backend/firebase/users.dart';
-// import 'package:supplink/Backend/supaBaseDB/superbaseServices/Tables/firebase_firestore_services_msg.dart';
-// import 'package:supplink/Home/drawer_pages/connectionsFolder/messages/chattextfield.dart';
-// import 'package:supplink/Home/drawer_pages/connectionsFolder/messages/messagebubble.dart';
-// import 'package:supplink/Home/drawer_pages/connectionsFolder/messages/messages.dart';
-// import 'package:supplink/Home/drawer_pages/connectionsFolder/messages/messagesConnections.dart';
-// import 'package:supplink/Backend/supaBaseDB/superbaseServices/Tables/users.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/messages/chattextfield.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/messages/messagebubble.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/messages/messages.dart';
+import 'package:supplink/Home/messages/chattextfield.dart';
+import 'package:supplink/Home/messages/messagebubble.dart';
+import 'package:supplink/Home/messages/messages.dart';
+
 import 'package:supplink/Providers/firebase/firebase_providers.dart';
 
 // import 'package:timeago/timeago.dart' as timeago;
@@ -237,7 +229,7 @@ class _ChatMessagesState extends State<ChatMessages> {
   Widget build(BuildContext context) {
     return Consumer<FirebaseProvider>(builder: (context, value, child) {
       return value.messages.isEmpty
-          ? EmptyWidget(icon: Icons.waving_hand, text: 'Say Hello!')
+          ? const EmptyWidget(icon: Icons.waving_hand, text: 'Say Hello!')
           : ListView.builder(
               controller: Provider.of<FirebaseProvider>(context, listen: false)
                   .scrollController,

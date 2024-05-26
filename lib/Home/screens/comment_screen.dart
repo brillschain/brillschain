@@ -6,7 +6,6 @@ import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
 import 'package:supplink/Home/widgets/comment_body.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
-import 'package:supplink/utils/snackbars.dart';
 
 class CommentsScreen extends StatefulWidget {
   final snapshot;

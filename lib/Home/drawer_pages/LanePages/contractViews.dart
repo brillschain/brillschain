@@ -8,7 +8,7 @@ import 'package:supplink/Home/drawer_pages/LanePages/laneview.dart';
 
 class ContractView extends StatefulWidget {
   final Map<String, dynamic> contractInfo;
-  ContractView(this.contractInfo, {super.key});
+  const ContractView(this.contractInfo, {super.key});
   @override
   State<ContractView> createState() => _ContractViewState();
 }
@@ -20,23 +20,23 @@ class _ContractViewState extends State<ContractView> {
     return Scaffold(
       appBar: AppBar(
         // toolbarHeight: 1000,
-        title: Text('Contracts'),
+        title: const Text('Contracts'),
         automaticallyImplyLeading: false,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: Container(
+            child: SizedBox(
               height: 40,
               child: ElevatedButton(
                   // style: ButtonStyle(
                   // ),
                   onPressed: () {},
-                  child: Text('Create New')),
+                  child: const Text('Create New')),
             ),
           )
         ],
       ),
-      drawer: Drawer(),
+      drawer: const Drawer(),
       body: LaneAndContractAndDashView(widget.contractInfo),
     );
   }
@@ -103,7 +103,7 @@ class _LaneAndContractAndDashViewState
                               String members =
                                   'No.Of.Chain Members : ${widget.contractInfo['my_list'].length}';
                               String onGoing = 'OnGoing Chain :';
-                              return Container(
+                              return SizedBox(
                                   height: 170,
                                   child: Card(
                                     elevation: 5,
@@ -137,7 +137,7 @@ class _LaneAndContractAndDashViewState
                                               Expanded(
                                                 child: Column(
                                                   children: [
-                                                    Container(
+                                                    SizedBox(
                                                       height: 100,
                                                       // width: 200,
                                                       child: ListView(
@@ -162,11 +162,11 @@ class _LaneAndContractAndDashViewState
                                               Expanded(
                                                 child: Column(
                                                   children: [
-                                                    Container(
+                                                    SizedBox(
                                                       height: 100,
                                                       // width: 200,
                                                       child: ListView(
-                                                        children: [
+                                                        children: const [
                                                           ListTile(
                                                             leading: Icon(
                                                                 Icons.check),
@@ -193,8 +193,8 @@ class _LaneAndContractAndDashViewState
                                               ),
                                               Container(
                                                 padding:
-                                                    EdgeInsets.only(left: 5),
-                                                margin: EdgeInsets.only(
+                                                    const EdgeInsets.only(left: 5),
+                                                margin: const EdgeInsets.only(
                                                     top: 35, right: 90),
                                                 height: 40,
                                                 width: 120,
@@ -211,7 +211,7 @@ class _LaneAndContractAndDashViewState
                                                                   'ContractServerid'],
                                                               laneDetail[
                                                                   'docName']),
-                                                          settings: RouteSettings(
+                                                          settings: const RouteSettings(
                                                               name: AppRoutes
                                                                   .LaneViewRoute), // Provide a route name here
                                                         ),
@@ -222,7 +222,7 @@ class _LaneAndContractAndDashViewState
                                                       elevation: 10,
                                                       shadowColor: Colors.blue,
                                                     ),
-                                                    child: Text(
+                                                    child: const Text(
                                                       "View lane",
                                                     )),
                                               )

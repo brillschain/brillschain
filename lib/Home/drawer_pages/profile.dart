@@ -43,12 +43,12 @@ class _ProfileState extends State<Profile> {
 
   Future<void> fetchUserDetails() async {
     UserDetailsTable userDetailsTable = UserDetailsTable();
-    Map<String, dynamic>? current_user =
+    Map<String, dynamic>? currentUser =
         await userDetailsTable.fetchCurrentUserDetails();
     Map<String, dynamic>? profile = await userDetailsTable.fetchprofileurl();
 
     String url = profile == null ? '' : profile['Profileurl'];
-    Map<String, dynamic> details = current_user ?? {};
+    Map<String, dynamic> details = currentUser ?? {};
     // print(details);
     setState(() {
       user_details = details;
@@ -102,10 +102,10 @@ class _ProfileState extends State<Profile> {
     UserDetailsTable userDetailsTable = UserDetailsTable();
     // DesktopBodyState desktopBody = DesktopBodyState();
 
-    Map<String, dynamic>? current_user =
+    Map<String, dynamic>? currentUser =
         await userDetailsTable.fetchCurrentUserDetails();
     if (imageBytes == null) return;
-    final uid = current_user!['Auth_id'];
+    final uid = currentUser!['Auth_id'];
     final destination = 'Posts/$uid';
 
     try {
@@ -135,21 +135,21 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('profile'),
+          title: const Text('profile'),
           centerTitle: true,
           actions: [
             Padding(
-                padding: EdgeInsets.only(right: 30),
+                padding: const EdgeInsets.only(right: 30),
                 child: IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.settings,
                   ),
                 )),
           ],
         ),
         body: user_details!.isEmpty
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 5),
@@ -159,7 +159,7 @@ class _ProfileState extends State<Profile> {
                         // border: Border.all(width: 2),
                         color: Colors.white70,
                         borderRadius: BorderRadius.circular(10)),
-                    padding: EdgeInsets.only(left: 15, right: 15, top: 20),
+                    padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
                     child: GestureDetector(
                       onTap: () {
                         FocusScope.of(context).unfocus();
@@ -220,13 +220,13 @@ class _ProfileState extends State<Profile> {
                                             border: Border.all(
                                                 width: 4, color: Colors.white),
                                             color: Colors.blue[200]),
-                                        child: Icon(Icons.edit),
+                                        child: const Icon(Icons.edit),
                                       ),
                                     ))
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
 
@@ -246,12 +246,12 @@ class _ProfileState extends State<Profile> {
                           buildTextField('Email', emailController, false),
 
                           //TODO step verification
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Row(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 25,
                               ),
                               ElevatedButton(
@@ -262,7 +262,7 @@ class _ProfileState extends State<Profile> {
                                                   BorderRadius.circular(10))),
                                       fixedSize: const MaterialStatePropertyAll(
                                           Size.fromWidth(150)),
-                                      padding: MaterialStatePropertyAll(
+                                      padding: const MaterialStatePropertyAll(
                                         EdgeInsets.symmetric(vertical: 15),
                                       )),
                                   onPressed: () {
@@ -270,11 +270,11 @@ class _ProfileState extends State<Profile> {
                                       isEditing = true;
                                     });
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     'edit',
                                     style: TextStyle(fontSize: 18),
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 width: 25,
                               ),
                               ElevatedButton(
@@ -285,7 +285,7 @@ class _ProfileState extends State<Profile> {
                                                   BorderRadius.circular(10))),
                                       fixedSize: const MaterialStatePropertyAll(
                                           Size.fromWidth(150)),
-                                      padding: MaterialStatePropertyAll(
+                                      padding: const MaterialStatePropertyAll(
                                         EdgeInsets.symmetric(vertical: 15),
                                       )),
                                   onPressed: isEditing
@@ -303,7 +303,7 @@ class _ProfileState extends State<Profile> {
                                           });
                                         }
                                       : null,
-                                  child: Text(
+                                  child: const Text(
                                     'save',
                                     style: TextStyle(fontSize: 18),
                                   ))
@@ -325,7 +325,7 @@ class _ProfileState extends State<Profile> {
     // String userDetails = details;
     // textEditingController.text = userDetails;
     return Padding(
-      padding: EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.only(bottom: 20),
       child: TextField(
         obscureText: isPassword,
         enabled: isEditing,
@@ -333,13 +333,13 @@ class _ProfileState extends State<Profile> {
         style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           suffixIcon: isPassword
-              ? IconButton(onPressed: () {}, icon: Icon(Icons.remove_red_eye))
+              ? IconButton(onPressed: () {}, icon: const Icon(Icons.remove_red_eye))
               : null,
-          contentPadding: EdgeInsets.only(bottom: 5, left: 5),
+          contentPadding: const EdgeInsets.only(bottom: 5, left: 5),
           labelText: labeltext,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
+              borderSide: const BorderSide(color: Colors.black),
               borderRadius: BorderRadius.circular(10)),
         ),
       ),

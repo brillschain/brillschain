@@ -122,7 +122,7 @@ class FirebaseService {
     this.userAuthId = userAuthId;
     this.laneId = laneId;
     this.tableName = tableName;
-    this.usersTableRef = FirebaseFirestore.instance.collection('Contracts').doc(contractServerId).collection(userAuthId).doc(laneId).collection(tableName);
+    usersTableRef = FirebaseFirestore.instance.collection('Contracts').doc(contractServerId).collection(userAuthId).doc(laneId).collection(tableName);
   }
 
   Future<void> createProduct(Map<String, dynamic> data) async {

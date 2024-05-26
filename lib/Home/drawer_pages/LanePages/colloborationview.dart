@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ColloborativeCreation extends StatefulWidget {
-  const ColloborativeCreation({Key? key}) : super(key: key);
+  const ColloborativeCreation({super.key});
 
   @override
   State<ColloborativeCreation> createState() => _ColloborativeCreationState();
@@ -30,7 +28,7 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
             itemCount: domainList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return Container(
+              return SizedBox(
                 width: listViewWidth,
                 child: Column(
                   children: [
@@ -53,7 +51,7 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
                                           domainList[index - 1] = temp;
                                         });
                                       },
-                                      icon: Icon(Icons.arrow_left),
+                                      icon: const Icon(Icons.arrow_left),
                                     )
                                   : Container(),
                               if (index < domainList.length - 1)
@@ -65,7 +63,7 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
                                       domainList[index + 1] = temp;
                                     });
                                   },
-                                  icon: Icon(Icons.arrow_right),
+                                  icon: const Icon(Icons.arrow_right),
                                 ),
                             ],
                           ),
@@ -99,7 +97,7 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
                                                       changeDomainIndex = -1;
                                                     });
                                                   },
-                                                  icon: Icon(Icons.check_box),
+                                                  icon: const Icon(Icons.check_box),
                                                 ),
                                               ],
                                             ),
@@ -108,7 +106,7 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
                                   ),
                                   IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.more_horiz),
+                                    icon: const Icon(Icons.more_horiz),
                                   ),
                                   ElevatedButton(
                                     onPressed: () {
@@ -117,7 +115,7 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
                                             index + 1, 'New Designation');
                                       });
                                     },
-                                    child: Text('Add'),
+                                    child: const Text('Add'),
                                   ),
                                 ],
                               ),
@@ -126,14 +124,14 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text('Add new member'),
+                      child: const Text('Add new member'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Expanded(
@@ -143,11 +141,11 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
                         itemBuilder: (context, index) {
                           return Container(
                             height: 100,
-                            color: Color.fromARGB(255, 220, 218, 218),
+                            color: const Color.fromARGB(255, 220, 218, 218),
                           );
                         },
                         separatorBuilder: (context, index) {
-                          return SizedBox(height: 10);
+                          return const SizedBox(height: 10);
                         },
                       ),
                     ),
@@ -156,7 +154,7 @@ class _ColloborativeCreationState extends State<ColloborativeCreation> {
               );
             },
             separatorBuilder: (context, index) {
-              return SizedBox(width: 10);
+              return const SizedBox(width: 10);
             },
           ),
         ),

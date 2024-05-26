@@ -1,10 +1,8 @@
 // import 'dart:collection';
 
 import 'package:flutter/material.dart';
-// import 'package:supplink/Backend/supaBaseDB/superbaseCredentials.dart';
-// import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/PostExtract.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/postsView.dart';
-import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/userLocation.dart';
+
+import 'package:supplink/Home/screens/userLocation.dart';
 import 'package:supplink/Home/screens/posts_screen.dart';
 // import 'package:video_player/video_player.dart';
 // import 'package:flick_video_player/flick_video_player.dart';
@@ -50,13 +48,12 @@ class _HomeConnectionsState extends State<HomeConnections> {
                     elevation: 3,
                     color: Colors.white,
                     child: Container(
-                      child: MapView(),
-                      //enable it view the map
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       width: double.infinity,
+                      child: const MapView(),
                     ),
                   ),
                 ),

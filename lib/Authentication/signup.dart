@@ -36,40 +36,40 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
   int currentStep = 0;
   bool isLoading = false;
   @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
-    );
-    _animation = Tween<double>(begin: 1.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeInOut,
-      ),
-    );
-    _animationController.forward();
+  // void initState() {
+  //   super.initState();
+  //   _animationController = AnimationController(
+  //     vsync: this,
+  //     duration: const Duration(milliseconds: 1500),
+  //   );
+  //   _animation = Tween<double>(begin: 1.0, end: 0.0).animate(
+  //     CurvedAnimation(
+  //       parent: _animationController,
+  //       curve: Curves.easeInOut,
+  //     ),
+  //   );
+  //   _animationController.forward();
 
-    _titleAnimationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 4000),
-    );
+  //   _titleAnimationController = AnimationController(
+  //     vsync: this,
+  //     duration: const Duration(milliseconds: 4000),
+  //   );
 
-    _titleAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _titleAnimationController,
-        curve: Curves.easeOutSine,
-      ),
-    );
+  //   _titleAnimation = Tween<double>(begin: 0, end: 1).animate(
+  //     CurvedAnimation(
+  //       parent: _titleAnimationController,
+  //       curve: Curves.easeOutSine,
+  //     ),
+  //   );
 
-    _titleAnimationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _titleAnimationController.stop();
-      }
-    });
+  //   _titleAnimationController.addStatusListener((status) {
+  //     if (status == AnimationStatus.completed) {
+  //       _titleAnimationController.stop();
+  //     }
+  //   });
 
-    _titleAnimationController.forward();
-  }
+  //   _titleAnimationController.forward();
+  // }
 
   @override
   void dispose() {
@@ -143,7 +143,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
                 child: Theme(
                   data: ThemeData(
                     canvasColor:
-                        Color.fromARGB(253, 102, 216, 244).withOpacity(0.3),
+                        const Color.fromARGB(253, 102, 216, 244).withOpacity(0.3),
                     // colorScheme: Theme.of(context).colorScheme.copyWith(
                     //       primary: Colors.green,
                     //       background: Colors.red,
@@ -247,7 +247,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
                               Navigator.of(context)
                                   .pushNamed(AppRoutes.LoginRoute);
                             },
-                            child: Text('Already have an account? Login'),
+                            child: const Text('Already have an account? Login'),
                           ),
                         ]),
                       ),
@@ -265,7 +265,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
       onPressed: () {},
       child: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.underline,

@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 // import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:supplink/Backend/firebase/allUserDetails.dart';
 import 'package:supplink/Backend/firebase/createContractFirebaseservice.dart';
 import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
@@ -13,7 +11,7 @@ import 'package:supplink/Home/drawer_pages/LanePages/colloborationview.dart';
 class CreateColloboration extends StatefulWidget {
   static const String routeName = '/EX_IM';
 
-  CreateColloboration({Key? key}) : super(key: key);
+  const CreateColloboration({super.key});
 
   @override
   _CreateColloborationState createState() => _CreateColloborationState();
@@ -129,10 +127,10 @@ class _CreateColloborationState extends State<CreateColloboration> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Create Contract'),
+            title: const Text('Create Contract'),
           ),
           body: Scaffold(
-            appBar: TabBar(
+            appBar: const TabBar(
               labelColor: Colors.black,
               tabAlignment: TabAlignment.center,
               indicatorSize: TabBarIndicatorSize.tab,
@@ -147,27 +145,27 @@ class _CreateColloborationState extends State<CreateColloboration> {
             ),
             body: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Container(
+              child: SizedBox(
                 height: screenHeight,
                 width: screenWidth,
                 child: Card(
                   elevation: 3,
                   child: TabBarView(
                     children: [
-                      Center(child: ColloborativeCreation()),
+                      const Center(child: ColloborativeCreation()),
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           // Display TextField for each string in newStrings list
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             // color: Colors.amber,
                             height:
                                 550, //400*(newStrings.length as double) > 500 ? 500 : 50*(newStrings.length as double),
                             child: ListView.separated(
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
-                                separatorBuilder: (context, index) => SizedBox(
+                                separatorBuilder: (context, index) => const SizedBox(
                                       height: 10,
                                     ),
                                 itemCount: people,
@@ -180,9 +178,9 @@ class _CreateColloborationState extends State<CreateColloboration> {
                               setState(() {
                                 // newStrings.add(''); // Add an empty string
                                 people++;
-                                String Auth_id = _auth_ids[
+                                String authId = _auth_ids[
                                     _users.indexOf(itemSelectedMember)];
-                                toBeCreatedContractingPeoples.add(Auth_id);
+                                toBeCreatedContractingPeoples.add(authId);
                                 MemberSelectedOpt.add([
                                   itemSelecteddomain,
                                   itemSelectedVillage,
@@ -194,7 +192,7 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                 print(itemSelecteddomain);
                                 print(itemSelectedVillage);
                                 print(itemSelectedMember);
-                                print(Auth_id);
+                                print(authId);
 
                                 itemSelectedMember = '';
                                 itemSelectedVillage = '';
@@ -202,9 +200,9 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                 infoWindowVisible = false;
                               });
                             },
-                            child: Text('Add More'),
+                            child: const Text('Add More'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -214,10 +212,10 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                   onPressed: () {
                                     setState(() {
                                       infoWindowVisible = false;
-                                      String Auth_id = _auth_ids[
+                                      String authId = _auth_ids[
                                           _users.indexOf(itemSelectedMember)];
                                       toBeCreatedContractingPeoples
-                                          .add(Auth_id);
+                                          .add(authId);
                                       MemberSelectedOpt.add([
                                         itemSelecteddomain,
                                         itemSelectedVillage,
@@ -235,7 +233,7 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                           toBeCreatedContractingPeoples);
                                     });
                                   },
-                                  child: Text('create'))
+                                  child: const Text('create'))
                             ],
                           )
                         ],
@@ -251,10 +249,10 @@ class _CreateColloborationState extends State<CreateColloboration> {
     );
   }
 
-  Future<UserDetails> SelectedMemberDetails(String Auth_id) async {
+  Future<UserDetails> SelectedMemberDetails(String authId) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     DocumentReference documentReference =
-        firestore.collection('AllUsers').doc(Auth_id);
+        firestore.collection('AllUsers').doc(authId);
     DocumentSnapshot snapshot = await documentReference.get();
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
     data.forEach((key, value) {
@@ -263,7 +261,7 @@ class _CreateColloborationState extends State<CreateColloboration> {
     CollectionReference allUsersCollection =
         FirebaseFirestore.instance.collection('AllUsers');
     CollectionReference userProfileCollection =
-        allUsersCollection.doc(Auth_id).collection('Profile');
+        allUsersCollection.doc(authId).collection('Profile');
     String profile = '';
     QuerySnapshot userProfileSnapshot = await userProfileCollection.get();
     if (userProfileSnapshot.docs.isNotEmpty) {
@@ -313,22 +311,22 @@ class _CreateColloborationState extends State<CreateColloboration> {
                   SizedBox(
                     child: Text('${i + 1}.'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
-                  Container(
+                  SizedBox(
                     width: 300,
                     // height: 40,
                     child: DropdownSearch<String>(
                       items: _domains,
-                      popupProps: PopupProps.menu(
+                      popupProps: const PopupProps.menu(
                         showSearchBox: true,
                         fit: FlexFit.loose,
                       ),
-                      dropdownButtonProps: DropdownButtonProps(
+                      dropdownButtonProps: const DropdownButtonProps(
                         color: Colors.blue,
                       ),
-                      dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
                         textAlignVertical: TextAlignVertical.center,
                         dropdownSearchDecoration: InputDecoration(
                           labelText: "Domain",
@@ -350,7 +348,7 @@ class _CreateColloborationState extends State<CreateColloboration> {
                           : itemSelecteddomain,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                   ),
                   Container(
@@ -361,25 +359,25 @@ class _CreateColloborationState extends State<CreateColloboration> {
                         Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Search Filter : '),
-                              SizedBox(
+                              const Text('Search Filter : '),
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 300,
                                 // height: 40,
                                 // color: Colors.blue,
                                 child: DropdownSearch<String>(
                                   items: _locations,
-                                  popupProps: PopupProps.menu(
+                                  popupProps: const PopupProps.menu(
                                     showSearchBox: true,
                                     fit: FlexFit.loose,
                                   ),
-                                  dropdownButtonProps: DropdownButtonProps(
+                                  dropdownButtonProps: const DropdownButtonProps(
                                     color: Colors.blue,
                                   ),
                                   dropdownDecoratorProps:
-                                      DropDownDecoratorProps(
+                                      const DropDownDecoratorProps(
                                     textAlignVertical: TextAlignVertical.center,
                                     dropdownSearchDecoration: InputDecoration(
                                       labelText: "Location",
@@ -400,20 +398,20 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                       : itemSelectedVillage,
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 300,
                                 // height: 40,
                                 child: DropdownSearch<String>(
                                   items: domainList,
-                                  popupProps: PopupProps.menu(
+                                  popupProps: const PopupProps.menu(
                                     showSearchBox: true,
                                     fit: FlexFit.loose,
                                   ),
-                                  dropdownButtonProps: DropdownButtonProps(
+                                  dropdownButtonProps: const DropdownButtonProps(
                                     color: Colors.blue,
                                   ),
                                   dropdownDecoratorProps:
-                                      DropDownDecoratorProps(
+                                      const DropDownDecoratorProps(
                                     textAlignVertical: TextAlignVertical.center,
                                     dropdownSearchDecoration: InputDecoration(
                                       labelText: "Date of Connection",
@@ -432,27 +430,27 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                 ),
                               ),
                             ]),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           // mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Select Memeber :                          '),
-                            Container(
+                            const Text('Select Memeber :                          '),
+                            SizedBox(
                               width: 300,
                               // height: 40,
                               child: DropdownSearch<String>(
                                 items: _users,
-                                popupProps: PopupProps.menu(
+                                popupProps: const PopupProps.menu(
                                   showSearchBox: true,
                                   fit: FlexFit.loose,
                                 ),
-                                dropdownButtonProps: DropdownButtonProps(
+                                dropdownButtonProps: const DropdownButtonProps(
                                   color: Colors.blue,
                                 ),
-                                dropdownDecoratorProps: DropDownDecoratorProps(
+                                dropdownDecoratorProps: const DropDownDecoratorProps(
                                   textAlignVertical: TextAlignVertical.center,
                                   dropdownSearchDecoration: InputDecoration(
                                     labelText: "People",
@@ -461,10 +459,10 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                   ),
                                 ),
                                 onChanged: (value) async {
-                                  String Auth_id = _auth_ids[
+                                  String authId = _auth_ids[
                                       _users.indexOf(value.toString())];
                                   UserDetails ud =
-                                      await SelectedMemberDetails(Auth_id);
+                                      await SelectedMemberDetails(authId);
                                   setState(() {
                                     currentUserDetailsDisplay = ud;
                                     infoWindowVisible = true;
@@ -482,7 +480,7 @@ class _CreateColloborationState extends State<CreateColloboration> {
                     ),
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                         // color: Colors.pink,
                         width: 300,
                         height: infoWindowVisible == true ||
@@ -501,10 +499,10 @@ class _CreateColloborationState extends State<CreateColloboration> {
 
             // Expanded(child: Container(color: Colors.green,)),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Divider()
+            const Divider()
           ],
         ),
       ),
@@ -512,7 +510,7 @@ class _CreateColloborationState extends State<CreateColloboration> {
   }
 
   Widget popView(UserDetails selectedUser) {
-    return Container(
+    return SizedBox(
       height: 320,
       width: 300,
       child: AlertDialog(
@@ -527,7 +525,7 @@ class _CreateColloborationState extends State<CreateColloboration> {
                         backgroundImage: NetworkImage(selectedUser.profile),
                         radius: 25,
                       )
-                    : Icon(
+                    : const Icon(
                         Icons.account_circle_sharp,
                         size: 50,
                       ),
@@ -550,7 +548,7 @@ class _CreateColloborationState extends State<CreateColloboration> {
                 infoWindowVisible = false;
               });
             },
-            child: Text('Close'),
+            child: const Text('Close'),
           ),
         ],
       ),
