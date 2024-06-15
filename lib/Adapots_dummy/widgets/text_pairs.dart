@@ -9,13 +9,13 @@ class TextPairs {
       children: [
         Row(
           children: [
-            SelectableText(title,
-                style: AppThemeData.darkTheme.textTheme.titleMedium),
+            // SelectableText(title,
+                // style: AppThemeData.darkTheme.textTheme.titleMedium),
           ],
         ),
         const SizedBox(height: 10.0),
-        SelectableText(description,
-            style: AppThemeData.darkTheme.textTheme.labelLarge),
+        // SelectableText(description,
+        //     style: AppThemeData.darkTheme.textTheme.labelLarge),
       ],
     );
   }
@@ -30,28 +30,28 @@ class TextPairs {
       children: [
         SelectableText(
           title,
-          style: TextStyle(
-              fontSize: AppThemeData.darkTheme.textTheme.titleSmall!.fontSize,
-              fontWeight:
-                  AppThemeData.darkTheme.textTheme.titleSmall!.fontWeight,
-              color: AppThemeData.textWhite),
+          // style: TextStyle(
+          //     fontSize: AppThemeData.darkTheme.textTheme.titleSmall!.fontSize,
+          //     fontWeight:
+          //         AppThemeData.darkTheme.textTheme.titleSmall!.fontWeight,
+          //     color: AppThemeData.textWhite),
         ),
         SelectableText(
           value1,
-          style: TextStyle(
-              fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
-              fontWeight:
-                  AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
-              color: AppThemeData.textGreyDark),
+          // style: TextStyle(
+          //     fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
+          //     fontWeight:
+          //         AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
+          //     color: AppThemeData.textGreyDark),
         ),
         isThreeLines ? const SizedBox(height: 20.0) : Container(),
         SelectableText(
           value2,
-          style: TextStyle(
-              fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
-              fontWeight:
-                  AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
-              color: AppThemeData.textGreyDark),
+          // style: TextStyle(
+          //     fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
+          //     fontWeight:
+          //         AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
+          //     color: AppThemeData.textGreyDark),
         ),
       ],
     );
@@ -64,28 +64,28 @@ class TextPairs {
       children: [
         SelectableText(
           title,
-          style: TextStyle(
-              fontSize: AppThemeData.darkTheme.textTheme.titleSmall!.fontSize,
-              fontWeight:
-                  AppThemeData.darkTheme.textTheme.titleSmall!.fontWeight,
-              color: AppThemeData.textWhite),
+          // style: TextStyle(
+          //     fontSize: AppThemeData.darkTheme.textTheme.titleSmall!.fontSize,
+          //     fontWeight:
+          //         AppThemeData.darkTheme.textTheme.titleSmall!.fontWeight,
+          //     color: AppThemeData.textWhite),
         ),
         SelectableText(
           value1,
-          style: TextStyle(
-              fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
-              fontWeight:
-                  AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
-              color: AppThemeData.textGreyDark),
+          // style: TextStyle(
+          //     fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
+          //     fontWeight:
+          //         AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
+          //     color: AppThemeData.textGreyDark),
         ),
         const SizedBox(height: 20.0),
         SelectableText(
           value2,
-          style: TextStyle(
-              fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
-              fontWeight:
-                  AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
-              color: AppThemeData.textGreyDark),
+          // style: TextStyle(
+          //     fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
+          //     fontWeight:
+          //         AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
+          //     color: AppThemeData.textGreyDark),
         ),
       ],
     );

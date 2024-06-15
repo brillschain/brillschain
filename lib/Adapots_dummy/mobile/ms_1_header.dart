@@ -15,16 +15,16 @@ class MS1Header extends StatelessWidget {
         children: [
           SelectableText(
             DataValues.headerGreetings,
-            style: AppThemeData.darkTheme.textTheme.headlineSmall,
+            // style: AppThemeData.darkTheme.textTheme.headlineSmall,
           ),
           SelectableText(
             DataValues.headerName,
-            style: AppThemeData.darkTheme.textTheme.displayMedium,
+            // style: AppThemeData.darkTheme.textTheme.displayMedium,
             textAlign: TextAlign.center,
           ),
           SelectableText(
             DataValues.headerTitle,
-            style: AppThemeData.darkTheme.textTheme.titleLarge,
+            // style: AppThemeData.darkTheme.textTheme.titleLarge,
           ),
           const SizedBox(height: 20.0),
           const SocialProfiles(),
@@ -36,7 +36,7 @@ class MS1Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppThemeData.backgroundBlack,
+      // color: AppThemeData.backgroundBlack,
       child: Padding(
           padding: const EdgeInsets.only(bottom: 40.0),
           child: Column(

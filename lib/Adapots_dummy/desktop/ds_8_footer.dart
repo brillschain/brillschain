@@ -18,7 +18,7 @@ class DS8Footer extends StatelessWidget {
           child: Text(
             'Get Source Code',
             style: TextStyle(
-              color: AppThemeData.textPrimary,
+              // color: AppThemeData.textPrimary,
               fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
               fontWeight: Theme.of(context).textTheme.bodyMedium!.fontWeight,
             ),
@@ -32,7 +32,7 @@ class DS8Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppThemeData.backgroundBlack,
+      // color: AppThemeData.backgroundBlack,
       child: Column(
         children: [
           const SizedBox(

@@ -13,7 +13,7 @@ class MS3Education extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: KeyHolders.educationKey,
-      color: AppThemeData.backgroundGrey,
+      // color: AppThemeData.backgroundGrey,
       child: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(

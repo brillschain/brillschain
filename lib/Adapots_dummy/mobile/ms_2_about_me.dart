@@ -126,7 +126,7 @@ class MS2AboutMe extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: KeyHolders.aboutKey,
-      color: AppThemeData.backgroundGrey,
+      // color: AppThemeData.backgroundGrey,s
       child: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(

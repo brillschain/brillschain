@@ -56,14 +56,14 @@ class NavBar {
           message: 'Go to ${DataValues.navBarTechNotes} section',
         ),
         const SizedBox(width: 20.0),
-        ButtonRectangle(
-            name: DataValues.navBarContactMe,
-            onPressed: () => Scrollable.ensureVisible(
-                  KeyHolders.contactKey.currentContext!,
-                  duration: const Duration(milliseconds: 1000),
-                ),
-            color: AppThemeData.buttonPrimary,
-            message: 'Go to ${DataValues.navBarContactMe} section'),
+        // ButtonRectangle(
+        //     name: DataValues.navBarContactMe,
+        //     onPressed: () => Scrollable.ensureVisible(
+        //           KeyHolders.contactKey.currentContext!,
+        //           duration: const Duration(milliseconds: 1000),
+        //         ),
+        //     // color: AppThemeData.buttonPrimary,
+        //     message: 'Go to ${DataValues.navBarContactMe} section'),
       ],
     );
   }
@@ -74,24 +74,24 @@ class NavBar {
         children: [
           Image.asset('assets/images/logo.png', height: 80.0, width: 80.0),
           const SizedBox(height: 10.0),
-          SelectableText(
-            DataValues.headerName,
-            style: TextStyle(
-              color: AppThemeData.textPrimary,
-              fontSize: AppThemeData.darkTheme.textTheme.titleLarge?.fontSize,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SelectableText(
-            DataValues.headerTitle,
-            style: AppThemeData.darkTheme.textTheme.labelLarge,
-          ),
+          // SelectableText(
+          //   DataValues.headerName,
+          //   style: TextStyle(
+          //     color: AppThemeData.textPrimary,
+          //     fontSize: AppThemeData.darkTheme.textTheme.titleLarge?.fontSize,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          // ),
+          // SelectableText(
+          //   DataValues.headerTitle,
+          //   style: AppThemeData.darkTheme.textTheme.labelLarge,
+          // ),
         ],
       );
     }
 
     return Drawer(
-      backgroundColor: AppThemeData.backgroundBlack,
+      // backgroundColor: AppThemeData.backgroundBlack,
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         children: [
@@ -143,14 +143,14 @@ class NavBar {
             message: 'Go to ${DataValues.navBarTechNotes} section',
           ),
           const SizedBox(height: 20.0),
-          ButtonRectangle(
-              name: DataValues.navBarContactMe,
-              onPressed: () => Scrollable.ensureVisible(
-                    KeyHolders.contactKey.currentContext!,
-                    duration: const Duration(milliseconds: 1000),
-                  ),
-              color: AppThemeData.buttonPrimary,
-              message: 'Go to ${DataValues.navBarContactMe} section'),
+          // ButtonRectangle(
+          //     name: DataValues.navBarContactMe,
+          //     onPressed: () => Scrollable.ensureVisible(
+          //           KeyHolders.contactKey.currentContext!,
+          //           duration: const Duration(milliseconds: 1000),
+          //         ),
+          //     // color: AppThemeData.buttonPrimary,
+          //     message: 'Go to ${DataValues.navBarContactMe} section'),
         ],
       ),
     );

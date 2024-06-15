@@ -15,7 +15,7 @@ class DS7Contact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: KeyHolders.contactKey,
-      color: AppThemeData.backgroundGrey,
+      // color: AppThemeData.backgroundGrey,s
       child: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(
@@ -27,14 +27,14 @@ class DS7Contact extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SelectableText(DataValues.contactBanner,
-                    style: TextStyle(
-                      fontSize: AppThemeData
-                          .darkTheme.textTheme.titleMedium!.fontSize,
-                      fontWeight: AppThemeData
-                          .darkTheme.textTheme.titleLarge!.fontWeight,
-                      color: AppThemeData.textWhite,
-                    )),
+                // SelectableText(DataValues.contactBanner,
+                //     style: TextStyle(
+                //       fontSize: AppThemeData
+                //           .darkTheme.textTheme.titleMedium!.fontSize,
+                //       fontWeight: AppThemeData
+                //           .darkTheme.textTheme.titleLarge!.fontWeight,
+                //       color: AppThemeData.textWhite,
+                //     )),
                 const SizedBox(width: 5.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
@@ -47,7 +47,7 @@ class DS7Contact extends StatelessWidget {
                         content: Text(
                           'Email successfully copied to clipboard',
                           textAlign: TextAlign.center,
-                          style: AppThemeData.darkTheme.textTheme.bodyLarge,
+                          // style: AppThemeData.darkTheme.textTheme.bodyLarge,
                         ),
                         duration: const Duration(seconds: 2),
                       ));
@@ -56,13 +56,13 @@ class DS7Contact extends StatelessWidget {
                       message: 'Click to copy email to clipboard',
                       child: Text(
                         DataValues.contactEmail,
-                        style: TextStyle(
-                          fontSize: AppThemeData
-                              .darkTheme.textTheme.titleMedium!.fontSize,
-                          fontWeight: AppThemeData
-                              .darkTheme.textTheme.titleLarge!.fontWeight,
-                          color: AppThemeData.textPrimary,
-                        ),
+                        // style: TextStyle(
+                        //   fontSize: AppThemeData
+                        //       .darkTheme.textTheme.titleMedium!.fontSize,
+                        //   fontWeight: AppThemeData
+                        //       .darkTheme.textTheme.titleLarge!.fontWeight,
+                        //   color: AppThemeData.textPrimary,
+                        // ),
                       ),
                     ),
                   ),

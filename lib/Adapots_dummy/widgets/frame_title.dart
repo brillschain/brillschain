@@ -17,8 +17,12 @@ class FrameTitle extends StatelessWidget {
         children: [
           SelectableText(
             title,
-            style: Theme.of(context).textTheme.displaySmall,
-            
+            style: TextStyle(
+              color: Colors.white,
+              // fontSize : FontWeight.w600
+              fontSize: 40
+            ),
+          
           ),
           Padding(
             padding: ResponsiveScreenProvider.isDesktopScreen(context)

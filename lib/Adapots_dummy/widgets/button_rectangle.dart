@@ -24,7 +24,7 @@ class ButtonRectangle extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
-          foregroundColor: AppThemeData.textWhite,
+          // foregroundColor: AppThemeData.textWhite,
           minimumSize: const Size(170.0, 50.0),
           textStyle: Theme.of(context).textTheme.titleMedium,
           elevation: 0.0,

@@ -16,7 +16,7 @@ class ContainerCard {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: AppThemeData.cardGrey,
+        // color: AppThemeData.cardGrey,
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
@@ -40,19 +40,19 @@ class ContainerCard {
                 const SizedBox(height: 20.0),
                 SelectableText(
                   title,
-                  style: TextStyle(
-                    fontSize:
-                        AppThemeData.darkTheme.textTheme.titleMedium!.fontSize,
-                    fontWeight: AppThemeData
-                        .darkTheme.textTheme.headlineSmall!.fontWeight,
-                    color: AppThemeData.textWhite,
-                  ),
+                  // style: TextStyle(
+                  //   fontSize:
+                  //       AppThemeData.darkTheme.textTheme.titleMedium!.fontSize,
+                  //   fontWeight: AppThemeData
+                  //       .darkTheme.textTheme.headlineSmall!.fontWeight,
+                  //   color: AppThemeData.textWhite,
+                  // ),
                 ),
               ],
             ),
             const SizedBox(height: 10.0),
-            SelectableText(description,
-                style: AppThemeData.darkTheme.textTheme.labelLarge),
+            // SelectableText(description,
+            //     style: AppThemeData.darkTheme.textTheme.labelLarge),
             const SizedBox(height: 20.0),
             // ButtonTextSmall(
             //   text: 'View More >>',
@@ -74,7 +74,7 @@ class ContainerCard {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: AppThemeData.cardGrey,
+        // color: AppThemeData.cardGrey,
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
@@ -96,14 +96,14 @@ class ContainerCard {
               children: [
                 Image.asset('assets/images/$image.png', height: 70.0),
                 const SizedBox(height: 20.0),
-                SelectableText(title,
-                    style: TextStyle(
-                      fontSize: AppThemeData
-                          .darkTheme.textTheme.titleMedium!.fontSize,
-                      fontWeight: AppThemeData
-                          .darkTheme.textTheme.headlineSmall!.fontWeight,
-                      color: AppThemeData.textPrimary,
-                    )),
+                // SelectableText(title,
+                    // style: TextStyle(
+                    //   fontSize: AppThemeData
+                    //       .darkTheme.textTheme.titleMedium!.fontSize,
+                    //   fontWeight: AppThemeData
+                    //       .darkTheme.textTheme.headlineSmall!.fontWeight,
+                    //   color: AppThemeData.textPrimary,
+                    // )),
                 const SizedBox(height: 10.0),
                 TextPairs().type2(
                   title: values[0],
@@ -151,7 +151,7 @@ class ContainerCard {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: AppThemeData.cardGrey,
+        // color: AppThemeData.cardGrey,
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
@@ -173,14 +173,14 @@ class ContainerCard {
               children: [
                 Image.asset('assets/images/$image.png', height: 70.0),
                 const SizedBox(height: 20.0),
-                SelectableText(title,
-                    style: TextStyle(
-                      fontSize: AppThemeData
-                          .darkTheme.textTheme.titleMedium!.fontSize,
-                      fontWeight: AppThemeData
-                          .darkTheme.textTheme.headlineSmall!.fontWeight,
-                      color: AppThemeData.textPrimary,
-                    )),
+                // SelectableText(title,
+                    // style: TextStyle(
+                    //   fontSize: AppThemeData
+                    //       .darkTheme.textTheme.titleMedium!.fontSize,
+                    //   fontWeight: AppThemeData
+                    //       .darkTheme.textTheme.headlineSmall!.fontWeight,
+                    //   color: AppThemeData.textPrimary,
+                    // )),
                 const SizedBox(height: 10.0),
                 TextPairs().type2(
                   title: role,
@@ -199,7 +199,7 @@ class ContainerCard {
                   )
                 : Text(
                     'See you soon with the link :)',
-                    style: AppThemeData.darkTheme.textTheme.labelMedium,
+                    // style: AppThemeData.darkTheme.textTheme.labelMedium,
                   ),
           ],
         ),
@@ -230,13 +230,13 @@ class ContainerCard {
               },
               child: Text(
                 message,
-                style: TextStyle(
-                  fontSize:
-                      AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
-                  fontWeight:
-                      AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
-                  color: AppThemeData.textWhite,
-                ),
+                // style: TextStyle(
+                //   fontSize:
+                //       AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
+                //   fontWeight:
+                //       AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
+                //   color: AppThemeData.textWhite,
+                // ),
               ),
             ),
           ),

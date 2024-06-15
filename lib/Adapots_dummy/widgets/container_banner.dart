@@ -15,7 +15,7 @@ class ContainerBanner {
       required String message,
       required Uri url}) {
     return Container(
-      color: AppThemeData.backgroundGrey,
+      // color: AppThemeData.backgroundGrey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -27,27 +27,28 @@ class ContainerBanner {
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SelectableText(
-                          title1,
-                          style: TextStyle(
-                            fontSize: AppThemeData
-                                .darkTheme.textTheme.titleLarge!.fontSize,
-                            fontWeight: AppThemeData
-                                .darkTheme.textTheme.titleLarge!.fontWeight,
-                            color: AppThemeData.textWhite,
-                          ),
-                        ),
+                        // SelectableText(
+                        //   title1,
+                        //   style: TextStyle(
+                        //     fontSize: AppThemeData
+                        //         .darkTheme.textTheme.titleLarge!.fontSize,
+                        //     fontWeight: AppThemeData
+                        //         .darkTheme.textTheme.titleLarge!.fontWeight,
+                        //     color: AppThemeData.textWhite,
+                        //   ),
+                        // ),
+
                         const SizedBox(width: 4.0),
-                        SelectableText(
-                          title2,
-                          style: TextStyle(
-                            fontSize: AppThemeData
-                                .darkTheme.textTheme.titleLarge!.fontSize,
-                            fontWeight: AppThemeData
-                                .darkTheme.textTheme.titleLarge!.fontWeight,
-                            color: AppThemeData.textPrimary,
-                          ),
-                        ),
+                        // SelectableText(
+                        //   title2,
+                        //   style: TextStyle(
+                        //     fontSize: AppThemeData
+                        //         .darkTheme.textTheme.titleLarge!.fontSize,
+                        //     fontWeight: AppThemeData
+                        //         .darkTheme.textTheme.titleLarge!.fontWeight,
+                        //     color: AppThemeData.textPrimary,
+                        //   ),
+                        // ),
                       ],
                     )
                   : Column(
@@ -55,24 +56,24 @@ class ContainerBanner {
                       children: [
                         SelectableText(
                           title1,
-                          style: TextStyle(
-                            fontSize: AppThemeData
-                                .darkTheme.textTheme.titleLarge!.fontSize,
-                            fontWeight: AppThemeData
-                                .darkTheme.textTheme.titleLarge!.fontWeight,
-                            color: AppThemeData.textWhite,
-                          ),
+                          // style: TextStyle(
+                          //   fontSize: AppThemeData
+                          //       .darkTheme.textTheme.titleLarge!.fontSize,
+                          //   fontWeight: AppThemeData
+                          //       .darkTheme.textTheme.titleLarge!.fontWeight,
+                          //   color: AppThemeData.textWhite,
+                          // ),
                         ),
                         const SizedBox(width: 4.0),
                         SelectableText(
                           title2,
-                          style: TextStyle(
-                            fontSize: AppThemeData
-                                .darkTheme.textTheme.titleLarge!.fontSize,
-                            fontWeight: AppThemeData
-                                .darkTheme.textTheme.titleLarge!.fontWeight,
-                            color: AppThemeData.textPrimary,
-                          ),
+                          // style: TextStyle(
+                          //   fontSize: AppThemeData
+                          //       .darkTheme.textTheme.titleLarge!.fontSize,
+                          //   fontWeight: AppThemeData
+                          //       .darkTheme.textTheme.titleLarge!.fontWeight,
+                          //   color: AppThemeData.textPrimary,
+                          // ),
                         ),
                       ],
                     ),
@@ -80,28 +81,29 @@ class ContainerBanner {
               SelectableText(
                 description,
                 style: TextStyle(
-                  fontSize:
-                      AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
-                  fontWeight:
-                      AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
-                  color: AppThemeData.textGreyDark,
+                  // fontSize:
+                      // AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
+                  // fontWeight:
+                      // AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
+                  // color: AppThemeData.textGreyDark,
                 ),
                 textAlign: TextAlign.center,
               ),
             ],
           ),
           const SizedBox(height: 20.0),
-          ButtonRectangle(
-            name: message,
-            color: AppThemeData.buttonSecondary,
-            message: url.toString(),
-            onPressed: () async {
-              if (!await launchUrl(url)) {
-                throw 'Could not launch $url';
-              }
-              log("Direct to: $url");
-            },
-          )
+          // ButtonRectangle(
+          //   name: message,
+          //   color: AppThemeData.buttonSecondary,
+          //   message: url.toString(),
+          //   onPressed: () async {
+          //     if (!await launchUrl(url)) {
+          //       throw 'Could not launch $url';
+          //     }
+          //     log("Direct to: $url");
+          //   },
+          // )
+        
         ],
       ),
     );
@@ -122,12 +124,12 @@ class ContainerBanner {
           child: Text(
             message,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
-              fontWeight:
-                  AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
-              color: AppThemeData.textGreyDark,
-            ),
+            // style: TextStyle(
+            //   fontSize: AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
+            //   fontWeight:
+            //       AppThemeData.darkTheme.textTheme.labelLarge!.fontWeight,
+            //   color: AppThemeData.textGreyDark,
+            // ),
           ),
         ),
       ),

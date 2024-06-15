@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "BrillsChain",
         routes: AppRoutes.Routes,
-        theme: AppThemeData.darkTheme,
+        // theme: AppThemeData.darkTheme,
 
         // home: ProfilePageTest(),
         home: StreamBuilder(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../statics/key_holders.dart';
 import '../statics/data_values.dart';
 import '../theme/app_theme.dart';
@@ -9,32 +8,66 @@ import '../widgets/container_card.dart';
 import '../widgets/container_banner.dart';
 import '../widgets/frame_title.dart';
 
-class DS2AboutMe extends StatelessWidget {
+class DS2AboutMe extends StatefulWidget {
   const DS2AboutMe({Key? key}) : super(key: key);
+
+  @override
+  _DS2AboutMeState createState() => _DS2AboutMeState();
+}
+
+class _DS2AboutMeState extends State<DS2AboutMe> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _offsetAnimation;
+
+  @override
+
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+
+    _offsetAnimation = Tween<Offset>(
+      begin: Offset(0, -1),
+      end: Offset(0, 0),
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   Widget bio(BuildContext context) {
     return SizedBox(
-      //color: Colors.blue,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextPairs().type1(
-                  title: DataValues.aboutMeBiographyTitle,
-                  description: DataValues.aboutMeBiographyDescription,
-                ),
-                const SizedBox(height: 40.0),
-                ButtonTextSmall(
-                  text: 'View Full Biography >>',
-                  message: DataValues.biographyURL.toString(),
-                  url: DataValues.biographyURL,
-                ),
-              ],
-            ),
-          ),
+          // Expanded(
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       // TextPairs().type1(
+          //       //   title: DataValues.aboutMeBiographyTitle,
+          //       //   description: DataValues.aboutMeBiographyDescription,
+          //       // ),
+          //       const SizedBox(height: 40.0),
+          //       ButtonTextSmall(
+          //         text: 'View Full Biography >>',
+          //         message: DataValues.biographyURL.toString(),
+          //         url: DataValues.biographyURL,
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          
           SizedBox(width: MediaQuery.of(context).size.width * 0.08),
           Expanded(
             child: Column(
@@ -109,42 +142,68 @@ class DS2AboutMe extends StatelessWidget {
     );
   }
 
+  Widget animatedCard({required Widget child}) {
+    return MouseRegion(
+      onEnter: (event) => setState(() {}),
+      onExit: (event) => setState(() {}),
+      child: TweenAnimationBuilder(
+        duration: const Duration(milliseconds: 200),
+        tween: Tween<double>(begin: 1.0, end: 1.05),
+        builder: (context, scale, child) {
+          return Transform.scale(
+            scale: scale,
+            child: child,
+          );
+        },
+        child: child,
+      ),
+    );
+  }
+
   Widget titles(BuildContext context) {
     return SizedBox(
-      //color: Colors.red,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: ContainerCard().type1(
-              title: DataValues.aboutMeStudentTitle,
-              description: DataValues.aboutMeStudentDescription,
-              image: 'assets/icons/student.png',
-              message: DataValues.linkedinURL.toString(),
-              url: DataValues.linkedinURL,
+      child: SlideTransition(
+        position: _offsetAnimation,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: animatedCard(
+                child: ContainerCard().type1(
+                  title: DataValues.aboutMeStudentTitle,
+                  description: DataValues.aboutMeStudentDescription,
+                  image: 'assets/icons/student.png',
+                  message: DataValues.linkedinURL.toString(),
+                  url: DataValues.linkedinURL,
+                ),
+              ),
             ),
-          ),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.03),
-          Expanded(
-            child: ContainerCard().type1(
-              title: DataValues.aboutMeDeveloperTitle,
-              description: DataValues.aboutMeDeveloperDescription,
-              image: 'assets/icons/developer.png',
-              message: DataValues.linkedinURL.toString(),
-              url: DataValues.linkedinURL,
+            SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+            Expanded(
+              child: animatedCard(
+                child: ContainerCard().type1(
+                  title: DataValues.aboutMeDeveloperTitle,
+                  description: DataValues.aboutMeDeveloperDescription,
+                  image: 'assets/icons/developer.png',
+                  message: DataValues.linkedinURL.toString(),
+                  url: DataValues.linkedinURL,
+                ),
+              ),
             ),
-          ),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.03),
-          Expanded(
-            child: ContainerCard().type1(
-              title: DataValues.aboutMeVolunteerTitle,
-              description: DataValues.aboutMeVolunteerDescription,
-              image: 'assets/icons/volunteer.png',
-              message: DataValues.linkedinURL.toString(),
-              url: DataValues.linkedinURL,
+            SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+            Expanded(
+              child: animatedCard(
+                child: ContainerCard().type1(
+                  title: DataValues.aboutMeVolunteerTitle,
+                  description: DataValues.aboutMeVolunteerDescription,
+                  image: 'assets/icons/volunteer.png',
+                  message: DataValues.linkedinURL.toString(),
+                  url: DataValues.linkedinURL,
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -153,7 +212,6 @@ class DS2AboutMe extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: KeyHolders.aboutKey,
-      color: AppThemeData.backgroundGrey,
       child: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(
@@ -162,22 +220,10 @@ class DS2AboutMe extends StatelessWidget {
             const FrameTitle(
                 title: DataValues.aboutMeTitle,
                 description: DataValues.aboutMeDescription),
-            const SizedBox(height: 40.0),
-            bio(context),
-            const SizedBox(height: 40.0),
             titles(context),
             const SizedBox(height: 80.0),
-            Center(
-              child: ContainerBanner().type1(
-                  isDesktop: true,
-                  title1: DataValues.aboutMeBanner,
-                  title2: DataValues.aboutMeBannerTitle,
-                  description: DataValues.aboutMeBannerWeb,
-                  image: 'logo',
-                  message: 'View Profiles',
-                  url: DataValues.profilesURL),
-            ),
           ],
+          
         ),
       ),
     );

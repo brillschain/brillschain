@@ -15,7 +15,7 @@ class MS7Contact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: KeyHolders.contactKey,
-      color: AppThemeData.backgroundGrey,
+      // color: AppThemeData.backgroundGrey,
       child: Column(
         children: [
           const SizedBox(
@@ -30,14 +30,14 @@ class MS7Contact extends StatelessWidget {
                     title: DataValues.contactTitle,
                     description: DataValues.contactDescription),
                 const SizedBox(height: 30.0),
-                SelectableText(DataValues.contactBanner,
-                    style: TextStyle(
-                      fontSize: AppThemeData
-                          .darkTheme.textTheme.titleMedium!.fontSize,
-                      fontWeight: AppThemeData
-                          .darkTheme.textTheme.titleLarge!.fontWeight,
-                      color: AppThemeData.textWhite,
-                    )),
+                // SelectableText(DataValues.contactBanner,
+                    // style: TextStyle(
+                    //   fontSize: AppThemeData
+                    //       .darkTheme.textTheme.titleMedium!.fontSize,
+                    //   fontWeight: AppThemeData
+                    //       .darkTheme.textTheme.titleLarge!.fontWeight,
+                    //   color: AppThemeData.textWhite,
+                    // )),
                 const SizedBox(height: 5.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
@@ -50,7 +50,7 @@ class MS7Contact extends StatelessWidget {
                         content: Text(
                           'Email successfully copied to clipboard',
                           textAlign: TextAlign.center,
-                          style: AppThemeData.darkTheme.textTheme.bodyLarge,
+                          // style: AppThemeData.darkTheme.textTheme.bodyLarge,
                         ),
                         duration: const Duration(seconds: 2),
                       ));
@@ -59,13 +59,13 @@ class MS7Contact extends StatelessWidget {
                       message: 'Click to copy email to clipboard',
                       child: Text(
                         DataValues.contactEmail,
-                        style: TextStyle(
-                          fontSize: AppThemeData
-                              .darkTheme.textTheme.titleMedium!.fontSize,
-                          fontWeight: AppThemeData
-                              .darkTheme.textTheme.titleLarge!.fontWeight,
-                          color: AppThemeData.textPrimary,
-                        ),
+                        // style: TextStyle(
+                        //   fontSize: AppThemeData
+                        //       .darkTheme.textTheme.titleMedium!.fontSize,
+                        //   fontWeight: AppThemeData
+                        //       .darkTheme.textTheme.titleLarge!.fontWeight,
+                        //   color: AppThemeData.textPrimary,
+                        // ),
                       ),
                     ),
                   ),
