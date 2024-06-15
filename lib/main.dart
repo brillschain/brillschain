@@ -28,8 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "BrillsChain",
-        routes: AppRoutes.Routes,
-        // theme: AppThemeData.darkTheme,
+        routes: AppRoutes.routes,
 
         // home: ProfilePageTest(),
         home: StreamBuilder(

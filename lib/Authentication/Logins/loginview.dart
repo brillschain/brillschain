@@ -11,7 +11,7 @@ import 'package:supplink/Home/widgets/main_app_bar.dart';
 // import 'package:supplink/Backend/firebase/userDeatilsmaintain.dart';
 // import 'package:supplink/Providers/core/notifiers/authenticationnotifier.dart';
 // import 'package:supplink/Providers/user_provider.dart';
-import 'package:supplink/Routes/Routes.dart';
+import 'package:supplink/Routes/routes.dart';
 import 'package:supplink/responsive/mobile_screen.dart';
 import 'package:supplink/responsive/responsive_screen.dart';
 // import 'package:supplink/responsive/web_screen.dart';
@@ -172,7 +172,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                 ),
                 AuthButton(
                     function: () => Navigator.of(context)
-                        .pushNamed(AppRoutes.PhonePageRoute),
+                        .pushNamed(AppRoutes.phonePageRoute),
                     text: "phone login",
                     backgroundcolor: Colors.white60,
                     textColor: Colors.deepPurple,
@@ -183,7 +183,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                 ),
                 TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(AppRoutes.SignUpRoute);
+                      Navigator.of(context).pushNamed(AppRoutes.signUpRoute);
                     },
                     child: const Text('New user? SignUp')),
               ],

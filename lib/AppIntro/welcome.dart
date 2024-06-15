@@ -23,7 +23,7 @@ import 'package:supplink/Adapots_dummy/widgets/button_rectangle.dart';
 import 'package:supplink/Adapots_dummy/widgets/button_text.dart';
 import 'package:supplink/Adapots_dummy/widgets/nav_bar.dart';
 import 'package:supplink/Home/widgets/main_app_bar.dart';
-import 'package:supplink/Routes/Routes.dart';
+import 'package:supplink/Routes/routes.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -232,7 +232,7 @@ Widget desktopNavBar() {
                       ],
                     ),
                   ),
-                ),
+                ), 
                 Center(
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -287,6 +287,30 @@ Widget desktopNavBar() {
                               ),
                             ),
                           ),
+
+                const SizedBox(height: 20),
+                ScaleTransition(
+                  scale: _animationController,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      // primary: Colors.orange,
+                      // onPrimary: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: InkWell(
+                      onTap: () =>
+                          Navigator.of(context).pushNamed(AppRoutes.loginRoute),
+                      child: const Text(
+                        'Get Started',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold, 
                         ),
                       ],
                     ),

@@ -7,7 +7,7 @@ import 'package:supplink/Home/widgets/auth_layout.dart';
 import 'package:supplink/Home/widgets/auth_text_field.dart';
 import 'package:supplink/Home/widgets/domain_selector_list.dart';
 import 'package:supplink/Home/widgets/main_app_bar.dart';
-import 'package:supplink/Routes/Routes.dart';
+import 'package:supplink/Routes/routes.dart';
 import 'package:supplink/utils/snackbars.dart';
 
 class SignUp extends StatefulWidget {
@@ -142,8 +142,8 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
               child: Center(
                 child: Theme(
                   data: ThemeData(
-                    canvasColor:
-                        const Color.fromARGB(253, 102, 216, 244).withOpacity(0.3),
+                    canvasColor: const Color.fromARGB(253, 102, 216, 244)
+                        .withOpacity(0.3),
                     // colorScheme: Theme.of(context).colorScheme.copyWith(
                     //       primary: Colors.green,
                     //       background: Colors.red,
@@ -230,7 +230,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
                               String res = await signUpUser();
                               if (res == 'success') {
                                 Navigator.of(context)
-                                    .pushNamed(AppRoutes.LoginRoute);
+                                    .pushNamed(AppRoutes.loginRoute);
                               } else {
                                 showSnackBar(context, res);
                               }
@@ -245,7 +245,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
                           TextButton(
                             onPressed: () {
                               Navigator.of(context)
-                                  .pushNamed(AppRoutes.LoginRoute);
+                                  .pushNamed(AppRoutes.loginRoute);
                             },
                             child: const Text('Already have an account? Login'),
                           ),
