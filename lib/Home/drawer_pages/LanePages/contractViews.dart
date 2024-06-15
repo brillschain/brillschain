@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:path/path.dart';
-import 'package:supplink/Routes/Routes.dart';
+import 'package:supplink/Routes/routes.dart';
 import 'package:supplink/Backend/firebase/createContractFirebaseservice.dart';
 // import 'package:supplink/Home/desktop_Body.dart';
 import 'package:supplink/Home/drawer_pages/LanePages/laneview.dart';
@@ -192,8 +192,8 @@ class _LaneAndContractAndDashViewState
                                                 ),
                                               ),
                                               Container(
-                                                padding:
-                                                    const EdgeInsets.only(left: 5),
+                                                padding: const EdgeInsets.only(
+                                                    left: 5),
                                                 margin: const EdgeInsets.only(
                                                     top: 35, right: 90),
                                                 height: 40,
@@ -211,9 +211,10 @@ class _LaneAndContractAndDashViewState
                                                                   'ContractServerid'],
                                                               laneDetail[
                                                                   'docName']),
-                                                          settings: const RouteSettings(
-                                                              name: AppRoutes
-                                                                  .LaneViewRoute), // Provide a route name here
+                                                          settings:
+                                                              const RouteSettings(
+                                                                  name: AppRoutes
+                                                                      .laneViewRoute), // Provide a route name here
                                                         ),
                                                       );
                                                     },

@@ -1,7 +1,7 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:supplink/Home/widgets/main_app_bar.dart';
-import 'package:supplink/Routes/Routes.dart';
+import 'package:supplink/Routes/routes.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -143,7 +143,7 @@ class _WelcomePageState extends State<WelcomePage>
                     ),
                     child: InkWell(
                       onTap: () =>
-                          Navigator.of(context).pushNamed(AppRoutes.LoginRoute),
+                          Navigator.of(context).pushNamed(AppRoutes.loginRoute),
                       child: const Text(
                         'Get Started',
                         style: TextStyle(

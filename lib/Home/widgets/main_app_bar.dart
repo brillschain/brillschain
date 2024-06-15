@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:supplink/Routes/Routes.dart';
+import 'package:supplink/Routes/routes.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
   // final VoidCallback onLoginPressed;
@@ -92,7 +92,7 @@ class _MainAppBarState extends State<MainAppBar> with TickerProviderStateMixin {
         const SizedBox(width: 16),
         TextButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(AppRoutes.LoginRoute);
+            Navigator.of(context).pushNamed(AppRoutes.loginRoute);
           },
           child: const Text(
             'Login',
@@ -102,7 +102,7 @@ class _MainAppBarState extends State<MainAppBar> with TickerProviderStateMixin {
         const SizedBox(width: 8),
         TextButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(AppRoutes.SignUpRoute);
+            Navigator.of(context).pushNamed(AppRoutes.signUpRoute);
           },
           child: const Text(
             'Sign up',

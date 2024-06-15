@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "BrillsChain",
-        routes: AppRoutes.Routes,
+        routes: AppRoutes.routes,
         // home: ProfilePageTest(),
         home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
