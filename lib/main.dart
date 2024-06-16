@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supplink/Adapots_dummy/theme/app_theme.dart';
+// import 'package:supplink/Adapots_dummy/theme/app_theme.dart';
 import 'package:supplink/AppIntro/welcome.dart';
 import 'package:supplink/Home/desktop_Body.dart';
 import 'package:supplink/Providers/authAppProvider.dart';

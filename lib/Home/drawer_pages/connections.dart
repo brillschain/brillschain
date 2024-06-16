@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnections.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/newPostsConnections.dart';
 import 'package:supplink/Home/drawer_pages/connectionsFolder/settingsConnections.dart';
-import 'package:supplink/Home/messages/messagesConnections.dart';
+import 'package:supplink/Home/messages/msg_connections.dart';
 import 'package:supplink/Home/screens/post_upload_screen.dart';
 
 class Connections extends StatefulWidget {

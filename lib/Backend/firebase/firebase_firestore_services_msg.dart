@@ -6,7 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supplink/Backend/firebase/users.dart';
-import 'package:supplink/Home/messages/messages.dart';
+// import 'package:supplink/Home/messages/messages.dart';
+import 'package:supplink/models/message_model.dart';
+import 'package:supplink/models/user_model.dart';
 
 // import '../../Home/drawer_pages/connectionsFolder/messages/messages.dart';
 // import '../model/message.dart';
@@ -16,26 +18,26 @@ import 'package:supplink/Home/messages/messages.dart';
 class FirebaseFirestoreServiceMessages {
   static final firestore = FirebaseFirestore.instance;
 
-  static Future<void> createUser({
-    required String name,
-    required String image,
-    required String email,
-    required String uid,
-  }) async {
-    final user = User_Details(
-      uid: uid,
-      email: email,
-      name: name,
-      image: image,
-      isonline: true,
-      lastseen: DateTime.now(),
-    );
+  // static Future<void> createUser({
+  //   required String name,
+  //   required String image,
+  //   required String email,
+  //   required String uid,
+  // }) async {
+  //   final user = User_Details(
+  //     uid: uid,
+  //     email: email,
+  //     name: name,
+  //     image: image,
+  //     isonline: true,
+  //     lastseen: DateTime.now(),
+  //   );
 
-    await FirebaseFirestore.instance
-        .collection('Messages')
-        .doc(uid)
-        .set(user.toJson());
-  }
+  //   await FirebaseFirestore.instance
+  //       .collection('Messages')
+  //       .doc(uid)
+  //       .set(user.toJson());
+  // }
 
   static Future<void> addTextMessage({
     required String content,
@@ -73,7 +75,7 @@ class FirebaseFirestoreServiceMessages {
     Message message,
   ) async {
     await firestore
-        .collection('Messages')
+        .collection('Users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('chat')
         .doc(receiverId)
@@ -81,7 +83,7 @@ class FirebaseFirestoreServiceMessages {
         .add(message.toJson());
 
     await firestore
-        .collection('Messages')
+        .collection('Users')
         .doc(receiverId)
         .collection('chat')
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -91,19 +93,17 @@ class FirebaseFirestoreServiceMessages {
 
   static Future<void> updateUserData(Map<String, dynamic> data) async =>
       await firestore
-          .collection('Messages')
+          .collection('Users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update(data);
 
-  static Future<List<User_Details>> searchUser(String name) async {
+  static Future<List<UserData>> searchUser(String name) async {
     final snapshot = await FirebaseFirestore.instance
-        .collection('Messages')
+        .collection('Users')
         .where("name", isGreaterThanOrEqualTo: name)
         .get();
 
-    return snapshot.docs
-        .map((doc) => User_Details.fromJson(doc.data()))
-        .toList();
+    return snapshot.docs.map((doc) => UserData.fromSnapshot(doc)).toList();
   }
 }
 

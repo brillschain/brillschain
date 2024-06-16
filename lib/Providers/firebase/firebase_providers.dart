@@ -3,34 +3,35 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:supplink/Backend/firebase/users.dart';
 import 'package:supplink/Home/messages/messages.dart';
+import 'package:supplink/models/message_model.dart';
+import 'package:supplink/models/user_model.dart';
 
 class FirebaseProvider extends ChangeNotifier {
-  List<User_Details> users = [];
-  User_Details? user;
+  List<UserData> users = [];
+  UserData? user;
   List<Message> messages = [];
   ScrollController scrollController = ScrollController();
 
-  List<User_Details> getAllUsers() {
+  List<UserData> getAllUsers() {
     // print("get all users method");
     FirebaseFirestore.instance
-        .collection('Messages')
+        .collection('Users')
         .orderBy('lastseen', descending: true)
         .snapshots(includeMetadataChanges: true)
         .listen((users) {
-      this.users =
-          users.docs.map((doc) => User_Details.fromJson(doc.data())).toList();
+      this.users = users.docs.map((doc) => UserData.fromSnapshot(doc)).toList();
       notifyListeners();
     });
     return users;
   }
 
-  User_Details? getUserById(String userId) {
+  UserData? getUserById(String userId) {
     FirebaseFirestore.instance
-        .collection('Messages')
+        .collection('Users')
         .doc(userId)
         .snapshots(includeMetadataChanges: true)
         .listen((user) {
-      this.user = User_Details.fromJson(user.data()!);
+      this.user = UserData.fromSnapshot(user);
       notifyListeners();
     });
     return user;
@@ -38,7 +39,7 @@ class FirebaseProvider extends ChangeNotifier {
 
   List<Message> getMessages(String receiverId) {
     FirebaseFirestore.instance
-        .collection('Messages')
+        .collection('Users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('chat')
         .doc(receiverId)

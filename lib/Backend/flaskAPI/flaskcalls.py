@@ -43,7 +43,7 @@ def find_pin_cordinates():
         # {'pin':3737468}
         pin = data['pin']
 
-        geolocator = geopy.geocoders.Nominatim(user_agent="my_App4")      ## This api may give null or negative cordinates
+        geolocator = geopy.geocoders.Nominatim(user_agent="my_App5")      ## This api may give null or negative cordinates
                                                                          ## Also consider the fact that user_agent
                                                                          # transaction requests are limiter
         location = geolocator.geocode(str(pin))
@@ -92,3 +92,37 @@ def find_pin_cordinates():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
+
+
+
+
+
+# api testing code
+
+# from geopy.geocoders import Nominatim
+
+# # Initialize the geolocator
+# geolocator = Nominatim(user_agent="my_App5")
+
+# # Function to get latitude and longitude from a postal code
+# def get_lat_long(pin):
+#     try:
+#         # Get the location from the postal code
+#         location = geolocator.geocode(str(pin))
+
+#         # Check if the location is found
+#         if location is not None:
+#             # Extract latitude and longitude
+#             lat, long = location.latitude, location.longitude
+#             print(lat, long)
+#             return lat, long
+#         else:
+#             print("Location not found.")
+#             return None, None
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
+#         return None, None
+
+# # Example usage
+# pin = "520010"
+# latitude, longitude = get_lat_long(pin)

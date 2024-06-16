@@ -9,11 +9,13 @@ import 'package:supplink/Home/messages/messagebubble.dart';
 import 'package:supplink/Home/messages/messages.dart';
 
 import 'package:supplink/Providers/firebase/firebase_providers.dart';
+import 'package:supplink/models/message_model.dart';
+import 'package:supplink/models/user_model.dart';
 
 // import 'package:timeago/timeago.dart' as timeago;
 
 class MessageCard extends StatefulWidget {
-  final User_Details selectedUser;
+  final UserData selectedUser;
   // final String userId;
   const MessageCard({
     super.key,
@@ -112,10 +114,10 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    foregroundImage: value.user!.profile != ''
-                        ? NetworkImage(value.user!.profile)
+                    foregroundImage: value.user!.profileUrl != ''
+                        ? NetworkImage(value.user!.profileUrl)
                         : null,
-                    child: value.user!.profile == ''
+                    child: value.user!.profileUrl == ''
                         ? Text(value.user!.name[0])
                         : null,
                   ),

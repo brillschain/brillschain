@@ -54,8 +54,9 @@ class UserAuthentication {
             address: address,
             phoneno: phoneno,
             username: username,
-            following: [],
-            followers: [],
+            connections: [],
+            isonline: false,
+            lastseen: DateTime.now(),
             pincode: pincode);
         await _firestore
             .collection('Users')

@@ -11,8 +11,9 @@ class UserData {
   final int phoneno;
   final int pincode;
   final String username;
-  final List following;
-  final List followers;
+  final List connections;
+  final DateTime lastseen;
+  final bool isonline;
 
   UserData({
     required this.uid,
@@ -24,8 +25,9 @@ class UserData {
     required this.address,
     required this.phoneno,
     required this.username,
-    required this.following,
-    required this.followers,
+    required this.connections,
+    required this.lastseen,
+    this.isonline = false,
     required this.pincode,
   });
 
@@ -40,8 +42,9 @@ class UserData {
         'address': address,
         'pincode': pincode,
         'username': username,
-        'following': following,
-        'followers': followers,
+        'connections': connections,
+        "isonline": isonline,
+        "lastseen": lastseen,
       };
 
   static UserData fromSnapshot(DocumentSnapshot documentSnapshot) {
@@ -57,8 +60,9 @@ class UserData {
         address: snapshot['address'],
         phoneno: snapshot['phoneno'],
         username: snapshot['username'] ?? "",
-        following: snapshot['following'] ?? [],
-        followers: snapshot['followers'] ?? [],
+        connections: snapshot['connections'] ?? [],
+        lastseen: (snapshot['lastseen'] as Timestamp).toDate(),
+        isonline: snapshot['isOnline'] ?? false,
         pincode: snapshot['pincode']);
   }
 }

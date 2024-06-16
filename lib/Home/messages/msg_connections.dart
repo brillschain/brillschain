@@ -1,13 +1,13 @@
-// import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supplink/Backend/firebase/allUserDetails.dart';
-import 'package:supplink/Backend/firebase/users.dart';
+// import 'package:supplink/Backend/firebase/allUserDetails.dart';
+// import 'package:supplink/Backend/firebase/allUserDetails.dart';
+// import 'package:supplink/Backend/firebase/users.dart';
 import 'package:supplink/Home/messages/messagecard.dart';
 
 import 'package:supplink/Providers/firebase/firebase_providers.dart';
+import 'package:supplink/models/user_model.dart';
 
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -19,12 +19,12 @@ class MessagesConnections extends StatefulWidget {
 }
 
 class _MessagesConnectionsState extends State<MessagesConnections> {
-  User_Details? selectedUser;
-  void selectUser(User_Details user) {
+  UserData? selectedUser;
+  void selectUser(UserData user) {
     setState(() {
       selectedUser = user;
     });
-    print("Message connections: ${selectedUser!.name}");
+    // print("Message connections: ${selectedUser!.name}");
   }
 
   @override
@@ -51,7 +51,6 @@ class _MessagesConnectionsState extends State<MessagesConnections> {
                     child: selectedUser != null
                         ? MessageCard(
                             selectedUser: selectedUser!,
-                            // userId: selectedUser!.uid,
                           )
                         : const Center(
                             child: Text(
@@ -71,9 +70,7 @@ class _MessagesConnectionsState extends State<MessagesConnections> {
 }
 
 class ChatScreen extends StatefulWidget {
-  final Function(User_Details) onChatSelected;
-
-  // const ChatScreen({super.key, required this.onChatSelected});
+  final Function(UserData) onChatSelected;
   const ChatScreen({super.key, required this.onChatSelected});
 
   @override
@@ -81,14 +78,13 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  // List<User_Details> allUsers = [];
-  String profilepic = '';
   @override
   void initState() {
     super.initState();
     Provider.of<FirebaseProvider>(context, listen: false).getAllUsers();
   }
 
+// final UserDetails
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,27 +101,15 @@ class _ChatScreenState extends State<ChatScreen> {
                     },
                   )
                 : const SizedBox();
-            // print("Index: ${index}");
-            // final currentUser = FirebaseAuth.instance.currentUser?.uid;
-            // if (value.users[index].uid != currentUser) {
-            //   return UserItem(
-            //     user: value.users[index],
-            //     onChatSelected: (userName) {
-            //       widget.onChatSelected(userName);
-            //     },
-            //   );
-            // }
           });
     }));
   }
 }
 
 class UserItem extends StatefulWidget {
-  final Function(User_Details) onChatSelected;
-
-  // const UserItem({super.key, required this.user, required this.onChatSelected});
+  final Function(UserData) onChatSelected;
   const UserItem({super.key, required this.user, required this.onChatSelected});
-  final User_Details user;
+  final UserData user;
 
   @override
   State<UserItem> createState() => _UserItemState();
@@ -147,11 +131,12 @@ class _UserItemState extends State<UserItem> {
           children: [
             CircleAvatar(
               radius: 30,
-              foregroundImage: widget.user.profile != ''
-                  ? NetworkImage(widget.user.profile)
+              foregroundImage: widget.user.profileUrl != ''
+                  ? NetworkImage(widget.user.profileUrl)
                   : null,
-              child:
-                  widget.user.profile == '' ? Text(widget.user.name[0]) : null,
+              child: widget.user.profileUrl == ''
+                  ? Text(widget.user.name[0])
+                  : null,
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8, right: 5),
@@ -188,7 +173,7 @@ class HoverButton extends StatefulWidget {
   const HoverButton({super.key, required this.onPressed, required this.child});
 
   @override
-  _HoverButtonState createState() => _HoverButtonState();
+  State<HoverButton> createState() => _HoverButtonState();
 }
 
 class _HoverButtonState extends State<HoverButton> {

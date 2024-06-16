@@ -230,7 +230,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
                               String res = await signUpUser();
                               if (res == 'success') {
                                 Navigator.of(context)
-                                    .pushNamed(AppRoutes.loginRoute);
+                                    .pushNamed(AppRoutes.myhomepage);
                               } else {
                                 showSnackBar(context, res);
                               }
