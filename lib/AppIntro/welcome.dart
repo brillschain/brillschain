@@ -102,68 +102,67 @@ class _WelcomePageState extends State<WelcomePage>
         duration: const Duration(milliseconds: 1000), curve: Curves.easeInOut);
   }
 
-Widget desktopNavBar() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      ButtonTextLarge(
-        text: DataValues.navBarAboutMe,
-        onPressed: () => Scrollable.ensureVisible(
-          KeyHolders.aboutKey.currentContext!,
-          duration: const Duration(milliseconds: 1000),
+  Widget desktopNavBar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ButtonTextLarge(
+          text: DataValues.navBarAboutMe,
+          onPressed: () => Scrollable.ensureVisible(
+            KeyHolders.aboutKey.currentContext!,
+            duration: const Duration(milliseconds: 1000),
+          ),
+          message: 'Go to ${DataValues.navBarAboutMe} section',
         ),
-        message: 'Go to ${DataValues.navBarAboutMe} section',
-      ),
-      const SizedBox(width: 20.0),
-      ButtonTextLarge(
-        text: DataValues.navBarEducation,
-        onPressed: () => Scrollable.ensureVisible(
-          KeyHolders.educationKey.currentContext!,
-          duration: const Duration(milliseconds: 1000),
+        const SizedBox(width: 20.0),
+        ButtonTextLarge(
+          text: DataValues.navBarEducation,
+          onPressed: () => Scrollable.ensureVisible(
+            KeyHolders.educationKey.currentContext!,
+            duration: const Duration(milliseconds: 1000),
+          ),
+          message: 'Go to ${DataValues.navBarEducation} section',
         ),
-        message: 'Go to ${DataValues.navBarEducation} section',
-      ),
-      const SizedBox(width: 20.0),
-      ButtonTextLarge(
-        text: DataValues.navBarExperience,
-        onPressed: () => Scrollable.ensureVisible(
-          KeyHolders.experienceKey.currentContext!,
-          duration: const Duration(milliseconds: 1000),
+        const SizedBox(width: 20.0),
+        ButtonTextLarge(
+          text: DataValues.navBarExperience,
+          onPressed: () => Scrollable.ensureVisible(
+            KeyHolders.experienceKey.currentContext!,
+            duration: const Duration(milliseconds: 1000),
+          ),
+          message: 'Go to ${DataValues.navBarExperience} section',
         ),
-        message: 'Go to ${DataValues.navBarExperience} section',
-      ),
-      const SizedBox(width: 20.0),
-      ButtonTextLarge(
-        text: DataValues.navBarVolunteering,
-        onPressed: () => Scrollable.ensureVisible(
-          KeyHolders.volunteeringKey.currentContext!,
-          duration: const Duration(milliseconds: 1000),
+        const SizedBox(width: 20.0),
+        ButtonTextLarge(
+          text: DataValues.navBarVolunteering,
+          onPressed: () => Scrollable.ensureVisible(
+            KeyHolders.volunteeringKey.currentContext!,
+            duration: const Duration(milliseconds: 1000),
+          ),
+          message: 'Go to ${DataValues.navBarVolunteering} section',
         ),
-        message: 'Go to ${DataValues.navBarVolunteering} section',
-      ),
-      const SizedBox(width: 20.0),
-      ButtonTextLarge(
-        text: DataValues.navBarTechNotes,
-        onPressed: () => Scrollable.ensureVisible(
-          KeyHolders.technotesKey.currentContext!,
-          duration: const Duration(milliseconds: 1000),
+        const SizedBox(width: 20.0),
+        ButtonTextLarge(
+          text: DataValues.navBarTechNotes,
+          onPressed: () => Scrollable.ensureVisible(
+            KeyHolders.technotesKey.currentContext!,
+            duration: const Duration(milliseconds: 1000),
+          ),
+          message: 'Go to ${DataValues.navBarTechNotes} section',
         ),
-        message: 'Go to ${DataValues.navBarTechNotes} section',
-      ),
-      const SizedBox(width: 20.0),
-      ButtonRectangle(
-        name: DataValues.navBarContactMe,
-        onPressed: () => Scrollable.ensureVisible(
-          KeyHolders.contactKey.currentContext!,
-          duration: const Duration(milliseconds: 1000),
+        const SizedBox(width: 20.0),
+        ButtonRectangle(
+          name: DataValues.navBarContactMe,
+          onPressed: () => Scrollable.ensureVisible(
+            KeyHolders.contactKey.currentContext!,
+            duration: const Duration(milliseconds: 1000),
+          ),
+          color: Colors.green,
+          message: 'Go to ${DataValues.navBarContactMe} section',
         ),
-        color: Colors.green,
-        message: 'Go to ${DataValues.navBarContactMe} section',
-      ),
-    ],
-  );
-}
-
+      ],
+    );
+  }
 
   Widget desktopUI() {
     return CustomScrollView(
@@ -171,15 +170,15 @@ Widget desktopNavBar() {
       slivers: [
         SliverAppBar(
           leading: FadeTransition(
-                    opacity: _titleAnimation,
-                    child: Lottie.asset(
-                      'assets/AppTitle.json',
-                      width: 150,
-                      height: 80,
-                      repeat: false,
-                      animate: true,
-                    ),
-                  ),
+            opacity: _titleAnimation,
+            child: Lottie.asset(
+              'assets/AppTitle.json',
+              width: 150,
+              height: 80,
+              repeat: false,
+              animate: true,
+            ),
+          ),
           // leading: Positioned(
           //         top: 4.0,
           //         left: 4.0,
@@ -200,18 +199,14 @@ Widget desktopNavBar() {
           //         left: 20.0,
           //         right: 20.0,
           //         child: desktopNavBar(),
-          //       ),  
+          //       ),
           // ],
 
-          actions: [
-            desktopNavBar()
-          ],
+          actions: [desktopNavBar()],
           pinned: true,
           floating: false,
           flexibleSpace: FlexibleSpaceBar(
-            
-            background: 
-            Stack(
+            background: Stack(
               children: [
                 Positioned.fill(
                   child: Lottie.asset(
@@ -228,11 +223,12 @@ Widget desktopNavBar() {
                       colors: [
                         const Color.fromARGB(255, 8, 132, 163).withOpacity(0.9),
                         const Color.fromARGB(255, 52, 82, 132).withOpacity(0.4),
-                        const Color.fromARGB(255, 19, 108, 135).withOpacity(0.1),
+                        const Color.fromARGB(255, 19, 108, 135)
+                            .withOpacity(0.1),
                       ],
                     ),
                   ),
-                ), 
+                ),
                 Center(
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -255,7 +251,8 @@ Widget desktopNavBar() {
                               letterSpacing: 1.5,
                               shadows: [
                                 Shadow(
-                                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                                  color: const Color.fromARGB(255, 0, 0, 0)
+                                      .withOpacity(0.5),
                                   blurRadius: 4,
                                   offset: const Offset(2, 2),
                                 ),
@@ -276,75 +273,30 @@ Widget desktopNavBar() {
                               ),
                             ),
                             child: InkWell(
-                              onTap: () => Navigator.of(context).pushNamed(AppRoutes.LoginRoute),
+                              onTap: () => Navigator.of(context)
+                                  .pushNamed(AppRoutes.loginRoute),
                               child: const Text(
                                 'Get Started',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                           ),
-
-                const SizedBox(height: 20),
-                ScaleTransition(
-                  scale: _animationController,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      // primary: Colors.orange,
-                      // onPrimary: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: InkWell(
-                      onTap: () =>
-                          Navigator.of(context).pushNamed(AppRoutes.loginRoute),
-                      child: const Text(
-                        'Get Started',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold, 
                         ),
                       ],
                     ),
                   ),
-                ),
-                // Positioned(
-                //   top: 4.0,
-                //   left: 4.0,
-                //   child: FadeTransition(
-                //     opacity: _titleAnimation,
-                //     child: Lottie.asset(
-                //       'assets/AppTitle.json',
-                //       width: 150,
-                //       height: 80,
-                //       repeat: false,
-                //       animate: true,
-                //     ),
-                //   ),
-                // ),
-
+                )
               ],
             ),
           ),
           expandedHeight: MediaQuery.of(context).size.height,
-          backgroundColor: Colors.white ,
+          backgroundColor: Colors.white,
           elevation: 0,
         ),
-
-
-        
-        
-        
-        
-        
         SliverList(
           delegate: SliverChildListDelegate(
             [
@@ -360,8 +312,8 @@ Widget desktopNavBar() {
                     ],
                   ),
                 ),
-                child: Column(
-                  children: const [
+                child: const Column(
+                  children: [
                     DS2AboutMe(),
                     DS3Education(),
                     DS4Experience(),

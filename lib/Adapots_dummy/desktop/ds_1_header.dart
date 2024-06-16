@@ -125,7 +125,6 @@ class _WelcomePageState extends State<WelcomePage>
             ),
             Center(
               child: Container(
-  
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 height: MediaQuery.of(context).size.height,
                 child: Column(
@@ -146,7 +145,8 @@ class _WelcomePageState extends State<WelcomePage>
                           letterSpacing: 1.5,
                           shadows: [
                             Shadow(
-                              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                              color: const Color.fromARGB(255, 0, 0, 0)
+                                  .withOpacity(0.5),
                               blurRadius: 4,
                               offset: const Offset(2, 2),
                             ),
@@ -167,8 +167,8 @@ class _WelcomePageState extends State<WelcomePage>
                           ),
                         ),
                         child: InkWell(
-                          onTap: () =>
-                              Navigator.of(context).pushNamed(AppRoutes.LoginRoute),
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(AppRoutes.loginRoute),
                           child: const Text(
                             'Get Started',
                             style: TextStyle(
@@ -184,30 +184,29 @@ class _WelcomePageState extends State<WelcomePage>
                 ),
               ),
             ),
-          // Container(
-          //     height: 200,
-          //     width: 400,
-          //     color: Colors.red,
-          //     decoration: BoxDecoration(
-          //       gradient: LinearGradient(
-          //         begin: Alignment.topCenter,
-          //         end: Alignment.bottomCenter,
-          //         colors: [
-          //           Color.fromARGB(255, 8, 132, 163).withOpacity(0.9),
-           
-          //            Color.fromARGB(255, 52, 82, 132).withOpacity(0.4),
-          //            Color.fromARGB(255, 19, 108, 135).withOpacity(0.1),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          
+            // Container(
+            //     height: 200,
+            //     width: 400,
+            //     color: Colors.red,
+            //     decoration: BoxDecoration(
+            //       gradient: LinearGradient(
+            //         begin: Alignment.topCenter,
+            //         end: Alignment.bottomCenter,
+            //         colors: [
+            //           Color.fromARGB(255, 8, 132, 163).withOpacity(0.9),
+
+            //            Color.fromARGB(255, 52, 82, 132).withOpacity(0.4),
+            //            Color.fromARGB(255, 19, 108, 135).withOpacity(0.1),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
           ],
         ),
         ListView(
           // shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
-          children: [          
+          children: [
             // DS2AboutMe(),
             DS3Education(),
             DS4Experience(),
