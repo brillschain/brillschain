@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:supplink/Backend/firebase/allUserDetails.dart';
 import 'package:supplink/Backend/firebase/users.dart';
 import 'package:supplink/Home/messages/messagecard.dart';
 
@@ -14,12 +15,17 @@ class MessagesConnections extends StatefulWidget {
   const MessagesConnections({super.key});
 
   @override
-  _MessagesConnectionsState createState() => _MessagesConnectionsState();
+  State<MessagesConnections> createState() => _MessagesConnectionsState();
 }
 
 class _MessagesConnectionsState extends State<MessagesConnections> {
   User_Details? selectedUser;
-  List<String> messages = [];
+  void selectUser(User_Details user) {
+    setState(() {
+      selectedUser = user;
+    });
+    print("Message connections: ${selectedUser!.name}");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +35,11 @@ class _MessagesConnectionsState extends State<MessagesConnections> {
           SizedBox(
             width: 370,
             child: Card(
-                elevation: 2,
-                child: ChatScreen(onChatSelected: (User_Details userSelected) {
-                  setState(() {
-                    selectedUser = userSelected;
-                    print(selectedUser!.name);
-                  });
-                })),
+              elevation: 2,
+              child: ChatScreen(
+                onChatSelected: selectUser,
+              ),
+            ),
           ),
           Expanded(
             child: Stack(
@@ -47,8 +51,8 @@ class _MessagesConnectionsState extends State<MessagesConnections> {
                     child: selectedUser != null
                         ? MessageCard(
                             selectedUser: selectedUser!,
-                            userId: selectedUser!.uid,
-                          ) //messages: messages
+                            // userId: selectedUser!.uid,
+                          )
                         : const Center(
                             child: Text(
                               'Select the chat to display messages',
@@ -132,8 +136,10 @@ class _UserItemState extends State<UserItem> {
   Widget build(BuildContext context) {
     return HoverButton(
       onPressed: () {
-        widget.onChatSelected(widget.user);
-        print(widget.user.name);
+        setState(() {
+          widget.onChatSelected(widget.user);
+        });
+        // print(widget.user.name);
       },
       child: ListTile(
         leading: Stack(

@@ -14,9 +14,11 @@ import 'package:supplink/Providers/firebase/firebase_providers.dart';
 
 class MessageCard extends StatefulWidget {
   final User_Details selectedUser;
-  final String userId;
-  const MessageCard(
-      {super.key, required this.selectedUser, required this.userId});
+  // final String userId;
+  const MessageCard({
+    super.key,
+    required this.selectedUser,
+  });
 
   @override
   State<MessageCard> createState() => _MessageCardState();
@@ -27,9 +29,23 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    fetchMessages(widget.selectedUser.uid);
+  }
+
+  @override
+  void didUpdateWidget(MessageCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.selectedUser != widget.selectedUser) {
+      WidgetsBinding.instance.addObserver(this);
+      fetchMessages(widget.selectedUser.uid);
+    }
+  }
+
+  void fetchMessages(String userId) {
     Provider.of<FirebaseProvider>(context, listen: false)
-      ..getUserById(widget.selectedUser.uid)
-      ..getMessages(widget.selectedUser.uid);
+      ..getUserById(userId)
+      ..getMessages(userId);
+    print("message card: ${widget.selectedUser.name}");
   }
 
   @override
@@ -70,7 +86,7 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
           children: [
             Expanded(
               child: ChatMessages(
-                receiverId: widget.userId,
+                receiverId: widget.selectedUser.uid,
               ),
             ),
             // const Spacer(),
@@ -79,7 +95,7 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
         ),
       ),
       bottomNavigationBar: ChatTextField(
-        receiverId: widget.userId,
+        receiverId: widget.selectedUser.uid,
       ),
     );
   }
@@ -142,88 +158,88 @@ class ChatMessages extends StatefulWidget {
 }
 
 class _ChatMessagesState extends State<ChatMessages> {
-  final messages = [
-    Message(
-        senderId: '2',
-        receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        content: 'Hello',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        receiverId: '2',
-        content: 'How are you?',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '2',
-        receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        content: 'Fine',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        receiverId: '2',
-        content: 'What are you doing?',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '2',
-        receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        content: 'Nothing',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        receiverId: '2',
-        content: 'Can you help me?',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '2',
-        receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        content:
-            'https://images.unsplash.com/photo-1669992755631-3c46eccbeb7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
-        sentTime: DateTime.now(),
-        messageType: MessageType.image),
-    Message(
-        senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        receiverId: '2',
-        content: 'Thank you',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-      senderId: '2',
-      receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-      content: 'You are welcome',
-      sentTime: DateTime.now(),
-      messageType: MessageType.text,
-    ),
-    Message(
-        senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        receiverId: '2',
-        content: 'Bye',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '2',
-        receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        content: 'Bye',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        receiverId: '2',
-        content: 'See you later',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text),
-    Message(
-        senderId: '2',
-        receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-        content: 'See you later',
-        sentTime: DateTime.now(),
-        messageType: MessageType.text)
-  ];
+  // final messages = [
+  //   Message(
+  //       senderId: '2',
+  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       content: 'Hello',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       receiverId: '2',
+  //       content: 'How are you?',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '2',
+  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       content: 'Fine',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       receiverId: '2',
+  //       content: 'What are you doing?',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '2',
+  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       content: 'Nothing',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       receiverId: '2',
+  //       content: 'Can you help me?',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '2',
+  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       content:
+  //           'https://images.unsplash.com/photo-1669992755631-3c46eccbeb7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.image),
+  //   Message(
+  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       receiverId: '2',
+  //       content: 'Thank you',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //     senderId: '2',
+  //     receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //     content: 'You are welcome',
+  //     sentTime: DateTime.now(),
+  //     messageType: MessageType.text,
+  //   ),
+  //   Message(
+  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       receiverId: '2',
+  //       content: 'Bye',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '2',
+  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       content: 'Bye',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       receiverId: '2',
+  //       content: 'See you later',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text),
+  //   Message(
+  //       senderId: '2',
+  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
+  //       content: 'See you later',
+  //       sentTime: DateTime.now(),
+  //       messageType: MessageType.text)
+  // ];
 
   @override
   Widget build(BuildContext context) {
