@@ -2,19 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
+import 'package:supplink/Home/messages/msg_connections.dart';
 import 'package:supplink/Home/screens/comment_screen.dart';
 import 'package:supplink/Home/widgets/custom_button.dart';
 import 'package:supplink/Home/widgets/like_animation.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
+import 'package:supplink/utils/hover_button.dart';
 import 'package:supplink/utils/hover_text.dart';
 import 'package:supplink/utils/snackbars.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:expandable_text/expandable_text.dart';
 
 class PostCard extends StatefulWidget {
   final snapshot;
@@ -83,8 +85,9 @@ class _PostCardState extends State<PostCard> {
     final UserData userData = Provider.of<UserProvider>(context).getUser;
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.all(4),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16)
@@ -160,37 +163,33 @@ class _PostCardState extends State<PostCard> {
                 //                 : 120,
                 //           )
                 //     : const SizedBox(),
-                IconButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return Dialog(
-                              child: ListView(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                shrinkWrap: true,
-                                children: ['Delete']
-                                    .map((e) => InkWell(
-                                          onTap: () async {
-                                            FireStorePostMethods().deletePost(
-                                                widget.snapshot['postId'],
-                                                context);
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 12, horizontal: 16),
-                                            child: Text(e),
-                                          ),
-                                        ))
-                                    .toList(),
-                              ),
-                            );
-                          });
-                    },
-                    icon: const Icon(Icons.more_vert))
+                IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
               ],
+            ),
+          ),
+          // Container(
+          //   alignment: Alignment.topLeft,
+          //   padding: const EdgeInsets.all(8),
+          //   child: Text(widget.snapshot['description']),
+          // ),
+          const Padding(
+            padding: EdgeInsets.all(12.0),
+            child: ExpandableText(
+              "Another cool reel!, Don't miss this reel! Get ready for jaw-dropping moments, endless entertainment, and a rollercoaster of emotions. Hit play and let the fun begin!Another cool reel!, Don't miss this reel! Get ready for jaw-dropping moments, endless entertainment, and a rollercoaster of emotions. Hit play and let the fun begin!",
+              expandText: 'more..',
+              collapseText: 'less..',
+              expandOnTextTap: true,
+              collapseOnTextTap: true,
+              maxLines: 2,
+              linkColor: Colors.blue,
+              linkStyle: TextStyle(
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.blue,
+              ),
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           GestureDetector(
@@ -234,166 +233,102 @@ class _PostCardState extends State<PostCard> {
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('${widget.snapshot['likes'].length} likes'),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: InkWell(
-                  onTap: () {
-                    commentDialog(context);
-                  },
-                  child: HoverText(
-                    text: "$commentsLength comments ",
-                    defaultStyle: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black54,
-                    ),
-                    hoverStyle: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('${widget.snapshot['likes'].length} likes'),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: InkWell(
+                    onTap: () {
+                      commentDialog(context);
+                    },
+                    child: HoverText(
+                      text: "$commentsLength comments ",
+                      defaultStyle: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black54,
+                      ),
+                      hoverStyle: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const Divider(
-            height: 10,
-            thickness: 2,
+            height: 4,
+            thickness: 1,
             color: Colors.grey,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Row(
-                children: [
-                  LikeAnimation(
-                    isAnimating:
-                        widget.snapshot['likes'].contains(userData.uid),
-                    smallLike: true,
-                    child: IconButton(
-                      onPressed: () async {
-                        await FireStorePostMethods().likePost(
-                            widget.snapshot['postId'],
-                            userData.uid,
-                            widget.snapshot['likes']);
-                      },
-                      icon: widget.snapshot['likes'].contains(userData.uid)
-                          ? const Icon(
-                              Icons.favorite,
-                              size: 32,
-                              color: Colors.red,
-                            )
-                          : const Icon(
-                              Icons.favorite_border_outlined,
-                              size: 32,
-                              color: Colors.black,
-                            ),
-                    ),
+              HoverButton(
+                onPressed: () async {
+                  await FireStorePostMethods().likePost(
+                      widget.snapshot['postId'],
+                      userData.uid,
+                      widget.snapshot['likes']);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  width: 120,
+                  child: Row(
+                    children: [
+                      LikeAnimation(
+                        isAnimating:
+                            widget.snapshot['likes'].contains(userData.uid),
+                        smallLike: true,
+                        child: widget.snapshot['likes'].contains(userData.uid)
+                            ? const Icon(
+                                Icons.favorite,
+                                size: 32,
+                                color: Colors.red,
+                              )
+                            : const Icon(
+                                Icons.favorite_border_outlined,
+                                size: 32,
+                                color: Colors.black,
+                              ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text('Like'),
+                    ],
                   ),
-                  const Text('Like'),
-                ],
+                ),
               ),
               actionButton(
                   context: context,
-                  icon: Icons.message_rounded,
+                  icon: Icons.message,
                   label: 'comment',
                   ontap: () {
                     commentDialog(context);
                   }),
-
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      'assets/instagram-share-icon (1).svg',
-                      height: 25,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const Text('share')
-                ],
-              ),
-              // const Spacer(),
-              // actionButton(context, Icons.bookmark_border_outlined, 'save'),
+              actionButton(
+                  context: context,
+                  icon: Icons.share_sharp,
+                  label: 'share',
+                  ontap: () {}),
               actionButton(
                   context: context,
                   icon: Icons.bookmark_border_outlined,
                   label: 'save',
                   ontap: () {})
-              // IconButton(
-              //     onPressed: () {},
-              //     icon: const Icon(
-              //       Icons.bookmark_border_outlined,
-              //       size: 32,
-              //     ))
             ],
           ),
-          //description
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // DefaultTextStyle(
-                //   style: Theme.of(context)
-                //       .textTheme
-                //       .titleSmall!
-                //       .copyWith(fontWeight: FontWeight.w800),
-                //   child: Text(
-                //     '${widget.snapshot['likes'].length} likes',
-                //     style: Theme.of(context).textTheme.bodyMedium,
-                //   ),
-                // ),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(top: 8),
-                  child: RichText(
-                      text: TextSpan(
-                          style: const TextStyle(color: Colors.black),
-                          children: [
-                        TextSpan(
-                          text: '${widget.snapshot['name']}  ',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: widget.snapshot['description'],
-                        )
-                      ])),
-                ),
-                // Container(
-                //   padding: const EdgeInsets.symmetric(vertical: 4),
-                //   child: InkWell(
-                //     onTap: () {
-                //       commentDialog(context);
-                //     },
-                //     child: Text(
-                //       "view all $commentsLength comments ",
-                //       style: const TextStyle(
-                //         fontSize: 16,
-                //         color: Colors.black54,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Text(
-                //   DateFormat.yMMMd()
-                //       .format(widget.snapshot['datePublished'].toDate()),
-                //   style: const TextStyle(
-                //     fontSize: 16,
-                //     color: Colors.black54,
-                //   ),
-                // ),
-              ],
-            ),
-          )
+          // const Divider(
+          //   height: 8,
+          //   thickness: 2,
+          //   color: Colors.grey,
+          // ),
         ],
       ),
     );
@@ -403,11 +338,12 @@ class _PostCardState extends State<PostCard> {
       {required BuildContext context,
       required IconData icon,
       required String label,
-      required Function() ontap}) {
-    return InkWell(
-      onTap: ontap,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      required VoidCallback ontap}) {
+    return HoverButton(
+      onPressed: ontap,
+      child: Container(
+        padding: const EdgeInsets.all(6.0),
+        width: 120,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -415,6 +351,9 @@ class _PostCardState extends State<PostCard> {
               icon,
               size: 32,
               color: Colors.black,
+            ),
+            const SizedBox(
+              width: 10,
             ),
             Text(label)
           ],
