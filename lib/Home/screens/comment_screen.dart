@@ -78,19 +78,20 @@ class _CommentsScreenState extends State<CommentsScreen> {
                 child: TextField(
                   controller: commentController,
                   decoration: InputDecoration(
-                    hintText: "comment as ${userDetails.username}",
+                    hintText: "comment as ${userDetails.name}",
                     border: InputBorder.none,
                   ),
                 ),
               )),
               InkWell(
                 onTap: () async {
-                  var res = await FireStorePostMethods().postComments(
+                  await FireStorePostMethods().postComments(
                     widget.snapshot['postId'],
                     commentController.text,
                     userDetails.uid,
                     userDetails.profileUrl,
                     userDetails.username,
+                    userDetails.name,
                   );
 
                   // showSnackBar(context, res);

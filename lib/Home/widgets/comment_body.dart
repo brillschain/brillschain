@@ -41,8 +41,9 @@ class _CommentCardState extends State<CommentCard> {
                           style: const TextStyle(color: Colors.black),
                           children: [
                         TextSpan(
-                          text: widget.snapshot['username'],
+                          text: widget.snapshot['name'],
                           style: const TextStyle(
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

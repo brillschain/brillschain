@@ -58,7 +58,7 @@ class FireStorePostMethods {
 
   //comments upload
   Future<String> postComments(String postId, String commentText, String uid,
-      String profileUrl, String username) async {
+      String profileUrl, String username, String name) async {
     String res = "error in comment upload";
     try {
       if (commentText.isNotEmpty) {
@@ -70,6 +70,7 @@ class FireStorePostMethods {
             commentText: commentText,
             commentId: commentId,
             likes: [],
+            name: name,
             timestamp: DateTime.now());
         await _firestore
             .collection('posts')

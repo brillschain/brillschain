@@ -35,7 +35,8 @@ class PostData {
         'profileUrl': profileUrl,
         'name': name,
         'address': address,
-        'likes': likes
+        'likes': likes,
+        'uid': uid,
       };
 
   static PostData fromSnapshot(DocumentSnapshot documentSnapshot) {

@@ -8,6 +8,7 @@ class CommentData {
   final String commentId;
   final DateTime timestamp;
   final List likes;
+  final String name;
 
   CommentData(
       {required this.username,
@@ -16,6 +17,7 @@ class CommentData {
       required this.commentText,
       required this.commentId,
       required this.likes,
+      required this.name,
       required this.timestamp});
 
   Map<String, dynamic> toJson() => {
@@ -25,6 +27,7 @@ class CommentData {
         'userId': uid,
         'commentId': commentId,
         'timestamp': DateTime.now(),
+        'name': name,
         'likes': []
       };
   static CommentData fromSnapshot(DocumentSnapshot documentSnapshot) {
@@ -36,6 +39,7 @@ class CommentData {
         commentText: snapshot['commentText'],
         commentId: snapshot['commentId'],
         timestamp: snapshot['timestamp'],
+        name: snapshot['name'],
         likes: snapshot['likes']);
   }
 }
