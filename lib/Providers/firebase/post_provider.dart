@@ -41,11 +41,7 @@ class PostProvider extends ChangeNotifier {
 
       var ids = usersnap.data()!['connections'] ?? [];
       _isConnection = ids.contains(user.uid);
-      // if (_isConnection) {
-      //   res = " removed from your connections";
-      // } else {
-      //   res = " added to your connections";
-      // }
+
       notifyListeners();
     } catch (e) {
       print(e.toString());
@@ -72,32 +68,4 @@ class PostProvider extends ChangeNotifier {
     }
     // return _res!;
   }
-
-  // Future<String> addConnection(String anotherUserId) async {
-  //   String res = '';
-  //   try {
-  //     await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
-  //     isConnection = true;
-
-  //     res = "Connection added";
-  //     notifyListeners();
-  //   } catch (e) {
-  //     res = e.toString();
-  //   }
-  //   return res;
-  // }
-
-  // Future<String> removeConnection(String anotherUserId) async {
-  //   String res = '';
-  //   try {
-  //     await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
-  //     isConnection = false;
-
-  //     res = "Connection removed";
-  //     notifyListeners();
-  //   } catch (e) {
-  //     res = e.toString();
-  //   }
-  //   return res;
-  // }
 }

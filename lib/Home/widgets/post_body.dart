@@ -1,23 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delightful_toast/toast/utils/enums.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
+// import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
-import 'package:supplink/Home/messages/msg_connections.dart';
+// import 'package:supplink/Home/messages/msg_connections.dart';
 import 'package:supplink/Home/screens/comment_screen.dart';
 import 'package:supplink/Home/widgets/action_button.dart';
-import 'package:supplink/Home/widgets/custom_button.dart';
+// import 'package:supplink/Home/widgets/custom_button.dart';
 import 'package:supplink/Home/widgets/like_animation.dart';
 import 'package:supplink/Providers/firebase/post_provider.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
 import 'package:supplink/utils/hover_button.dart';
 import 'package:supplink/utils/hover_text.dart';
-import 'package:supplink/utils/snackbars.dart';
+// import 'package:supplink/utils/snackbars.dart';
 import 'package:supplink/utils/toaster.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:expandable_text/expandable_text.dart';
@@ -332,12 +332,7 @@ class _PostCardState extends State<PostCard> {
                 onTap: () async {
                   await postProvider.manageConnection(widgetUid);
 
-                  toastMessage(
-                      context: context,
-                      message:
-                          "${widget.snapshot['name']} is ${postProvider.response}",
-                      position: DelightSnackbarPosition.bottom);
-                  Navigator.of(context).pop();
+                  message(postProvider);
                 },
               ))
             : PopupMenuItem(
@@ -346,7 +341,6 @@ class _PostCardState extends State<PostCard> {
                   title: const Text('Delete post'),
                   onTap: () {
                     Navigator.of(context).pop();
-                    //  Hide post
                   },
                 ),
               ),
@@ -357,7 +351,6 @@ class _PostCardState extends State<PostCard> {
               title: const Text('Edit post'),
               onTap: () {
                 Navigator.of(context).pop();
-                //  Hide post
               },
             ),
           ),
@@ -367,21 +360,28 @@ class _PostCardState extends State<PostCard> {
             title: const Text('I don\'t want to see this post'),
             onTap: () {
               Navigator.of(context).pop();
-              //  Hide post
             },
           ),
         ),
-        PopupMenuItem(
-          child: ListTile(
-            leading: const Icon(Icons.report),
-            title: const Text('Report post'),
-            onTap: () {
-              Navigator.of(context).pop();
-              //  Report post
-            },
+        if (!isCurrentUser)
+          PopupMenuItem(
+            child: ListTile(
+              leading: const Icon(Icons.report),
+              title: const Text('Report post'),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
           ),
-        ),
       ],
     );
+  }
+
+  void message(PostProvider postProvider) {
+    toastMessage(
+        context: context,
+        message: "${widget.snapshot['name']} is ${postProvider.response}",
+        position: DelightSnackbarPosition.bottom);
+    Navigator.of(context).pop();
   }
 }
