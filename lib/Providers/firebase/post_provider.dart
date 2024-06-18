@@ -4,16 +4,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
 
 class PostProvider extends ChangeNotifier {
-  int commentsLength = 0;
-  bool isConnection = false;
-  bool isCurrentUser = false;
+  int? _commentsLength;
+  late bool _isConnection;
+  // bool isCurrentUser = false;
+  String? _res;
   final User user = FirebaseAuth.instance.currentUser!;
 
-  void init({required String postId, required String anotherUserId}) {
-    getAllComments(postId);
-    fetchIsConnection(anotherUserId);
-  }
-
+  // void init({required String postId, required String anotherUserId}) {
+  //   getAllComments(postId);
+  //   fetchIsConnection(anotherUserId);
+  // }
+  int get getCommentLength => _commentsLength ?? 0;
+  bool get isConnection => _isConnection;
+  String get response => _res!;
   Future<void> getAllComments(String postId) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -22,7 +25,7 @@ class PostProvider extends ChangeNotifier {
           .collection('comments')
           .get();
 
-      commentsLength = querySnapshot.docs.length;
+      _commentsLength = querySnapshot.docs.length;
       notifyListeners();
     } catch (e) {
       print(e.toString());
@@ -37,60 +40,64 @@ class PostProvider extends ChangeNotifier {
           .get();
 
       var ids = usersnap.data()!['connections'] ?? [];
-      isConnection = ids.contains(user.uid);
+      _isConnection = ids.contains(user.uid);
+      // if (_isConnection) {
+      //   res = " removed from your connections";
+      // } else {
+      //   res = " added to your connections";
+      // }
       notifyListeners();
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<String> manageConnection(String anotherUserId) async {
-    String res = "";
+  Future<void> manageConnection(String anotherUserId) async {
     try {
-      if (!isConnection) {
+      if (_isConnection) {
         await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
-        isConnection = true;
+        _res = " removed from your connections";
+        _isConnection = false;
 
-        res = "Connection added";
         notifyListeners();
       } else {
         await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
-        isConnection = false;
+        _res = " added to your connections";
+        _isConnection = true;
 
-        res = "Connection removed";
         notifyListeners();
       }
     } catch (e) {
-      res = e.toString();
+      _res = e.toString();
     }
-    return res;
+    // return _res!;
   }
 
-  Future<String> addConnection(String anotherUserId) async {
-    String res = '';
-    try {
-      await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
-      isConnection = true;
+  // Future<String> addConnection(String anotherUserId) async {
+  //   String res = '';
+  //   try {
+  //     await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
+  //     isConnection = true;
 
-      res = "Connection added";
-      notifyListeners();
-    } catch (e) {
-      res = e.toString();
-    }
-    return res;
-  }
+  //     res = "Connection added";
+  //     notifyListeners();
+  //   } catch (e) {
+  //     res = e.toString();
+  //   }
+  //   return res;
+  // }
 
-  Future<String> removeConnection(String anotherUserId) async {
-    String res = '';
-    try {
-      await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
-      isConnection = false;
+  // Future<String> removeConnection(String anotherUserId) async {
+  //   String res = '';
+  //   try {
+  //     await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
+  //     isConnection = false;
 
-      res = "Connection removed";
-      notifyListeners();
-    } catch (e) {
-      res = e.toString();
-    }
-    return res;
-  }
+  //     res = "Connection removed";
+  //     notifyListeners();
+  //   } catch (e) {
+  //     res = e.toString();
+  //   }
+  //   return res;
+  // }
 }

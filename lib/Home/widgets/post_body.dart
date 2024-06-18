@@ -32,9 +32,7 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   bool isLikeAnimating = false;
-  // int commentsLength = 0;
-  bool isConnection = false;
-  bool isCurrentUser = false;
+  late bool isCurrentUser;
   final User user = FirebaseAuth.instance.currentUser!;
   late String widgetUid;
   @override
@@ -42,62 +40,9 @@ class _PostCardState extends State<PostCard> {
     super.initState();
     widgetUid = widget.snapshot['uid'];
     Provider.of<PostProvider>(context, listen: false)
-        .init(postId: widget.snapshot['postId'], anotherUserId: widgetUid);
-  }
-
-  // void getAllComments() async {
-  //   try {
-  //     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-  //         .collection('posts')
-  //         .doc(widget.snapshot['postId'])
-  //         .collection('comments')
-  //         .get();
-
-  //     setState(() {
-  //       commentsLength = querySnapshot.docs.length;
-  //     });
-  //   } catch (e) {
-  //     showSnackBar(context, e.toString());
-  //     // print(e.toString());
-  //   }
-  // }
-
-  // void fetchIsConnection() async {
-  //   // print(widget.snapshot['uid']);
-  //   // print(user.uid);
-  //   if (widget.snapshot['uid'] == user.uid) {
-  //     isConnection = true;
-  //     isCurrentUser = true;
-  //   } else {
-  //     try {
-  //       var usersnap = await FirebaseFirestore.instance
-  //           .collection('Users')
-  //           .doc(widget.snapshot['uid'])
-  //           .get();
-  //       // print(usersnap);
-  //       var ids = usersnap.data()!['connections'] ?? [];
-  //       // print(ids.length);
-  //       // print(ids);
-  //       // print(ids);
-  //       isConnection = ids.contains(user.uid);
-  //     } catch (e) {
-  //       print(e.toString());
-  //     }
-  //   }
-  // }
-
-  Future<void> handleConnection() async {
-    final postProvider = Provider.of<PostProvider>(context, listen: false);
-    String res = "";
-    if (postProvider.isConnection) {
-      res = await postProvider.removeConnection(widget.snapshot['uid']);
-    } else {
-      res = await postProvider.addConnection(widget.snapshot['uid']);
-    }
-    toastMessage(
-        context: context,
-        message: res,
-        position: DelightSnackbarPosition.bottom);
+      ..getAllComments(widget.snapshot['postId'])
+      ..fetchIsConnection(widgetUid);
+    isCurrentUser = user.uid == widgetUid;
   }
 
   @override
@@ -235,7 +180,7 @@ class _PostCardState extends State<PostCard> {
                         commentDialog(context);
                       },
                       child: HoverText(
-                        text: "${postProvider.commentsLength} comments ",
+                        text: "${postProvider.getCommentLength} comments ",
                         defaultStyle: const TextStyle(
                           fontSize: 16,
                           color: Colors.black54,
@@ -376,29 +321,50 @@ class _PostCardState extends State<PostCard> {
             },
           ),
         ),
-        PopupMenuItem(
+        !isCurrentUser
+            ? PopupMenuItem(
+                child: ListTile(
+                leading: Icon(postProvider.isConnection
+                    ? Icons.person_remove
+                    : Icons.person_add),
+                title:
+                    Text(postProvider.isConnection ? 'disconnect' : 'connect'),
+                onTap: () async {
+                  await postProvider.manageConnection(widgetUid);
+
+                  toastMessage(
+                      context: context,
+                      message:
+                          "${widget.snapshot['name']} is ${postProvider.response}",
+                      position: DelightSnackbarPosition.bottom);
+                  Navigator.of(context).pop();
+                },
+              ))
+            : PopupMenuItem(
+                child: ListTile(
+                  leading: const Icon(Icons.delete),
+                  title: const Text('Delete post'),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    //  Hide post
+                  },
+                ),
+              ),
+        if (isCurrentUser)
+          PopupMenuItem(
             child: ListTile(
-          leading: Icon(postProvider.isConnection
-              ? Icons.person_remove
-              : Icons.person_add),
-          title: Text(postProvider.isConnection ? 'disconnect' : 'connect'),
-          onTap: () async {
-            String res = await postProvider.manageConnection(widgetUid);
-
-            toastMessage(
-                context: context,
-                message: res,
-                position: DelightSnackbarPosition.bottom);
-            // handleConnection();
-
-            // Navigator.of(context).pop();
-            //  Unfollow
-          },
-        )),
+              leading: const Icon(Icons.edit_document),
+              title: const Text('Edit post'),
+              onTap: () {
+                Navigator.of(context).pop();
+                //  Hide post
+              },
+            ),
+          ),
         PopupMenuItem(
           child: ListTile(
             leading: const Icon(Icons.visibility_off),
-            title: const Text('I don\'t want to see this'),
+            title: const Text('I don\'t want to see this post'),
             onTap: () {
               Navigator.of(context).pop();
               //  Hide post
