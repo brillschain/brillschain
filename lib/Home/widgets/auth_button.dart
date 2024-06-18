@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AuthButton extends StatefulWidget {
-  final Function function;
+  final Function() onTap;
   final String text;
   final Color backgroundcolor;
   final Color textColor;
@@ -10,7 +10,7 @@ class AuthButton extends StatefulWidget {
   final double width;
   const AuthButton(
       {super.key,
-      required this.function,
+      required this.onTap,
       required this.text,
       required this.backgroundcolor,
       required this.textColor,
@@ -25,23 +25,23 @@ class _AuthButtonState extends State<AuthButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => widget.function(),
+      onPressed: widget.onTap,
       style: ButtonStyle(
-        side: const MaterialStatePropertyAll(
+        side: const WidgetStatePropertyAll(
           BorderSide(color: Colors.black),
         ),
-        shape: MaterialStatePropertyAll(
+        shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        fixedSize: MaterialStatePropertyAll(
+        fixedSize: WidgetStatePropertyAll(
           Size.fromWidth(widget.width),
         ),
-        padding: const MaterialStatePropertyAll(
+        padding: const WidgetStatePropertyAll(
           EdgeInsets.symmetric(vertical: 20),
         ),
-        backgroundColor: MaterialStatePropertyAll(widget.backgroundcolor),
+        backgroundColor: WidgetStatePropertyAll(widget.backgroundcolor),
       ),
       child: widget.isloading
           ? Center(

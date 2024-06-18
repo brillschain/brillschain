@@ -1,3 +1,4 @@
+import 'package:delightful_toast/toast/utils/enums.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 // import 'package:lottie/lottie.dart';
@@ -16,6 +17,7 @@ import 'package:supplink/responsive/mobile_screen.dart';
 import 'package:supplink/responsive/responsive_screen.dart';
 // import 'package:supplink/responsive/web_screen.dart';
 import 'package:supplink/utils/snackbars.dart';
+import 'package:supplink/utils/toaster.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -127,7 +129,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                   height: 15,
                 ),
                 AuthButton(
-                    function: () async {
+                    onTap: () async {
                       String email = emailController.text.trim();
                       String password = passwordController.text.trim();
 
@@ -153,10 +155,16 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                             ),
                           ));
                         } else {
-                          showSnackBar(context, res);
+                          toastMessage(
+                              context: context,
+                              message: res,
+                              position: DelightSnackbarPosition.bottom);
                         }
                       } else {
-                        showSnackBar(context, "Fill the credentials");
+                        toastMessage(
+                            context: context,
+                            message: "Fill the credentials",
+                            position: DelightSnackbarPosition.bottom);
                       }
                       setState(() {
                         isloading = false;
@@ -171,7 +179,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                   height: 10,
                 ),
                 AuthButton(
-                    function: () => Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(AppRoutes.phonePageRoute),
                     text: "phone login",
                     backgroundcolor: Colors.white60,

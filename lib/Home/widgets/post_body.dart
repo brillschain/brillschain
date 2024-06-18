@@ -377,33 +377,24 @@ class _PostCardState extends State<PostCard> {
           ),
         ),
         PopupMenuItem(
-          child: isConnection
-              ? ListTile(
-                  leading: Icon(postProvider.isConnection
-                      ? Icons.person_remove
-                      : Icons.person_add),
-                  title: Text(
-                      postProvider.isConnection ? 'connect' : 'disconnect'),
-                  onTap: () {
-                    handleConnection();
+            child: ListTile(
+          leading: Icon(postProvider.isConnection
+              ? Icons.person_remove
+              : Icons.person_add),
+          title: Text(postProvider.isConnection ? 'disconnect' : 'connect'),
+          onTap: () async {
+            String res = await postProvider.manageConnection(widgetUid);
 
-                    // Navigator.of(context).pop();
-                    //  Unfollow
-                  },
-                )
-              : ListTile(
-                  leading: const Icon(Icons.person_remove),
-                  title: const Text('disconnect'),
-                  onTap: () {
-                    toastMessage(
-                        context: context,
-                        message: "connection added",
-                        position: DelightSnackbarPosition.bottom);
-                    Navigator.of(context).pop();
-                    //  Unfollow
-                  },
-                ),
-        ),
+            toastMessage(
+                context: context,
+                message: res,
+                position: DelightSnackbarPosition.bottom);
+            // handleConnection();
+
+            // Navigator.of(context).pop();
+            //  Unfollow
+          },
+        )),
         PopupMenuItem(
           child: ListTile(
             leading: const Icon(Icons.visibility_off),

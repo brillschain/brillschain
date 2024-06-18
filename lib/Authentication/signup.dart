@@ -1,3 +1,4 @@
+import 'package:delightful_toast/toast/utils/enums.dart';
 import 'package:flutter/material.dart';
 // import 'package:dropdown_search/dropdown_search.dart';
 // import 'package:lottie/lottie.dart';
@@ -9,6 +10,7 @@ import 'package:supplink/Home/widgets/domain_selector_list.dart';
 import 'package:supplink/Home/widgets/main_app_bar.dart';
 import 'package:supplink/Routes/routes.dart';
 import 'package:supplink/utils/snackbars.dart';
+import 'package:supplink/utils/toaster.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -226,13 +228,16 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
                           ),
                           const SizedBox(height: 45),
                           AuthButton(
-                            function: () async {
+                            onTap: () async {
                               String res = await signUpUser();
                               if (res == 'success') {
                                 Navigator.of(context)
                                     .pushNamed(AppRoutes.myhomepage);
                               } else {
-                                showSnackBar(context, res);
+                                toastMessage(
+                                    context: context,
+                                    message: res,
+                                    position: DelightSnackbarPosition.bottom);
                               }
                             },
                             text: 'Signup',
@@ -260,19 +265,19 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
         ));
   }
 
-  Widget _buildHeaderButton(String text) {
-    return TextButton(
-      onPressed: () {},
-      child: Text(
-        text,
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          decoration: TextDecoration.underline,
-        ),
-      ),
-    );
-  }
+  // Widget _buildHeaderButton(String text) {
+  //   return TextButton(
+  //     onPressed: () {},
+  //     child: Text(
+  //       text,
+  //       style: const TextStyle(
+  //         color: Colors.white,
+  //         fontWeight: FontWeight.bold,
+  //         decoration: TextDecoration.underline,
+  //       ),
+  //     ),
+  //   );
+  // }
 }
 
 // ElevatedButton authButton(

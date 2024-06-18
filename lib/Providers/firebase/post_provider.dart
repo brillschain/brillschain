@@ -44,6 +44,28 @@ class PostProvider extends ChangeNotifier {
     }
   }
 
+  Future<String> manageConnection(String anotherUserId) async {
+    String res = "";
+    try {
+      if (!isConnection) {
+        await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
+        isConnection = true;
+
+        res = "Connection added";
+        notifyListeners();
+      } else {
+        await FireBaseFireStoreMethods().connectUser(user.uid, anotherUserId);
+        isConnection = false;
+
+        res = "Connection removed";
+        notifyListeners();
+      }
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+
   Future<String> addConnection(String anotherUserId) async {
     String res = '';
     try {
