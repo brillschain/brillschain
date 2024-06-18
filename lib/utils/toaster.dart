@@ -15,7 +15,7 @@ toastMessage(
     autoDismiss: true,
     builder: (context) => Container(
       margin:
-          EdgeInsets.symmetric(horizontal: width > webscreensize ? 200 : width),
+          EdgeInsets.symmetric(horizontal: width > webscreensize ? 250 : width),
       width: 400,
       child: ToastCard(
         trailing: IconButton(
