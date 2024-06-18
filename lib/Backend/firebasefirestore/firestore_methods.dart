@@ -42,26 +42,26 @@ class FireBaseFireStoreMethods {
     return allUserData;
   }
 
-  Future<void> connectUser(String uid, String followId) async {
+  Future<void> connectUser(String currentUserId, String anotherUserId) async {
     try {
       DocumentSnapshot snapshot =
-          await _firestore.collection('Users').doc(uid).get();
+          await _firestore.collection('Users').doc(currentUserId).get();
       var data = snapshot.data() as Map<String, dynamic>;
       List connection = data['connections'];
 
-      if (connection.contains(followId)) {
-        await _firestore.collection('Users').doc(followId).update({
-          'connections': FieldValue.arrayRemove([uid]),
+      if (connection.contains(anotherUserId)) {
+        await _firestore.collection('Users').doc(anotherUserId).update({
+          'connections': FieldValue.arrayRemove([currentUserId]),
         });
-        await _firestore.collection('Users').doc(uid).update({
-          'connections': FieldValue.arrayRemove([followId]),
+        await _firestore.collection('Users').doc(currentUserId).update({
+          'connections': FieldValue.arrayRemove([anotherUserId]),
         });
       } else {
-        await _firestore.collection('Users').doc(followId).update({
-          'connections': FieldValue.arrayUnion([uid]),
+        await _firestore.collection('Users').doc(anotherUserId).update({
+          'connections': FieldValue.arrayUnion([currentUserId]),
         });
-        await _firestore.collection('Users').doc(uid).update({
-          'connections': FieldValue.arrayUnion([followId]),
+        await _firestore.collection('Users').doc(currentUserId).update({
+          'connections': FieldValue.arrayUnion([anotherUserId]),
         });
       }
     } catch (e) {
