@@ -17,6 +17,7 @@ import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
 import 'package:supplink/utils/hover_button.dart';
 import 'package:supplink/utils/hover_text.dart';
+import 'package:supplink/utils/reaction_button.dart';
 // import 'package:supplink/utils/snackbars.dart';
 import 'package:supplink/utils/toaster.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -106,21 +107,23 @@ class _PostCardState extends State<PostCard> {
               ),
             ),
 
-            const Padding(
-              padding: EdgeInsets.all(12.0),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
               child: ExpandableText(
-                "Another cool reel!, Don't miss this reel! Get ready for jaw-dropping moments, endless entertainment, and a rollercoaster of emotions. Hit play and let the fun begin!Another cool reel!, Don't miss this reel! Get ready for jaw-dropping moments, endless entertainment, and a rollercoaster of emotions. Hit play and let the fun begin!",
-                expandText: 'more..',
-                collapseText: 'less..',
+                textAlign: TextAlign.start,
+                // "Another cool reel!, Don't miss this reel! Get ready for jaw-dropping moments, endless entertainment, and a rollercoaster of emotions. Hit play and let the fun begin!Another cool reel!, Don't miss this reel! Get ready for jaw-dropping moments, endless entertainment, and a rollercoaster of emotions. Hit play and let the fun begin!",
+                widget.snapshot['description'],
+                expandText: '  more..',
+                collapseText: ' less..',
                 expandOnTextTap: true,
                 collapseOnTextTap: true,
                 maxLines: 2,
                 linkColor: Colors.blue,
-                linkStyle: TextStyle(
+                linkStyle: const TextStyle(
                   decoration: TextDecoration.underline,
                   decorationColor: Colors.blue,
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
@@ -172,7 +175,16 @@ class _PostCardState extends State<PostCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('${widget.snapshot['likes'].length} likes'),
+                  Row(
+                    children: [
+                      Text('${widget.snapshot['likes'].length} '),
+                      const Icon(
+                        Icons.thumb_up_alt,
+                        size: 24,
+                        color: Colors.blue,
+                      )
+                    ],
+                  ),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: InkWell(
@@ -210,6 +222,7 @@ class _PostCardState extends State<PostCard> {
                         userData.uid,
                         widget.snapshot['likes']);
                   },
+                  // child: const ReactionButton(),
                   child: Container(
                     padding: const EdgeInsets.all(6),
                     width: 120,
@@ -221,12 +234,12 @@ class _PostCardState extends State<PostCard> {
                           smallLike: true,
                           child: widget.snapshot['likes'].contains(userData.uid)
                               ? const Icon(
-                                  Icons.favorite,
+                                  Icons.thumb_up_alt,
                                   size: 32,
-                                  color: Colors.red,
+                                  color: Colors.blue,
                                 )
                               : const Icon(
-                                  Icons.favorite_border_outlined,
+                                  Icons.thumb_up_alt_outlined,
                                   size: 32,
                                   color: Colors.black,
                                 ),

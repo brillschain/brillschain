@@ -23,12 +23,14 @@ class _HoverButtonState extends State<HoverButton> {
           widget.onPressed();
           onHover(true);
         },
-        child: Container(
-          decoration: BoxDecoration(
-            color: isHovered ? Colors.grey[300] : Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
+        child: InkWell(
+          child: Container(
+            decoration: BoxDecoration(
+              color: isHovered ? Colors.grey[300] : Colors.transparent,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: widget.child,
           ),
-          child: widget.child,
         ),
       ),
     );
