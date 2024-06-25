@@ -29,7 +29,7 @@ class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
   @override
-  _WelcomePageState createState() => _WelcomePageState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
 class _WelcomePageState extends State<WelcomePage>
@@ -94,6 +94,7 @@ class _WelcomePageState extends State<WelcomePage>
     _animationController.dispose();
     _titleAnimationController.dispose();
     _scrollController.dispose();
+
     super.dispose();
   }
 
@@ -263,18 +264,19 @@ class _WelcomePageState extends State<WelcomePage>
                         const SizedBox(height: 20),
                         ScaleTransition(
                           scale: _animationController,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 16),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+                          child: InkWell(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(AppRoutes.loginRoute);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 40, vertical: 16),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
                               ),
-                            ),
-                            child: InkWell(
-                              onTap: () => Navigator.of(context)
-                                  .pushNamed(AppRoutes.loginRoute),
                               child: const Text(
                                 'Get Started',
                                 style: TextStyle(

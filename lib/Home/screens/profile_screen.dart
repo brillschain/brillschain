@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:provider/provider.dart';
 import 'package:supplink/Home/widgets/custom_button.dart';
+import 'package:supplink/Providers/user_provider.dart';
+import 'package:supplink/models/user_model.dart';
 
 class ProfilePageTest extends StatelessWidget {
   const ProfilePageTest({super.key});
@@ -64,124 +67,139 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Stack(
-        children: [
-          Container(
-            width: 400,
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Expanded(
-                      // flex: 1,
-                      child: Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 30,
-                            backgroundImage: NetworkImage(
-                                'https://images.unsplash.com/photo-1566438480900-0609be27a4be?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
-                          ),
-                          Text('Name',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              )),
-                          Text(
-                            'username',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        ],
+    return Consumer<UserProvider>(builder: (context, data, _) {
+      UserData userData = data.getUser;
+      return Card(
+        child: Stack(
+          children: [
+            Container(
+              width: 400,
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        // flex: 1,
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundImage:
+                                  NetworkImage(userData.profileUrl),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(userData.name,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            const Text(
+                              'username',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(4),
-                      width: 200,
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          DetailsRow(icon: Icons.domain, data: 'Domain'),
-                          DetailsRow(
-                              icon: Icons.location_on_rounded, data: 'Address'),
-                          DetailsRow(icon: Icons.phone, data: 'Phone Number'),
-                          DetailsRow(icon: Icons.email, data: 'Email'),
-                        ],
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 5),
-                const ConnectionsData(),
-                const SizedBox(height: 10),
-                Row(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CustomButton(
-                      const Icon(
-                        Icons.person_add,
-                        color: Colors.white,
+                      Container(
+                        padding: const EdgeInsets.all(4),
+                        width: 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            DetailsRow(
+                                icon: Icons.domain, data: userData.domain),
+                            DetailsRow(
+                                icon: Icons.location_on_rounded,
+                                data: userData.address),
+                            DetailsRow(
+                                icon: Icons.phone,
+                                data: userData.phoneno.toString()),
+                            DetailsRow(
+                              icon: Icons.email,
+                              data: userData.email,
+                            ),
+                          ],
+                        ),
                       ),
-                      function: () {},
-                      text: 'Connect',
-                      backgroundcolor: Colors.blue,
-                      textColor: Colors.white,
-                      width:
-                          MediaQuery.of(context).size.width > 600 ? 150 : 120,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    CustomButton(
-                      const Icon(
-                        Icons.share,
-                        color: Colors.white,
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  ConnectionsData(userData: userData),
+                  const SizedBox(height: 10),
+                  Row(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CustomButton(
+                        const Icon(
+                          Icons.person_add,
+                          color: Colors.white,
+                        ),
+                        function: () {},
+                        text: 'Connect',
+                        backgroundcolor: Colors.blue,
+                        textColor: Colors.white,
+                        width:
+                            MediaQuery.of(context).size.width > 600 ? 150 : 120,
                       ),
-                      function: () {},
-                      text: 'share',
-                      backgroundcolor: Colors.black,
-                      textColor: Colors.white,
-                      width:
-                          MediaQuery.of(context).size.width > 600 ? 150 : 120,
-                    )
-                  ],
-                )
-              ],
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomButton(
+                        const Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        ),
+                        function: () {},
+                        text: 'share',
+                        backgroundcolor: Colors.black,
+                        textColor: Colors.white,
+                        width:
+                            MediaQuery.of(context).size.width > 600 ? 150 : 120,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-          Positioned(
-              top: 0,
-              right: 0,
-              child: IconButton(onPressed: () {}, icon: const Icon(Icons.edit)))
-        ],
-      ),
-    );
+            Positioned(
+                top: 0,
+                right: 0,
+                child:
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.edit)))
+          ],
+        ),
+      );
+    });
   }
 }
 
 class ConnectionsData extends StatelessWidget {
-  const ConnectionsData({super.key});
+  final UserData userData;
+  const ConnectionsData({super.key, required this.userData});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        CoustumColumn(
+        const CoustumColumn(
           name: 'posts',
           value: "10",
         ),
         CoustumColumn(
           name: 'Connections',
-          value: "14",
+          value: userData.connections.length.toString(),
         ),
         // CoustumColumn(
         //   name: 'following',

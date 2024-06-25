@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "BrillsChain",
         routes: AppRoutes.routes,
-
+        // initialRoute: AppRoutes.loginRoute,
         // home: ProfilePageTest(),
         home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),

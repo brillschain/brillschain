@@ -16,7 +16,7 @@ import 'package:supplink/Routes/routes.dart';
 import 'package:supplink/responsive/mobile_screen.dart';
 import 'package:supplink/responsive/responsive_screen.dart';
 // import 'package:supplink/responsive/web_screen.dart';
-import 'package:supplink/utils/snackbars.dart';
+// import 'package:supplink/utils/snackbars.dart';
 import 'package:supplink/utils/toaster.dart';
 
 class LoginView extends StatefulWidget {
@@ -34,6 +34,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
   // ignore: unused_field
   late Animation<double> _animation;
   late AnimationController _titleAnimationController;
+  // ignore: unused_field
   late Animation<double> _titleAnimation;
 
   @override
