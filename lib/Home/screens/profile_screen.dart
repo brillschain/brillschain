@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:supplink/Home/widgets/custom_button.dart';
 
@@ -9,28 +8,52 @@ class ProfilePageTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        centerTitle: true,
-      ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 16),
+    return const Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(width: 10),
-            ProfileCard(),
-            SizedBox(width: 10),
+            // SizedBox(width: 10),
             Column(
               children: [
+                ProfileCard(),
+                SizedBox(
+                  height: 16,
+                ),
                 StatisticsSection(),
-                SizedBox(height: 10),
-                ContractList(),
               ],
-            )
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              // flex: 1,
+              child: ContractList(),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class DetailsRow extends StatelessWidget {
+  final IconData icon;
+  final String data;
+  const DetailsRow({super.key, required this.icon, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(icon),
+          const SizedBox(
+            width: 5,
+          ),
+          Text(data),
+        ],
       ),
     );
   }
@@ -45,65 +68,89 @@ class ProfileCard extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            width: 300,
+            width: 400,
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CircleAvatar(
-                  radius: 40,
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1566438480900-0609be27a4be?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      // flex: 1,
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 30,
+                            backgroundImage: NetworkImage(
+                                'https://images.unsplash.com/photo-1566438480900-0609be27a4be?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+                          ),
+                          Text('Name',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          Text(
+                            'username',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      width: 200,
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DetailsRow(icon: Icons.domain, data: 'Domain'),
+                          DetailsRow(
+                              icon: Icons.location_on_rounded, data: 'Address'),
+                          DetailsRow(icon: Icons.phone, data: 'Phone Number'),
+                          DetailsRow(icon: Icons.email, data: 'Email'),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                const Text('Name',
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                const Text(
-                  'username',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: 10),
-                const ListTile(
-                  leading: Icon(Icons.domain),
-                  title: Text('domain'),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.location_on_rounded),
-                  title: Text('address'),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.phone),
-                  title: Text('phone number'),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.email),
-                  title: Text('email'),
-                ),
-                SizedBox(height: 10),
-                ConnectionsData(),
-                SizedBox(height: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                const SizedBox(height: 5),
+                const ConnectionsData(),
+                const SizedBox(height: 10),
+                Row(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CustomButton(
+                      const Icon(
+                        Icons.person_add,
+                        color: Colors.white,
+                      ),
                       function: () {},
-                      text: 'follow',
+                      text: 'Connect',
                       backgroundcolor: Colors.blue,
                       textColor: Colors.white,
                       width:
-                          MediaQuery.of(context).size.width > 600 ? 200 : 150,
+                          MediaQuery.of(context).size.width > 600 ? 150 : 120,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     CustomButton(
+                      const Icon(
+                        Icons.share,
+                        color: Colors.white,
+                      ),
                       function: () {},
                       text: 'share',
                       backgroundcolor: Colors.black,
                       textColor: Colors.white,
                       width:
-                          MediaQuery.of(context).size.width > 600 ? 200 : 150,
+                          MediaQuery.of(context).size.width > 600 ? 150 : 120,
                     )
                   ],
                 )
@@ -133,13 +180,13 @@ class ConnectionsData extends StatelessWidget {
           value: "10",
         ),
         CoustumColumn(
-          name: 'followers',
+          name: 'Connections',
           value: "14",
         ),
-        CoustumColumn(
-          name: 'following',
-          value: "12",
-        ),
+        // CoustumColumn(
+        //   name: 'following',
+        //   value: "12",
+        // ),
       ],
     );
   }
@@ -158,7 +205,7 @@ class CoustumColumn extends StatelessWidget {
         Text(
           value,
           style: const TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         Text(
           name,
@@ -194,9 +241,9 @@ class _StatisticsSectionState extends State<StatisticsSection> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(right: 20, left: 8),
-      child: SizedBox(
-        // width: width - 430,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        width: 400,
         child: Column(
           children: [
             const Text(
@@ -331,26 +378,24 @@ class _ContractListState extends State<ContractList>
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SizedBox(
-        width: 600,
-        height: 500,
-        child: Scaffold(
-          appBar: TabBar(controller: tabController, tabs: const [
-            Tab(text: 'Scheduled'),
-            Tab(text: 'Ongoing'),
-            Tab(text: 'Completed'),
-            Tab(text: 'Cancelled'),
-          ]),
-          body: TabBarView(
-            controller: tabController,
-            children: [
-              contractListCardTrail('Scheduled', const Color(0xff3398F6)),
-              contractListCardTrail('Ongoing', const Color(0xff3EE094)),
-              contractListCardTrail('Completed', const Color(0xffD95AF3)),
-              contractListCardTrail('Cancelled', const Color(0xffFA4A42)),
-            ],
-          ),
+    return SizedBox(
+      width: 600,
+      // height: 500,
+      child: Scaffold(
+        appBar: TabBar(controller: tabController, tabs: const [
+          Tab(text: 'Scheduled'),
+          Tab(text: 'Ongoing'),
+          Tab(text: 'Completed'),
+          Tab(text: 'Cancelled'),
+        ]),
+        body: TabBarView(
+          controller: tabController,
+          children: [
+            contractListCardTrail('Scheduled', const Color(0xff3398F6)),
+            contractListCardTrail('Ongoing', const Color(0xff3EE094)),
+            contractListCardTrail('Completed', const Color(0xffD95AF3)),
+            contractListCardTrail('Cancelled', const Color(0xffFA4A42)),
+          ],
         ),
       ),
     );
@@ -369,13 +414,33 @@ class _ContractListState extends State<ContractList>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('date', style: TextStyle(fontSize: 14)),
-                  Text('status', style: TextStyle(fontSize: 14)),
-                  Text('product', style: TextStyle(fontSize: 14)),
-                  Text('transport', style: TextStyle(fontSize: 14)),
-                  // Text('to', style: TextStyle(fontSize: 14)),
+                  Text('date',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Text('status',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Text('product',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Text('from',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Text('to',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      )),
                   SizedBox(
-                    width: 40,
+                    width: 0,
                   )
                 ],
               ),
@@ -422,30 +487,33 @@ class ContractItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const SizedBox(
-            width: 5,
-          ),
+          // const SizedBox(
+          //   width: 5,
+          // ),
           Text(contract.date, style: const TextStyle(fontSize: 14)),
           Text(contract.status, style: TextStyle(fontSize: 14, color: color)),
-          SizedBox(
-            width: 10,
-          ),
+          // const SizedBox(
+          //   width: 10,
+          // ),
           Text(contract.product, style: const TextStyle(fontSize: 14)),
-          SizedBox(
-            width: 30,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(contract.from, style: const TextStyle(fontSize: 14)),
-              const Text("To"),
-              Text(contract.to, style: const TextStyle(fontSize: 14)),
-            ],
-          )
+          // const SizedBox(
+          //   width: 30,
+          // ),
+          Text(contract.from, style: const TextStyle(fontSize: 14)),
+          // const Text("To"),
+          Text(contract.to, style: const TextStyle(fontSize: 14)),
+          // Column(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Text(contract.from, style: const TextStyle(fontSize: 14)),
+          //     const Text("To"),
+          //     Text(contract.to, style: const TextStyle(fontSize: 14)),
+          //   ],
+          // )
         ],
       ),
     );
