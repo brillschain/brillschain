@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
@@ -15,7 +16,9 @@ import 'package:supplink/models/user_model.dart';
 // import 'package:provider/provider.dart';
 
 class DesktopBody extends StatefulWidget {
-  const DesktopBody({super.key});
+  const DesktopBody({
+    super.key,
+  });
   @override
   State<DesktopBody> createState() => DesktopBodyState();
 }
@@ -36,7 +39,9 @@ class DesktopBodyState extends State<DesktopBody> {
     // ProfileScreen(
     //   uid: FirebaseAuth.instance.currentUser!.uid,
     // ),
-    const ProfilePageTest(),
+    ProfilePageTest(
+      uid: FirebaseAuth.instance.currentUser!.uid,
+    ),
     const Connections(),
     const LaneWorks(),
     // const ContractView()
@@ -48,7 +53,6 @@ class DesktopBodyState extends State<DesktopBody> {
   Widget build(BuildContext context) {
     // final SelectedIndexProvider selectedIndexProvider = Provider.of<SelectedIndexProvider>(context);
     UserData userData = Provider.of<UserProvider>(context).getUser;
-
     return Row(
       children: [
         navi(userData),

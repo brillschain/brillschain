@@ -148,13 +148,15 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                         if (res == "success") {
                           // currentUserDetails();
                           // Navigator.of(context).pushNamed(AppRoutes.Myhomepage);
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                            builder: (context) => const ResponsiveLayout(
-                              webScreenLayout: DesktopBody(),
-                              mobileScreenLayout: MobileScreen(),
-                            ),
-                          ));
+                          Navigator.of(context).pushReplacementNamed(
+                              AppRoutes.myhomepage
+                              //       MaterialPageRoute(
+                              //   builder: (context) => const ResponsiveLayout(
+                              //     webScreenLayout: DesktopBody(),
+                              //     mobileScreenLayout: MobileScreen(),
+                              //   ),
+                              // )
+                              );
                         } else {
                           toastMessage(
                               context: context,

@@ -1,13 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Home/widgets/custom_button.dart';
+
 import 'package:supplink/Providers/user_provider.dart';
+import 'package:supplink/models/post_model.dart';
 import 'package:supplink/models/user_model.dart';
 
 class ProfilePageTest extends StatelessWidget {
-  const ProfilePageTest({super.key});
+  final String uid;
+  const ProfilePageTest({super.key, required this.uid});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,9 @@ class DetailsRow extends StatelessWidget {
 }
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({super.key});
+  const ProfileCard({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +139,10 @@ class ProfileCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 5),
-                  ConnectionsData(userData: userData),
+                  ConnectionsData(
+                    userData: userData,
+                    posts: data.posts,
+                  ),
                   const SizedBox(height: 10),
                   Row(
                     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -186,16 +194,21 @@ class ProfileCard extends StatelessWidget {
 
 class ConnectionsData extends StatelessWidget {
   final UserData userData;
-  const ConnectionsData({super.key, required this.userData});
+  final List<PostData> posts;
+  const ConnectionsData({
+    super.key,
+    required this.userData,
+    required this.posts,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        const CoustumColumn(
+        CoustumColumn(
           name: 'posts',
-          value: "10",
+          value: posts.length.toString(),
         ),
         CoustumColumn(
           name: 'Connections',

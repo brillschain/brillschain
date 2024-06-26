@@ -1,6 +1,7 @@
 import 'package:supplink/Authentication/Logins/loginview.dart';
 import 'package:supplink/Authentication/signup.dart';
 import 'package:supplink/Home/desktop_Body.dart';
+import 'package:supplink/responsive/responsive_screen.dart';
 
 class AppRoutes {
   static const String loginRoute = '/login';
@@ -14,7 +15,7 @@ class AppRoutes {
   static final routes = {
     loginRoute: (context) => const LoginView(),
     signUpRoute: (context) => const SignUp(),
-    myhomepage: (context) => const DesktopBody(),
+    myhomepage: (context) => const ResponsiveLayout(),
     // PhonePageRoute: (context) => PhoneNumberAuthView(),
     // LaneViewRoute: (context) => LaneView(),
 

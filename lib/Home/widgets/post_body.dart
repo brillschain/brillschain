@@ -55,6 +55,7 @@ class _PostCardState extends State<PostCard> {
         padding: const EdgeInsets.all(4),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16)
