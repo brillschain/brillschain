@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 // import 'package:dropdown_search/dropdown_search.dart';
 // import 'package:lottie/lottie.dart';
 import 'package:supplink/Backend/auth/user_auth.dart';
-import 'package:supplink/Home/widgets/auth_button.dart';
-import 'package:supplink/Home/widgets/auth_layout.dart';
-import 'package:supplink/Home/widgets/auth_text_field.dart';
+// import 'package:supplink/Authentication/widgets/auth_button.dart';
+// import 'package:supplink/Authentication/widgets/auth_layout.dart';
+// import 'package:supplink/Authentication/widgets/auth_text_field.dart';
 import 'package:supplink/Home/widgets/domain_selector_list.dart';
 import 'package:supplink/Home/widgets/main_app_bar.dart';
 import 'package:supplink/Routes/routes.dart';
-import 'package:supplink/utils/snackbars.dart';
+// import 'package:supplink/utils/snackbars.dart';
 import 'package:supplink/utils/toaster.dart';
+
+import 'widgets/auth_button.dart';
+import 'widgets/auth_layout.dart';
+import 'widgets/auth_text_field.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

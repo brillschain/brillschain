@@ -124,10 +124,10 @@ class _DashBoardState extends State<DashBoard> {
                       children: [
                         ElevatedButton(
                           style: ButtonStyle(
-                            padding: MaterialStateProperty.all<EdgeInsets>(
+                            padding: WidgetStateProperty.all<EdgeInsets>(
                                 const EdgeInsets.all(20)),
                             backgroundColor:
-                                const MaterialStatePropertyAll<Color>(
+                                const WidgetStatePropertyAll<Color>(
                                     Colors.blue),
                           ),
                           onPressed: _addNewRow,
@@ -141,10 +141,10 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                         ElevatedButton(
                           style: ButtonStyle(
-                            padding: MaterialStateProperty.all<EdgeInsets>(
+                            padding: WidgetStateProperty.all<EdgeInsets>(
                                 const EdgeInsets.all(20)),
                             backgroundColor:
-                                const MaterialStatePropertyAll<Color>(
+                                const WidgetStatePropertyAll<Color>(
                                     Colors.blue),
                           ),
                           onPressed: () {},

@@ -9,7 +9,7 @@ import 'package:supplink/Home/drawer_pages/dashBoard.dart';
 import 'package:supplink/Home/drawer_pages/check_updates.dart';
 // import 'package:supplink/Home/constants.dart';
 import 'package:supplink/Home/drawer_pages/laneWorks.dart';
-import 'package:supplink/Home/screens/profile_screen.dart';
+import 'package:supplink/Home/screens/profile/profile_screen.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/my_connections.dart';
@@ -39,7 +39,7 @@ class DesktopBodyState extends State<DesktopBody> {
     // ProfileScreen(
     //   uid: FirebaseAuth.instance.currentUser!.uid,
     // ),
-    ProfilePageTest(
+    ProfilePageview(
       uid: FirebaseAuth.instance.currentUser!.uid,
     ),
     const Connections(),

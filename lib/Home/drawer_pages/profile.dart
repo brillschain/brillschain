@@ -256,13 +256,13 @@ class _ProfileState extends State<Profile> {
                               ),
                               ElevatedButton(
                                   style: ButtonStyle(
-                                      shape: MaterialStatePropertyAll(
+                                      shape: WidgetStatePropertyAll(
                                           RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10))),
-                                      fixedSize: const MaterialStatePropertyAll(
+                                      fixedSize: const WidgetStatePropertyAll(
                                           Size.fromWidth(150)),
-                                      padding: const MaterialStatePropertyAll(
+                                      padding: const WidgetStatePropertyAll(
                                         EdgeInsets.symmetric(vertical: 15),
                                       )),
                                   onPressed: () {
@@ -279,13 +279,13 @@ class _ProfileState extends State<Profile> {
                               ),
                               ElevatedButton(
                                   style: ButtonStyle(
-                                      shape: MaterialStatePropertyAll(
+                                      shape: WidgetStatePropertyAll(
                                           RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10))),
-                                      fixedSize: const MaterialStatePropertyAll(
+                                      fixedSize: const WidgetStatePropertyAll(
                                           Size.fromWidth(150)),
-                                      padding: const MaterialStatePropertyAll(
+                                      padding: const WidgetStatePropertyAll(
                                         EdgeInsets.symmetric(vertical: 15),
                                       )),
                                   onPressed: isEditing

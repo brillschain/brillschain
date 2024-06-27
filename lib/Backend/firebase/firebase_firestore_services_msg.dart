@@ -5,7 +5,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:supplink/Backend/firebase/users.dart';
 // import 'package:supplink/Home/messages/messages.dart';
 import 'package:supplink/models/message_model.dart';
 import 'package:supplink/models/user_model.dart';

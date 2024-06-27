@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
 
 import 'package:supplink/models/user_model.dart';
 
-import '../models/post_model.dart';
+// import '../models/post_model.dart';
 
 class UserProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -17,11 +15,11 @@ class UserProvider extends ChangeNotifier {
   List<UserData>? _allUserData;
   UserData get getUser => _userData!;
   List<UserData> get getAllUserData => _allUserData!;
-  List<PostData>? _posts;
-  List<PostData> get posts => _posts!;
-  Future<void> refreshUserData(String uid) async {
+  int? _posts;
+  int get posts => _posts ?? 0;
+  Future<void> refreshUserData() async {
     try {
-      var data = await _firestore.collection('Users').doc(uid).get();
+      var data = await _firestore.collection('Users').doc(user.uid).get();
       _userData = UserData.fromSnapshot(data);
       _isLoading = false;
       notifyListeners();
@@ -30,10 +28,13 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
-  void getPosts(String uid) async {
-    var response =
-        await _firestore.collection('posts').where('uid', isEqualTo: uid).get();
-    _posts = response.docs.map((doc) => PostData.fromSnapshot(doc)).toList();
+  void getPosts() async {
+    var response = await _firestore
+        .collection('posts')
+        .where('uid', isEqualTo: user.uid)
+        .get();
+    _posts = response.docs.length;
+    // print(_posts);
     _isLoading = false;
     notifyListeners();
   }

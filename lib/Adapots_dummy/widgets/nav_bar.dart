@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../statics/data_values.dart';
 import '../statics/key_holders.dart';
-import '../theme/app_theme.dart';
-import 'button_rectangle.dart';
 import 'button_text.dart';
 
 class NavBar {

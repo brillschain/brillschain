@@ -25,8 +25,8 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
 
   userData() async {
     UserProvider userProvider = Provider.of(context, listen: false);
-    await userProvider.refreshUserData(user.uid);
-    userProvider.getPosts(user.uid);
+    await userProvider.refreshUserData();
+    userProvider.getPosts();
     userProvider.refreshAllUserData();
   }
 

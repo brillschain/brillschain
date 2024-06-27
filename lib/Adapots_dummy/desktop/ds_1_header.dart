@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:supplink/Adapots_dummy/desktop/ds_2_about_me.dart';
 import 'package:supplink/Adapots_dummy/desktop/ds_3_education.dart';
 import 'package:supplink/Adapots_dummy/desktop/ds_4_experience.dart';
 import 'package:supplink/Adapots_dummy/desktop/ds_5_volunteering.dart';
@@ -206,7 +205,7 @@ class _WelcomePageState extends State<WelcomePage>
         ListView(
           // shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
-          children: [
+          children: const [
             // DS2AboutMe(),
             DS3Education(),
             DS4Experience(),

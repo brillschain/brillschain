@@ -4,7 +4,7 @@ import '../statics/data_values.dart';
 import 'button_icon.dart';
 
 class SocialProfiles extends StatelessWidget {
-  const SocialProfiles({Key? key}) : super(key: key);
+  const SocialProfiles({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:supplink/Adapots_dummy/theme/app_theme.dart';
 import 'package:supplink/AppIntro/welcome.dart';
-import 'package:supplink/Home/desktop_Body.dart';
 import 'package:supplink/Providers/authAppProvider.dart';
 import 'package:supplink/Routes/Routes.dart';
 // import 'package:supplink/Providers/firebase/firebase_providers.dart';
 // import 'package:supplink/Trails/comments.dart';
 import 'package:supplink/firebase_options.dart';
-import 'package:supplink/responsive/mobile_screen.dart';
 import 'package:supplink/responsive/responsive_screen.dart';
 
 void main() async {

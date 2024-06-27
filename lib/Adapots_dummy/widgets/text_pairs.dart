@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../theme/app_theme.dart';
 
 class TextPairs {
   Widget type1({required String title, required String description}) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
@@ -13,7 +12,7 @@ class TextPairs {
                 // style: AppThemeData.darkTheme.textTheme.titleMedium),
           ],
         ),
-        const SizedBox(height: 10.0),
+        SizedBox(height: 10.0),
         // SelectableText(description,
         //     style: AppThemeData.darkTheme.textTheme.labelLarge),
       ],

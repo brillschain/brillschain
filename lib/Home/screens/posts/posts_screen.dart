@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:supplink/Home/widgets/post_body.dart';
+import 'package:supplink/Home/screens/posts/widgets/post_body.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({super.key});

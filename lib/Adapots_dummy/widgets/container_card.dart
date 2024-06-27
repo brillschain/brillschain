@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer';
 
-import '../theme/app_theme.dart';
 import '../widgets/text_pairs.dart';
 import 'button_text.dart';
 
@@ -197,7 +196,7 @@ class ContainerCard {
                     message: message,
                     url: url,
                   )
-                : Text(
+                : const Text(
                     'See you soon with the link :)',
                     // style: AppThemeData.darkTheme.textTheme.labelMedium,
                   ),

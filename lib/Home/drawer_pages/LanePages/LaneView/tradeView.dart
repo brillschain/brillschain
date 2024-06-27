@@ -30,8 +30,8 @@ class _TradeViewState extends State<TradeView> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: importsView == 1
-                        ? MaterialStateProperty.all<Color>(Colors.black)
-                        : MaterialStateProperty.all<Color>(
+                        ? WidgetStateProperty.all<Color>(Colors.black)
+                        : WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 206, 206, 206)),
                   ),
                   onPressed: () {
@@ -45,8 +45,8 @@ class _TradeViewState extends State<TradeView> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: importsView == 0
-                        ? MaterialStateProperty.all<Color>(Colors.black)
-                        : MaterialStateProperty.all<Color>(
+                        ? WidgetStateProperty.all<Color>(Colors.black)
+                        : WidgetStateProperty.all<Color>(
                             const Color.fromARGB(255, 206, 206, 206)),
                   ),
                   onPressed: () {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../theme/app_theme.dart';
 
 class ButtonRectangle extends StatelessWidget {
   final String name;
@@ -9,12 +8,11 @@ class ButtonRectangle extends StatelessWidget {
   final String message;
 
   const ButtonRectangle(
-      {Key? key,
+      {super.key,
       required this.name,
       required this.onPressed,
       required this.color,
-      required this.message})
-      : super(key: key);
+      required this.message});
 
   @override
   Widget build(BuildContext context) {

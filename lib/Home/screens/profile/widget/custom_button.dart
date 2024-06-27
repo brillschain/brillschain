@@ -1,14 +1,14 @@
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomProfileButton extends StatelessWidget {
   final String text;
   final Color backgroundcolor;
   final Color textColor;
   final Icon icon;
   final Function() function;
   final double width;
-  const CustomButton(
+  const CustomProfileButton(
     this.icon, {
     super.key,
     required this.function,

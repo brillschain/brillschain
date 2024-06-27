@@ -8,11 +8,10 @@ class ButtonTextLarge extends StatelessWidget {
   final String message;
 
   const ButtonTextLarge(
-      {Key? key,
+      {super.key,
       required this.text,
       required this.onPressed,
-      required this.message})
-      : super(key: key);
+      required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +34,7 @@ class ButtonTextSmall extends StatelessWidget {
   final Uri url;
 
   const ButtonTextSmall(
-      {Key? key, required this.text, required this.message, required this.url})
-      : super(key: key);
+      {super.key, required this.text, required this.message, required this.url});
 
   @override
   Widget build(BuildContext context) {

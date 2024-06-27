@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import '../statics/key_holders.dart';
 import '../statics/data_values.dart';
-import '../theme/app_theme.dart';
-import '../widgets/button_text.dart';
 import '../widgets/text_pairs.dart';
 import '../widgets/container_card.dart';
-import '../widgets/container_banner.dart';
 import '../widgets/frame_title.dart';
 
 class DS2AboutMe extends StatefulWidget {
-  const DS2AboutMe({Key? key}) : super(key: key);
+  const DS2AboutMe({super.key});
 
   @override
   _DS2AboutMeState createState() => _DS2AboutMeState();
@@ -29,8 +26,8 @@ class _DS2AboutMeState extends State<DS2AboutMe> with SingleTickerProviderStateM
     );
 
     _offsetAnimation = Tween<Offset>(
-      begin: Offset(0, -1),
-      end: Offset(0, 0),
+      begin: const Offset(0, -1),
+      end: const Offset(0, 0),
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,

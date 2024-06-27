@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Backend/firebase/firebase_firestore_services_msg.dart';
-import 'package:supplink/Backend/firebase/users.dart';
 import 'package:supplink/Home/messages/chattextfield.dart';
 import 'package:supplink/Home/messages/messagebubble.dart';
-import 'package:supplink/Home/messages/messages.dart';
 
 import 'package:supplink/Providers/firebase/firebase_providers.dart';
 import 'package:supplink/models/message_model.dart';

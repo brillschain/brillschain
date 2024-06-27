@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:supplink/Home/screens/userLocation.dart';
-import 'package:supplink/Home/screens/posts_screen.dart';
+import 'package:supplink/Home/screens/posts/posts_screen.dart';
 // import 'package:video_player/video_player.dart';
 // import 'package:flick_video_player/flick_video_player.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/homeConnectionsClasses/Comments.dart';

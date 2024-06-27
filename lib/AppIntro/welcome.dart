@@ -17,12 +17,10 @@ import 'package:supplink/Adapots_dummy/mobile/ms_7_contact.dart';
 import 'package:supplink/Adapots_dummy/mobile/ms_8_footer.dart';
 import 'package:supplink/Adapots_dummy/statics/data_values.dart';
 import 'package:supplink/Adapots_dummy/statics/key_holders.dart';
-import 'package:supplink/Adapots_dummy/theme/app_theme.dart';
 import 'package:supplink/Adapots_dummy/theme/responsive_screen_provider.dart';
 import 'package:supplink/Adapots_dummy/widgets/button_rectangle.dart';
 import 'package:supplink/Adapots_dummy/widgets/button_text.dart';
 import 'package:supplink/Adapots_dummy/widgets/nav_bar.dart';
-import 'package:supplink/Home/widgets/main_app_bar.dart';
 import 'package:supplink/Routes/routes.dart';
 
 class WelcomePage extends StatefulWidget {

@@ -42,15 +42,16 @@ class PostData {
   static PostData fromSnapshot(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
     return PostData(
-        description: snapshot['description'],
-        username: snapshot['username'],
-        postId: snapshot['postId'],
-        datePublished: snapshot['datePublished'],
-        postUrl: snapshot['postUrl'],
-        profileUrl: snapshot['profileUrl'],
-        uid: documentSnapshot["uid"],
-        likes: snapshot['likes'],
-        name: snapshot['name'],
-        address: snapshot['address']);
+      description: snapshot['description'] ?? '',
+      username: snapshot['username'] ?? '',
+      postId: snapshot['postId'] ?? '',
+      datePublished: snapshot['datePublished'] ?? '',
+      postUrl: snapshot['postUrl'] ?? '',
+      profileUrl: snapshot['profileUrl'] ?? '',
+      uid: documentSnapshot["uid"] ?? '',
+      likes: snapshot['likes'] ?? [],
+      name: snapshot['name'] ?? '',
+      address: snapshot['address'] ?? '',
+    );
   }
 }

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
-import 'package:supplink/Home/widgets/comment_body.dart';
+import 'package:supplink/Home/screens/comment/widgets/comment_body.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
 
