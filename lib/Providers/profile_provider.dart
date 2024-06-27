@@ -1,17 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:supplink/models/post_model.dart';
 
 import '../models/user_model.dart';
 
 class ProfileProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  // final User _user = FirebaseAuth.instance.currentUser!;
-  List<PostData>? _posts;
+  final User _user = FirebaseAuth.instance.currentUser!;
+  int? _noOfPosts;
   UserData? _userData;
   bool _isLoading = true;
   bool get isLoading => _isLoading;
-  List<PostData>? get posts => _posts;
+  bool _isCurrentUser = false;
+  bool get isCurrentUser => _isCurrentUser;
+  int get noOfPosts => _noOfPosts ?? 0;
   UserData get userData => _userData!;
 
   Future<void> refreshUserData(String uid) async {
@@ -25,14 +27,26 @@ class ProfileProvider extends ChangeNotifier {
     }
   }
 
-  void getPosts(String uid) {
-    _firestore
-        .collection('posts')
-        .where('uid', isEqualTo: uid)
-        .snapshots(includeMetadataChanges: true)
-        .listen((response) {
-      _posts = response.docs.map((doc) => PostData.fromSnapshot(doc)).toList();
-      notifyListeners();
-    });
+  void getNoOfPosts(String uid) async {
+    var res =
+        await _firestore.collection('posts').where('uid', isEqualTo: uid).get();
+    _noOfPosts = res.docs.length;
+    notifyListeners();
   }
+
+  void currentUser(String uid) {
+    _isCurrentUser = uid == _user.uid;
+    notifyListeners();
+  }
+
+  bool? _isConnection;
+  bool get isConnection => _isConnection ?? false;
+  void connection() {
+    print(userData.connections);
+    _isConnection = userData.connections.contains(_user.uid);
+
+    notifyListeners();
+  }
+
+  Future<void> updateUserData() async {}
 }

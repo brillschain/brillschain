@@ -91,33 +91,30 @@ class _ContractListState extends State<ContractList>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 600,
-      // height: 500,
-      child: Scaffold(
-        appBar: TabBar(controller: tabController, tabs: const [
-          Tab(text: 'Scheduled'),
-          Tab(text: 'Ongoing'),
-          Tab(text: 'Completed'),
-          Tab(text: 'Cancelled'),
-        ]),
-        body: TabBarView(
-          controller: tabController,
-          children: [
-            contractListCardTrail('Scheduled', const Color(0xff3398F6)),
-            contractListCardTrail('Ongoing', const Color(0xff3EE094)),
-            contractListCardTrail('Completed', const Color(0xffD95AF3)),
-            contractListCardTrail('Cancelled', const Color(0xffFA4A42)),
-          ],
-        ),
+    return Scaffold(
+      appBar: TabBar(controller: tabController, tabs: const [
+        Tab(text: 'Scheduled'),
+        Tab(text: 'Ongoing'),
+        Tab(text: 'Completed'),
+        Tab(text: 'Cancelled'),
+      ]),
+      body: TabBarView(
+        controller: tabController,
+        children: [
+          contractListCardTrail('Scheduled', const Color(0xff3398F6)),
+          contractListCardTrail('Ongoing', const Color(0xff3EE094)),
+          contractListCardTrail('Completed', const Color(0xffD95AF3)),
+          contractListCardTrail('Cancelled', const Color(0xffFA4A42)),
+        ],
       ),
     );
   }
 
-  Card contractListCardTrail(String status, Color color) {
+  Widget contractListCardTrail(String status, Color color) {
     final filteredContracts =
         contracts.where((c) => c.status == status).toList();
     return Card(
+      elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

@@ -6,12 +6,12 @@ class CustomProfileButton extends StatelessWidget {
   final Color backgroundcolor;
   final Color textColor;
   final Icon icon;
-  final Function() function;
+  final Function() onTap;
   final double width;
   const CustomProfileButton(
     this.icon, {
     super.key,
-    required this.function,
+    required this.onTap,
     required this.width,
     required this.text,
     required this.backgroundcolor,
@@ -21,7 +21,7 @@ class CustomProfileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: function,
+      onTap: onTap,
       borderRadius: BorderRadius.circular(15),
       splashColor: backgroundcolor,
       child: Container(

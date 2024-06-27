@@ -4,12 +4,14 @@ class HoverText extends StatefulWidget {
   final String text;
   final TextStyle defaultStyle;
   final TextStyle hoverStyle;
+  final VoidCallback? onTap;
 
   const HoverText({
     super.key,
     required this.text,
     required this.defaultStyle,
     required this.hoverStyle,
+    this.onTap,
   });
 
   @override
@@ -33,6 +35,7 @@ class _HoverTextState extends State<HoverText> {
         });
       },
       child: GestureDetector(
+        onTap: widget.onTap,
         child: Text(
           widget.text,
           style: _isHovered

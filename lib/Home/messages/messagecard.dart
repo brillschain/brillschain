@@ -66,7 +66,6 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
         FirebaseFirestoreServiceMessages.updateUserData({'isonline': false});
         break;
       case AppLifecycleState.hidden:
-      // TODO: Handle this case.
     }
   }
 

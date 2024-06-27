@@ -10,6 +10,7 @@ import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
 // import 'package:supplink/Home/messages/msg_connections.dart';
 import 'package:supplink/Home/screens/comment/comment_screen.dart';
 import 'package:supplink/Home/screens/posts/widgets/action_button.dart';
+import 'package:supplink/Home/screens/profile/profile_screen.dart';
 // import 'package:supplink/Home/widgets/custom_button.dart';
 import 'package:supplink/Home/widgets/like_animation.dart';
 import 'package:supplink/Providers/firebase/post_provider.dart';
@@ -76,6 +77,10 @@ class _PostCardState extends State<PostCard> {
                           InkWell(
                             onTap: () {},
                             child: HoverText(
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProfilePageview(uid: widgetUid))),
                               text: widget.snapshot['name'],
                               defaultStyle:
                                   const TextStyle(fontWeight: FontWeight.bold),

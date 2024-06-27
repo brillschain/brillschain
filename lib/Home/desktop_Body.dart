@@ -52,7 +52,8 @@ class DesktopBodyState extends State<DesktopBody> {
   @override
   Widget build(BuildContext context) {
     // final SelectedIndexProvider selectedIndexProvider = Provider.of<SelectedIndexProvider>(context);
-    UserData userData = Provider.of<UserProvider>(context).getUser;
+    UserData userData =
+        Provider.of<UserProvider>(context, listen: true).getUser;
     return Row(
       children: [
         navi(userData),
