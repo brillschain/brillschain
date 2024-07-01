@@ -1,13 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delightful_toast/toast/utils/enums.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Providers/profile_provider.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
+import '../../../utils/image_picker.dart';
 import '../../../utils/toaster.dart';
 import '../posts/widgets/post_body.dart';
 import '../user_contracts_stasts/contract_stats.dart';
@@ -185,7 +189,9 @@ class ProfileCard extends StatelessWidget {
                                       color: Colors.white,
                                       size: 24,
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      showEditProfileDialog(context, data);
+                                    },
                                     text: 'Edit Profile',
                                     backgroundcolor: Colors.blue,
                                     textColor: Colors.white,
@@ -247,15 +253,132 @@ class ProfileCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // Positioned(
-                  //     top: 0,
-                  //     right: 0,
-                  //     child: IconButton(
-                  //         onPressed: () {}, icon: const Icon(Icons.edit)))
                 ],
               ),
             );
     });
+  }
+}
+
+void showEditProfileDialog(
+    BuildContext context, ProfileProvider profileProvider) {
+  UserData userData = profileProvider.userData;
+  final nameController = TextEditingController(text: userData.name);
+  final emailController = TextEditingController(text: userData.email);
+  final addressController = TextEditingController(text: userData.address);
+  final pincodeController =
+      TextEditingController(text: userData.pincode.toString());
+  final phoneNoController =
+      TextEditingController(text: userData.phoneno.toString());
+  final String profileUrl = userData.profileUrl;
+  // Add more controllers as needed
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Consumer<ProfileProvider>(builder: (context, data, _) {
+        // print(data.profileImage);
+        return AlertDialog(
+          title: const Text('Edit Profile'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Stack(
+                  children: [
+                    data.profileImage != null
+                        ? CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                MemoryImage(profileProvider.profileImage!),
+                          )
+                        : CircleAvatar(
+                            radius: 50,
+                            backgroundImage: NetworkImage(profileUrl),
+                          ),
+                    Positioned(
+                        bottom: -1,
+                        right: -10,
+                        child: IconButton(
+                          onPressed: () {
+                            profileProvider.selectImage();
+                          },
+                          icon: const Icon(
+                            Icons.add_a_photo,
+                            size: 26,
+                          ),
+                        ))
+                  ],
+                ),
+                CustomTextField(label: 'Name', controller: nameController),
+                CustomTextField(
+                    label: 'Phone No', controller: phoneNoController),
+                CustomTextField(label: 'Email', controller: emailController),
+                CustomTextField(
+                    label: 'Address', controller: addressController),
+                CustomTextField(
+                    label: 'Pin Code', controller: pincodeController),
+
+                // Add more fields as needed
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Save'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      });
+    },
+  );
+}
+
+class CustomTextField extends StatelessWidget {
+  final String label;
+  final TextEditingController controller;
+  const CustomTextField(
+      {super.key, required this.label, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 400,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.grey, width: 1.5),
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

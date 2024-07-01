@@ -1,9 +1,13 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../Backend/firebasefirestore/firestore_methods.dart';
 import '../models/user_model.dart';
+import '../utils/image_picker.dart';
 
 class ProfileProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -53,7 +57,7 @@ class ProfileProvider extends ChangeNotifier {
   bool? _isConnection;
   bool get isConnection => _isConnection ?? false;
   void connection() {
-    print(userData.connections);
+    // print(userData.connections);
     _isConnection = userData.connections.contains(_user.uid);
 
     notifyListeners();
@@ -82,5 +86,19 @@ class ProfileProvider extends ChangeNotifier {
     // return _res!;
   }
 
-  Future<void> updateUserData() async {}
+  Uint8List? _profileImage;
+  Uint8List? get profileImage => _profileImage;
+  void selectImage() async {
+    Uint8List image = await pickImage(ImageSource.gallery);
+    _profileImage = image;
+    // print(profileImage);
+    notifyListeners();
+  }
+
+  Future<void> updateUserData(UserData userData) async {
+    await _firestore
+        .collection('Users')
+        .doc(_user.uid)
+        .update(userData.toJson());
+  }
 }
