@@ -16,11 +16,21 @@ class ProfileProvider extends ChangeNotifier {
   int get noOfPosts => _noOfPosts ?? 0;
   UserData get userData => _userData!;
 
+  void init(String uid) async {
+    _isLoading = true;
+    await refreshUserData(uid);
+    getNoOfPosts(uid);
+    currentUser(uid);
+    connection();
+
+    _isLoading = false;
+  }
+
   Future<void> refreshUserData(String uid) async {
     try {
       var data = await _firestore.collection('Users').doc(uid).get();
       _userData = UserData.fromSnapshot(data);
-      _isLoading = false;
+
       notifyListeners();
     } catch (e) {
       print("error in provider in user data ${e.toString()}");

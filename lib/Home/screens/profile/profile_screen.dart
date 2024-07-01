@@ -30,10 +30,7 @@ class _ProfilePageviewState extends State<ProfilePageview> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final profileProvider =
           Provider.of<ProfileProvider>(context, listen: false);
-      profileProvider.refreshUserData(widget.uid);
-      profileProvider.getNoOfPosts(widget.uid);
-      profileProvider.currentUser(widget.uid);
-      profileProvider.connection();
+      profileProvider.init(widget.uid);
     });
   }
 
@@ -136,7 +133,7 @@ class ProfileCard extends StatelessWidget {
                             ),
                             Container(
                               padding: const EdgeInsets.all(4),
-                              width: 240,
+                              width: 220,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
