@@ -39,11 +39,14 @@ class _PostCardState extends State<PostCard> {
   @override
   void initState() {
     super.initState();
-    widgetUid = widget.snapshot['uid'];
-    Provider.of<PostProvider>(context, listen: false)
-      ..getAllComments(widget.snapshot['postId'])
-      ..fetchIsConnection(widgetUid);
-    isCurrentUser = user.uid == widgetUid;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widgetUid = widget.snapshot['uid'];
+      final postProvider = Provider.of<PostProvider>(context, listen: false);
+
+      postProvider.init(widget.snapshot['postId'], widgetUid);
+      isCurrentUser = user.uid == widgetUid;
+    });
   }
 
   @override
@@ -197,7 +200,7 @@ class _PostCardState extends State<PostCard> {
                         commentDialog(context);
                       },
                       child: HoverText(
-                        text: "${postProvider.getCommentLength} comments ",
+                        text: "${postProvider.commentLength} comments ",
                         defaultStyle: const TextStyle(
                           fontSize: 16,
                           color: Colors.black54,

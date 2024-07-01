@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../Backend/firebasefirestore/firestore_methods.dart';
 import '../models/user_model.dart';
 
 class ProfileProvider extends ChangeNotifier {
@@ -56,6 +57,29 @@ class ProfileProvider extends ChangeNotifier {
     _isConnection = userData.connections.contains(_user.uid);
 
     notifyListeners();
+  }
+
+  String? _res;
+  String get res => _res!;
+  Future<void> manageConnection(String anotherUserId) async {
+    try {
+      if (isConnection) {
+        await FireBaseFireStoreMethods().connectUser(_user.uid, anotherUserId);
+        _res = " removed from your connections";
+        _isConnection = false;
+
+        notifyListeners();
+      } else {
+        await FireBaseFireStoreMethods().connectUser(_user.uid, anotherUserId);
+        _res = " added to your connections";
+        _isConnection = true;
+
+        notifyListeners();
+      }
+    } catch (e) {
+      _res = e.toString();
+    }
+    // return _res!;
   }
 
   Future<void> updateUserData() async {}

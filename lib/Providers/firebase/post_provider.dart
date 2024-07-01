@@ -14,9 +14,15 @@ class PostProvider extends ChangeNotifier {
   //   getAllComments(postId);
   //   fetchIsConnection(anotherUserId);
   // }
-  int get getCommentLength => _commentsLength ?? 0;
+  int get commentLength => _commentsLength ?? 0;
   bool get isConnection => _isConnection;
   String get response => _res!;
+
+  void init(String postId, String uid) async {
+    await getAllComments(postId);
+    await fetchIsConnection(uid);
+  }
+
   Future<void> getAllComments(String postId) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -26,7 +32,8 @@ class PostProvider extends ChangeNotifier {
           .get();
 
       _commentsLength = querySnapshot.docs.length;
-      notifyListeners();
+      print('$commentLength, $postId');
+      // notifyListeners();
     } catch (e) {
       print(e.toString());
     }

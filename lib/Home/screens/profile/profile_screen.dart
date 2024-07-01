@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:delightful_toast/toast/utils/enums.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:supplink/Providers/profile_provider.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
+import '../../../utils/toaster.dart';
 import '../posts/widgets/post_body.dart';
 import '../user_contracts_stasts/contract_stats.dart';
 import 'widget/custom_button.dart';
@@ -200,7 +202,19 @@ class ProfileCard extends StatelessWidget {
                                       color: Colors.white,
                                       size: 24,
                                     ),
-                                    onTap: () {},
+                                    onTap: () async {
+                                      await data
+                                          .manageConnection(data.userData.uid);
+
+                                      toastMessage(
+                                        context: context,
+                                        message:
+                                            "${data.userData.name} is ${data.res}",
+                                        position:
+                                            DelightSnackbarPosition.bottom,
+                                      );
+                                      // Navigator.of(context).pop();
+                                    },
                                     text: data.isConnection
                                         ? 'Disconnect'
                                         : 'Connect',
