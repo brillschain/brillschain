@@ -1,4 +1,5 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delightful_toast/toast/utils/enums.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _PostCardState extends State<PostCard> {
   late bool isCurrentUser;
   final User user = FirebaseAuth.instance.currentUser!;
   late String widgetUid;
+  int commentsLength = 0;
   @override
   void initState() {
     super.initState();
@@ -46,7 +48,23 @@ class _PostCardState extends State<PostCard> {
 
       postProvider.init(widget.snapshot['postId'], widgetUid);
       isCurrentUser = user.uid == widgetUid;
+      getAllComments(widget.snapshot['postId']);
     });
+  }
+
+  Future<void> getAllComments(String postId) async {
+    try {
+      FirebaseFirestore.instance
+          .collection('posts')
+          .doc(postId)
+          .collection('comments')
+          .snapshots()
+          .listen((snaps) {
+        commentsLength = snaps.docs.length;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   @override
@@ -114,7 +132,6 @@ class _PostCardState extends State<PostCard> {
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: ExpandableText(
@@ -200,7 +217,7 @@ class _PostCardState extends State<PostCard> {
                         commentDialog(context);
                       },
                       child: HoverText(
-                        text: "${postProvider.commentLength} comments ",
+                        text: "$commentsLength comments ",
                         defaultStyle: const TextStyle(
                           fontSize: 16,
                           color: Colors.black54,
@@ -279,11 +296,6 @@ class _PostCardState extends State<PostCard> {
                     ontap: () {})
               ],
             ),
-            // const Divider(
-            //   height: 8,
-            //   thickness: 2,
-            //   color: Colors.grey,
-            // ),
           ],
         ),
       );
@@ -295,17 +307,18 @@ class _PostCardState extends State<PostCard> {
       barrierColor: Colors.black12,
       context: context,
       builder: (context) => AlertDialog(
-          scrollable: true,
-          contentPadding: const EdgeInsets.all(0),
-          alignment: const Alignment(1, 0),
-          content: Container(
-            height: 580,
-            margin: const EdgeInsets.only(bottom: 10),
-            width: 450,
-            child: CommentsScreen(
-              snapshot: widget.snapshot,
-            ),
-          )),
+        scrollable: true,
+        contentPadding: const EdgeInsets.all(0),
+        alignment: const Alignment(1, 0),
+        content: Container(
+          height: 600,
+          margin: const EdgeInsets.only(bottom: 10),
+          width: 450,
+          child: CommentsScreen(
+            snapshot: widget.snapshot,
+          ),
+        ),
+      ),
     );
   }
 

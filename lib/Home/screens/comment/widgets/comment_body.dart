@@ -8,16 +8,11 @@ import 'package:supplink/Home/widgets/like_animation.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
 
-class CommentCard extends StatefulWidget {
+class CommentCard extends StatelessWidget {
   final String postId;
   final snapshot;
   const CommentCard({super.key, required this.snapshot, required this.postId});
 
-  @override
-  State<CommentCard> createState() => _CommentCardState();
-}
-
-class _CommentCardState extends State<CommentCard> {
   @override
   Widget build(BuildContext context) {
     UserData userData = Provider.of<UserProvider>(context).getUser;
@@ -26,7 +21,7 @@ class _CommentCardState extends State<CommentCard> {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundImage: NetworkImage(widget.snapshot['profileUrl']),
+            backgroundImage: NetworkImage(snapshot['profileUrl']),
             radius: 18,
           ),
           Expanded(
@@ -41,21 +36,20 @@ class _CommentCardState extends State<CommentCard> {
                           style: const TextStyle(color: Colors.black),
                           children: [
                         TextSpan(
-                          text: widget.snapshot['name'],
+                          text: snapshot['name'],
                           style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         TextSpan(
-                          text: '  ${widget.snapshot['commentText']}',
+                          text: '  ${snapshot['commentText']}',
                         ),
                       ])),
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
                     child: Text(
-                      DateFormat.yMMMd()
-                          .format(widget.snapshot['timestamp'].toDate()),
+                      DateFormat.yMMMd().format(snapshot['timestamp'].toDate()),
                       style: const TextStyle(
                           fontSize: 12, fontWeight: FontWeight.w400),
                     ),
@@ -69,17 +63,17 @@ class _CommentCardState extends State<CommentCard> {
             child: Column(
               children: [
                 LikeAnimation(
-                  isAnimating: widget.snapshot['likes'].contains(userData.uid),
+                  isAnimating: snapshot['likes'].contains(userData.uid),
                   smallLike: true,
                   child: IconButton(
                     onPressed: () async {
                       await FireStorePostMethods().likeComment(
-                          widget.postId,
+                          postId,
                           userData.uid,
-                          widget.snapshot['likes'],
-                          widget.snapshot['commentId']);
+                          snapshot['likes'],
+                          snapshot['commentId']);
                     },
-                    icon: widget.snapshot['likes'].contains(userData.uid)
+                    icon: snapshot['likes'].contains(userData.uid)
                         ? const Icon(
                             Icons.favorite,
                             size: 32,
@@ -98,7 +92,7 @@ class _CommentCardState extends State<CommentCard> {
                       .titleSmall!
                       .copyWith(fontWeight: FontWeight.w800),
                   child: Text(
-                    '${widget.snapshot['likes'].length}',
+                    '${snapshot['likes'].length}',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),

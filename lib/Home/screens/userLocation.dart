@@ -9,6 +9,7 @@ import 'package:flutter_map/flutter_map.dart';
 // import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+import 'package:supplink/Home/screens/profile/widget/details_row.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseCredentials/.dart';
 import 'package:supplink/Providers/user_provider.dart';
@@ -182,10 +183,18 @@ class _MapViewState extends State<MapView> {
                 ),
                 const Divider(),
                 // Text('Hello!'),
-                Text("Name: ${selectedUser!.name}"),
-                Text("Domain: ${selectedUser!.domain}"),
-                Text("Phone:${selectedUser!.phoneno}"),
-                Text("Address:${selectedUser!.address}")
+                DetailsRow(icon: Icons.person, data: selectedUser!.name),
+                DetailsRow(icon: Icons.domain, data: selectedUser!.domain),
+                DetailsRow(
+                    icon: Icons.phone, data: selectedUser!.phoneno.toString()),
+                DetailsRow(
+                    icon: Icons.location_on_rounded,
+                    data: selectedUser!.address),
+                DetailsRow(icon: Icons.email, data: selectedUser!.email),
+                // Text("Name: ${selectedUser!.name}"),
+                // Text("Domain: ${selectedUser!.domain}"),
+                // Text("Phone:${selectedUser!.phoneno}"),
+                // Text("Address:${selectedUser!.address}")
                 // Replace this with your custom pop-up content
                 // Add any other widgets you want in the pop-up
               ],

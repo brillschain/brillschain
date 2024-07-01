@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
 
 class PostProvider extends ChangeNotifier {
-  int? _commentsLength;
+  // int? _commentsLength;
   late bool _isConnection;
   // bool isCurrentUser = false;
   String? _res;
@@ -14,29 +14,13 @@ class PostProvider extends ChangeNotifier {
   //   getAllComments(postId);
   //   fetchIsConnection(anotherUserId);
   // }
-  int get commentLength => _commentsLength ?? 0;
+  // int get commentLength => _commentsLength ?? 0;
   bool get isConnection => _isConnection;
   String get response => _res!;
 
   void init(String postId, String uid) async {
-    await getAllComments(postId);
+    // await getAllComments(postId);
     await fetchIsConnection(uid);
-  }
-
-  Future<void> getAllComments(String postId) async {
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('posts')
-          .doc(postId)
-          .collection('comments')
-          .get();
-
-      _commentsLength = querySnapshot.docs.length;
-      print('$commentLength, $postId');
-      // notifyListeners();
-    } catch (e) {
-      print(e.toString());
-    }
   }
 
   Future<void> fetchIsConnection(String anotherUserId) async {

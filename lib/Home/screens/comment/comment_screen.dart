@@ -93,8 +93,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                     userDetails.username,
                     userDetails.name,
                   );
-
-                  // showSnackBar(context, res);
+                  commentController.text = '';
                 },
                 child: Container(
                   padding:

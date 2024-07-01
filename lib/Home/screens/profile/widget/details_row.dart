@@ -14,7 +14,7 @@ class DetailsRow extends StatelessWidget {
         children: [
           Icon(icon),
           const SizedBox(
-            width: 5,
+            width: 10,
           ),
           Text(data),
         ],
