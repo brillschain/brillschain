@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Backend/firebase/firebase_firestore_services_msg.dart';
 import 'package:supplink/Home/messages/chattextfield.dart';
-import 'package:supplink/Home/messages/messagebubble.dart';
+import 'package:supplink/Home/messages/widgets/messagebubble.dart';
 
 import 'package:supplink/Providers/firebase/firebase_providers.dart';
 import 'package:supplink/models/message_model.dart';
@@ -157,89 +157,6 @@ class ChatMessages extends StatefulWidget {
 }
 
 class _ChatMessagesState extends State<ChatMessages> {
-  // final messages = [
-  //   Message(
-  //       senderId: '2',
-  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       content: 'Hello',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       receiverId: '2',
-  //       content: 'How are you?',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '2',
-  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       content: 'Fine',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       receiverId: '2',
-  //       content: 'What are you doing?',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '2',
-  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       content: 'Nothing',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       receiverId: '2',
-  //       content: 'Can you help me?',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '2',
-  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       content:
-  //           'https://images.unsplash.com/photo-1669992755631-3c46eccbeb7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.image),
-  //   Message(
-  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       receiverId: '2',
-  //       content: 'Thank you',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //     senderId: '2',
-  //     receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //     content: 'You are welcome',
-  //     sentTime: DateTime.now(),
-  //     messageType: MessageType.text,
-  //   ),
-  //   Message(
-  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       receiverId: '2',
-  //       content: 'Bye',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '2',
-  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       content: 'Bye',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       receiverId: '2',
-  //       content: 'See you later',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text),
-  //   Message(
-  //       senderId: '2',
-  //       receiverId: '8RWgrfKTDBWVOc5Kn5vuGzQGV3z1',
-  //       content: 'See you later',
-  //       sentTime: DateTime.now(),
-  //       messageType: MessageType.text)
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return Consumer<FirebaseProvider>(builder: (context, value, child) {
