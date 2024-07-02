@@ -49,7 +49,13 @@ class _ProfilePageviewState extends State<ProfilePageview> {
         child: Padding(
           padding: const EdgeInsets.all(8.0).copyWith(bottom: 0),
           child: AppBar(
-            title: const Text('Profile'),
+            title: const Text(
+              'Profile',
+              style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+            ),
             centerTitle: false,
           ),
         ),
@@ -284,7 +290,11 @@ void showEditProfileDialog(
       return Consumer<UserProvider>(builder: (context, data, _) {
         // print(data.profileImage);
         return AlertDialog(
-          title: const Text('Edit Profile'),
+          title: const Center(child: Text('Edit Profile')),
+          titleTextStyle: const TextStyle(
+              fontStyle: FontStyle.italic,
+              fontSize: 16,
+              fontWeight: FontWeight.bold),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
