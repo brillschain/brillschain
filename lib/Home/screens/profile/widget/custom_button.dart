@@ -47,6 +47,7 @@ class CustomProfileButton extends StatelessWidget {
                 style: TextStyle(
                     backgroundColor: backgroundcolor,
                     color: textColor,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
             ],

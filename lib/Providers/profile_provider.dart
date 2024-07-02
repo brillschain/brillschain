@@ -85,20 +85,4 @@ class ProfileProvider extends ChangeNotifier {
     }
     // return _res!;
   }
-
-  Uint8List? _profileImage;
-  Uint8List? get profileImage => _profileImage;
-  void selectImage() async {
-    Uint8List image = await pickImage(ImageSource.gallery);
-    _profileImage = image;
-    // print(profileImage);
-    notifyListeners();
-  }
-
-  Future<void> updateUserData(UserData userData) async {
-    await _firestore
-        .collection('Users')
-        .doc(_user.uid)
-        .update(userData.toJson());
-  }
 }

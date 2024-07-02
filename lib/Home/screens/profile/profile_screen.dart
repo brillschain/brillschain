@@ -18,6 +18,7 @@ import '../user_contracts_stasts/contract_stats.dart';
 import 'widget/custom_button.dart';
 import 'widget/data_column.dart';
 import 'widget/details_row.dart';
+import 'widget/edit_text_field.dart';
 
 class ProfilePageview extends StatefulWidget {
   final String uid;
@@ -98,162 +99,157 @@ class ProfileCard extends StatelessWidget {
             )
           : Card(
               elevation: 0,
-              child: Stack(
-                children: [
-                  Container(
-                    width: 420,
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              child: Container(
+                width: 420,
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              // flex: 1,
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage:
-                                        NetworkImage(data.userData.profileUrl),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(data.userData.name,
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                  const Text(
-                                    'username',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                ],
+                        Expanded(
+                          // flex: 1,
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    NetworkImage(data.userData.profileUrl),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.all(4),
-                              width: 220,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  DetailsRow(
-                                      icon: Icons.domain,
-                                      data: data.userData.domain),
-                                  DetailsRow(
-                                      icon: Icons.location_on_rounded,
-                                      data: data.userData.address),
-                                  DetailsRow(
-                                      icon: Icons.phone,
-                                      data: data.userData.phoneno.toString()),
-                                  DetailsRow(
-                                    icon: Icons.email,
-                                    data: data.userData.email,
-                                  ),
-                                ],
+                              const SizedBox(
+                                height: 10,
                               ),
-                            ),
-                          ],
+                              Center(
+                                child: Text(data.userData.name,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ),
+                              const Text(
+                                'username',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 5),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            UserDataColumn(
-                              name: 'posts',
-                              value: data.noOfPosts.toString(),
-                            ),
-                            UserDataColumn(
-                              name: 'Connections',
-                              value:
-                                  data.userData.connections.length.toString(),
-                            ),
-                          ],
+                        const SizedBox(
+                          width: 10,
                         ),
-                        const SizedBox(height: 10),
-                        Row(
-                          // crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            data.isCurrentUser
-                                ? CustomProfileButton(
-                                    const Icon(
-                                      Icons.edit,
-                                      color: Colors.white,
-                                      size: 24,
-                                    ),
-                                    onTap: () {
-                                      showEditProfileDialog(context, data);
-                                    },
-                                    text: 'Edit Profile',
-                                    backgroundcolor: Colors.blue,
-                                    textColor: Colors.white,
-                                    width:
-                                        MediaQuery.of(context).size.width > 600
-                                            ? 150
-                                            : 120,
-                                  )
-                                : CustomProfileButton(
-                                    Icon(
-                                      data.isConnection
-                                          ? Icons.person_remove
-                                          : Icons.person_add,
-                                      color: Colors.white,
-                                      size: 24,
-                                    ),
-                                    onTap: () async {
-                                      await data
-                                          .manageConnection(data.userData.uid);
-
-                                      toastMessage(
-                                        context: context,
-                                        message:
-                                            "${data.userData.name} is ${data.res}",
-                                        position:
-                                            DelightSnackbarPosition.bottom,
-                                      );
-                                      // Navigator.of(context).pop();
-                                    },
-                                    text: data.isConnection
-                                        ? 'Disconnect'
-                                        : 'Connect',
-                                    backgroundcolor: Colors.blue,
-                                    textColor: Colors.white,
-                                    width:
-                                        MediaQuery.of(context).size.width > 600
-                                            ? 150
-                                            : 120,
-                                  ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            CustomProfileButton(
-                              const Icon(
-                                Icons.share,
-                                color: Colors.white,
-                                size: 24,
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          width: 220,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              DetailsRow(
+                                  icon: Icons.domain,
+                                  data: data.userData.domain),
+                              DetailsRow(
+                                  icon: Icons.location_on_rounded,
+                                  data: data.userData.address),
+                              DetailsRow(
+                                  icon: Icons.phone,
+                                  data: data.userData.phoneno.toString()),
+                              DetailsRow(
+                                icon: Icons.email,
+                                data: data.userData.email,
                               ),
-                              onTap: () {},
-                              text: 'share',
-                              backgroundcolor: Colors.black,
-                              textColor: Colors.white,
-                              width: MediaQuery.of(context).size.width > 600
-                                  ? 150
-                                  : 120,
-                            )
-                          ],
-                        )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        UserDataColumn(
+                          name: 'posts',
+                          value: data.noOfPosts.toString(),
+                        ),
+                        UserDataColumn(
+                          name: 'Connections',
+                          value: data.userData.connections.length.toString(),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        data.isCurrentUser
+                            ? CustomProfileButton(
+                                const Icon(
+                                  Icons.edit,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                                onTap: () {
+                                  showEditProfileDialog(context, data);
+                                },
+                                text: 'Edit Profile',
+                                backgroundcolor: Colors.blue,
+                                textColor: Colors.white,
+                                width: MediaQuery.of(context).size.width > 600
+                                    ? 150
+                                    : 120,
+                              )
+                            : CustomProfileButton(
+                                Icon(
+                                  data.isConnection
+                                      ? Icons.person_remove
+                                      : Icons.person_add,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                                onTap: () async {
+                                  await data
+                                      .manageConnection(data.userData.uid);
+
+                                  toastMessage(
+                                    context: context,
+                                    message:
+                                        "${data.userData.name} is ${data.res}",
+                                    position: DelightSnackbarPosition.bottom,
+                                  );
+                                  // Navigator.of(context).pop();
+                                },
+                                text: data.isConnection
+                                    ? 'Disconnect'
+                                    : 'Connect',
+                                backgroundcolor: Colors.blue,
+                                textColor: Colors.white,
+                                width: MediaQuery.of(context).size.width > 600
+                                    ? 150
+                                    : 120,
+                              ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomProfileButton(
+                          const Icon(
+                            Icons.share,
+                            color: Colors.white,
+                            size: 24,
+                          ),
+                          onTap: () {},
+                          text: 'share',
+                          backgroundcolor: Colors.black,
+                          textColor: Colors.white,
+                          width: MediaQuery.of(context).size.width > 600
+                              ? 150
+                              : 120,
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             );
     });
@@ -270,13 +266,22 @@ void showEditProfileDialog(
       TextEditingController(text: userData.pincode.toString());
   final phoneNoController =
       TextEditingController(text: userData.phoneno.toString());
-  final String profileUrl = userData.profileUrl;
+  String profileUrl = userData.profileUrl;
   // Add more controllers as needed
+  updateMessage(String res) {
+    toastMessage(
+        context: context,
+        message: res == 'updated'
+            ? "Profile Updated Successfully"
+            : "Failed to update $res",
+        position: DelightSnackbarPosition.bottom);
+    Navigator.of(context).pop();
+  }
 
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return Consumer<ProfileProvider>(builder: (context, data, _) {
+      return Consumer<UserProvider>(builder: (context, data, _) {
         // print(data.profileImage);
         return AlertDialog(
           title: const Text('Edit Profile'),
@@ -289,8 +294,7 @@ void showEditProfileDialog(
                     data.profileImage != null
                         ? CircleAvatar(
                             radius: 50,
-                            backgroundImage:
-                                MemoryImage(profileProvider.profileImage!),
+                            backgroundImage: MemoryImage(data.profileImage!),
                           )
                         : CircleAvatar(
                             radius: 50,
@@ -301,7 +305,7 @@ void showEditProfileDialog(
                         right: -10,
                         child: IconButton(
                           onPressed: () {
-                            profileProvider.selectImage();
+                            data.selectImage();
                           },
                           icon: const Icon(
                             Icons.add_a_photo,
@@ -310,14 +314,11 @@ void showEditProfileDialog(
                         ))
                   ],
                 ),
-                CustomTextField(label: 'Name', controller: nameController),
-                CustomTextField(
-                    label: 'Phone No', controller: phoneNoController),
-                CustomTextField(label: 'Email', controller: emailController),
-                CustomTextField(
-                    label: 'Address', controller: addressController),
-                CustomTextField(
-                    label: 'Pin Code', controller: pincodeController),
+                EditTextField(label: 'Name', controller: nameController),
+                EditTextField(label: 'Phone No', controller: phoneNoController),
+                EditTextField(label: 'Email', controller: emailController),
+                EditTextField(label: 'Address', controller: addressController),
+                EditTextField(label: 'Pin Code', controller: pincodeController),
 
                 // Add more fields as needed
               ],
@@ -332,8 +333,30 @@ void showEditProfileDialog(
             ),
             TextButton(
               child: const Text('Save'),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async {
+                if (data.profileImage != null) {
+                  await data.generateProfileUrl();
+                  profileUrl = data.profileUrl ?? profileUrl;
+                }
+
+                UserData user = UserData(
+                    uid: userData.uid,
+                    name: nameController.text,
+                    email: emailController.text,
+                    coordinates: userData.coordinates,
+                    profileUrl: profileUrl,
+                    domain: userData.domain,
+                    address: addressController.text,
+                    phoneno: int.parse(phoneNoController.text),
+                    username: userData.username,
+                    connections: userData.connections,
+                    lastseen: userData.lastseen,
+                    pincode: int.parse(pincodeController.text));
+
+                String res = await data.updateUserData(user);
+
+                updateMessage(res);
+                profileProvider.refreshUserData(userData.uid);
               },
             ),
           ],
@@ -341,45 +364,6 @@ void showEditProfileDialog(
       });
     },
   );
-}
-
-class CustomTextField extends StatelessWidget {
-  final String label;
-  final TextEditingController controller;
-  const CustomTextField(
-      {super.key, required this.label, required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 400,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.grey, width: 1.5),
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class StatisticsSection extends StatefulWidget {

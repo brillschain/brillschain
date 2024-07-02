@@ -1,8 +1,16 @@
+// ignore_for_file: avoid_print
+
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:supplink/Backend/storage/firebase_storage_.dart';
 
 import 'package:supplink/models/user_model.dart';
+
+import '../utils/image_picker.dart';
 
 // import '../models/post_model.dart';
 
@@ -52,5 +60,43 @@ class UserProvider extends ChangeNotifier {
     } catch (e) {
       print("error in provider in all user data  ${e.toString()}");
     }
+  }
+
+  Uint8List? _profileImage;
+  Uint8List? get profileImage => _profileImage;
+  void selectImage() async {
+    Uint8List image = await pickImage(ImageSource.gallery);
+    _profileImage = image;
+    // print(profileImage);
+    notifyListeners();
+  }
+
+  String? _profileUrl;
+  String? get profileUrl => _profileUrl;
+
+  Future<void> generateProfileUrl() async {
+    try {
+      _profileUrl = await StorageMethods()
+          .uploadImageToStorage(profileImage!, false, 'profile', user.uid);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<String> updateUserData(UserData userData) async {
+    String res = '';
+
+    try {
+      await _firestore
+          .collection('Users')
+          .doc(userData.uid)
+          .update(userData.toJson());
+      res = "updated";
+      refreshUserData();
+    } catch (e) {
+      res = e.toString();
+    }
+
+    return res;
   }
 }

@@ -17,7 +17,7 @@ class FireStorePostMethods {
     String res = "error in uploading";
     try {
       String postUrl =
-          await StorageMethods().uploadImageToStorage(file, true, 'posts');
+          await StorageMethods().uploadImageToStorage(file, true, 'posts', uid);
       String postId = const Uuid().v1();
       PostData postData = PostData(
           description: description,
