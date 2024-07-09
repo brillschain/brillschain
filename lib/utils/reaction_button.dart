@@ -159,9 +159,9 @@ class _ReactionButtonState extends State<ReactionButton> {
   }
 }
 
-// class ReactionData {
-//   final Reaction reaction;
-//   final Icon icon;
+class ReactionData {
+  final Reaction reaction;
+  final Icon icon;
 
-//   ReactionData({required this.reaction, required this.icon});
-// }
+  ReactionData({required this.reaction, required this.icon});
+}
