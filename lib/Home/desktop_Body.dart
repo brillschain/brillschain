@@ -15,10 +15,13 @@ import 'package:supplink/Home/drawer_pages/check_updates.dart';
 // import 'package:supplink/Home/constants.dart';
 import 'package:supplink/Home/drawer_pages/laneWorks.dart';
 import 'package:supplink/Home/screens/profile/profile_screen.dart';
+import 'package:supplink/Providers/firebase/firebase_providers.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
+import 'package:supplink/utils/hover_button.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/my_connections.dart';
 // import 'package:provider/provider.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class DesktopBody extends StatefulWidget {
   final int? index;
@@ -262,12 +265,7 @@ class MessagesFloatingAction extends StatelessWidget {
                           Stack(
                             alignment: Alignment.bottomRight,
                             children: [
-                              CircleAvatar(
-                                  radius: 24,
-                                  // foregroundImage: widget.user.profileUrl != ''
-                                  //     ? NetworkImage(widget.user.profileUrl)
-                                  //     : null,
-                                  child: Text('N')),
+                              CircleAvatar(radius: 24, child: Text('N')),
                               Padding(
                                 padding: EdgeInsets.only(bottom: 6, right: 1),
                                 child: CircleAvatar(
@@ -302,12 +300,12 @@ class MessagesFloatingAction extends StatelessWidget {
                 // onChanged: widget.onSearch,
                 // controller: searchController,
                 decoration: InputDecoration(
-                  hintText: 'Search...',
+                  hintText: '    Search...',
                   hintStyle: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18),
-                  prefixIcon: const Icon(
+                      fontWeight: FontWeight.bold, fontSize: 16),
+                  suffixIcon: const Icon(
                     Icons.search,
-                    size: 26,
+                    size: 24,
                     color: Colors.blue,
                   ),
                   border: OutlineInputBorder(
@@ -316,11 +314,109 @@ class MessagesFloatingAction extends StatelessWidget {
                   ),
                   filled: true,
                   fillColor: const Color.fromARGB(117, 192, 223, 251),
-                  contentPadding: const EdgeInsets.all(0),
+                  // contentPadding: const EdgeInsets.all(0),
                 ),
               ),
             ),
+            const SizedBox(height: 10),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ChatScreen extends StatefulWidget {
+  final Function(UserData) onChatSelected;
+  const ChatScreen({super.key, required this.onChatSelected});
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<FirebaseProvider>(context, listen: false).getAllUsers();
+  }
+
+// final UserDetails
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FirebaseProvider>(builder: (context, value, child) {
+      return ListView.builder(
+        itemCount: value.users.length,
+        itemBuilder: (context, index) {
+          return value.users[index].uid !=
+                  FirebaseAuth.instance.currentUser?.uid
+              ? UserItem(
+                  user: value.users[index],
+                  onChatSelected: (userName) {
+                    widget.onChatSelected(userName);
+                  },
+                )
+              : const SizedBox();
+        },
+      );
+    });
+  }
+}
+
+class UserItem extends StatefulWidget {
+  final Function(UserData) onChatSelected;
+  const UserItem({super.key, required this.user, required this.onChatSelected});
+  final UserData user;
+
+  @override
+  State<UserItem> createState() => _UserItemState();
+}
+
+class _UserItemState extends State<UserItem> {
+  @override
+  Widget build(BuildContext context) {
+    return HoverButton(
+      onPressed: () {
+        setState(() {
+          widget.onChatSelected(widget.user);
+        });
+        // print(widget.user.name);
+      },
+      child: ListTile(
+        leading: Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            CircleAvatar(
+              radius: 30,
+              foregroundImage: widget.user.profileUrl != ''
+                  ? NetworkImage(widget.user.profileUrl)
+                  : null,
+              child: widget.user.profileUrl == ''
+                  ? Text(widget.user.name[0])
+                  : null,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8, right: 5),
+              child: CircleAvatar(
+                radius: 5,
+                backgroundColor:
+                    widget.user.isonline ? Colors.green : Colors.red,
+              ),
+            )
+          ],
+        ),
+        title: Text(
+          widget.user.name,
+          style: const TextStyle(
+              color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(
+          'Last seen:${timeago.format(widget.user.lastseen)}',
+          maxLines: 2,
+          style: const TextStyle(
+              color: Colors.black87,
+              fontSize: 12,
+              overflow: TextOverflow.ellipsis),
         ),
       ),
     );
