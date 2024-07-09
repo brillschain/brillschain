@@ -3,7 +3,8 @@ import 'package:intl/intl.dart';
 
 var mydefaultbackgroundColor = Colors.grey[30];
 
-var myAppBar = AppBar(backgroundColor: Colors.blue);
+var myAppBar =
+    AppBar(automaticallyImplyLeading: false, backgroundColor: Colors.blue);
 var webscreensize = 600;
 
 class DateTimeManager {

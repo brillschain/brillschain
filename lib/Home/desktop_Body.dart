@@ -1,6 +1,11 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:supplink/Backend/firebase/firebase_firestore_services_msg.dart';
 // import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
 import 'package:supplink/Home/drawer_pages/EX_IM.dart';
 // import 'package:supplink/Home/drawer_pages/LanePages/contractViews.dart';
@@ -27,14 +32,14 @@ class DesktopBody extends StatefulWidget {
   State<DesktopBody> createState() => DesktopBodyState();
 }
 
-class DesktopBodyState extends State<DesktopBody> {
+class DesktopBodyState extends State<DesktopBody> with WidgetsBindingObserver {
   int selectedIndex = 0;
   String? uid;
   List pages_ = [];
   @override
   void initState() {
     init();
-
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
@@ -66,19 +71,47 @@ class DesktopBodyState extends State<DesktopBody> {
     });
   }
 
-  // final List pages_ =
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+        FirebaseFirestoreServiceMessages.updateUserData({
+          'lastseen': DateTime.now(),
+          'isonline': true,
+        });
+        break;
+
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+        FirebaseFirestoreServiceMessages.updateUserData({'isonline': false});
+        break;
+      case AppLifecycleState.hidden:
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
 
   @override
   Widget build(BuildContext context) {
     // final SelectedIndexProvider selectedIndexProvider = Provider.of<SelectedIndexProvider>(context);
     UserData userData =
         Provider.of<UserProvider>(context, listen: true).getUser;
-    return Row(
-      children: [
-        navi(userData),
-        // myDrawer,
-        Expanded(child: pages_[selectedIndex]),
-      ],
+    return Scaffold(
+      body: Row(
+        children: [
+          navi(userData),
+          // myDrawer,
+          Expanded(child: pages_[selectedIndex]),
+        ],
+      ),
+      floatingActionButton: const MessagesFloatingAction(),
     );
   }
 
@@ -190,6 +223,106 @@ class DesktopBodyState extends State<DesktopBody> {
         ],
       ),
       onTap: onTap,
+    );
+  }
+}
+
+class MessagesFloatingAction extends StatelessWidget {
+  const MessagesFloatingAction({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        color: Colors.white,
+        width: 370,
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        // height: 600,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            InkWell(
+              onTap: () {
+                print('ontap');
+              },
+              hoverColor: Colors.blue[200],
+              splashColor: Colors.blue[300],
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Stack(
+                            alignment: Alignment.bottomRight,
+                            children: [
+                              CircleAvatar(
+                                  radius: 24,
+                                  // foregroundImage: widget.user.profileUrl != ''
+                                  //     ? NetworkImage(widget.user.profileUrl)
+                                  //     : null,
+                                  child: Text('N')),
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 6, right: 1),
+                                child: CircleAvatar(
+                                    radius: 5, backgroundColor: Colors.red),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Messaging',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_drop_up,
+                      size: 32,
+                      color: Colors.black,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
+              child: TextFormField(
+                // onChanged: widget.onSearch,
+                // controller: searchController,
+                decoration: InputDecoration(
+                  hintText: 'Search...',
+                  hintStyle: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    size: 26,
+                    color: Colors.blue,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(117, 192, 223, 251),
+                  contentPadding: const EdgeInsets.all(0),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
