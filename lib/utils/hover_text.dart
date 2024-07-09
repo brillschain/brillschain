@@ -34,7 +34,7 @@ class _HoverTextState extends State<HoverText> {
           _isHovered = false;
         });
       },
-      child: GestureDetector(
+      child: InkWell(
         onTap: widget.onTap,
         child: Text(
           widget.text,

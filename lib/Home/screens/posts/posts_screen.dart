@@ -20,16 +20,21 @@ class _PostScreenState extends State<PostScreen> {
 
   @override
   void initState() {
-    super.initState();
     _postStream = FirebaseFirestore.instance
         .collection('posts')
         .orderBy('datePublished', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs);
 
-    _postStream.listen((posts) {
-      _streamController.add(posts);
-    });
+    _postStream.listen(
+      (posts) {
+        _streamController.add(posts);
+      },
+      onError: (error) {
+        print('Error: $error');
+      },
+    );
+    super.initState();
   }
 
   Future<void> shufflePosts() async {

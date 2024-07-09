@@ -17,7 +17,8 @@ class CommentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     UserData userData = Provider.of<UserProvider>(context).getUser;
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+      // color: Colors.red,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
           CircleAvatar(

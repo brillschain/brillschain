@@ -28,6 +28,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
     return Consumer<UserProvider>(builder: (context, value, _) {
       final UserData userDetails = value.getUser;
       return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Text('Comments'),

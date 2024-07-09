@@ -170,11 +170,11 @@ class _MapViewState extends State<MapView> {
                         ? CircleAvatar(
                             backgroundImage:
                                 NetworkImage(selectedUser!.profileUrl),
-                            radius: 25,
+                            radius: 23,
                           )
                         : const Icon(
                             Icons.account_circle_sharp,
-                            size: 50,
+                            size: 46,
                           ),
                   ],
                 ),

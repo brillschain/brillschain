@@ -1,72 +1,47 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:supplink/Backend/supaBaseDB/superbaseServices/Strorages/constants.dart';
 import 'package:supplink/Home/drawer_pages/EX_IM.dart';
-// import 'package:supplink/Home/drawer_pages/LanePages/contractViews.dart';
 import 'package:supplink/Home/drawer_pages/connections.dart';
 import 'package:supplink/Home/drawer_pages/dashBoard.dart';
 import 'package:supplink/Home/drawer_pages/check_updates.dart';
-// import 'package:supplink/Home/constants.dart';
 import 'package:supplink/Home/drawer_pages/laneWorks.dart';
 import 'package:supplink/Home/screens/profile/profile_screen.dart';
 import 'package:supplink/Providers/user_provider.dart';
 import 'package:supplink/models/user_model.dart';
-// import 'package:supplink/Home/drawer_pages/connectionsFolder/my_connections.dart';
-// import 'package:provider/provider.dart';
 
-class DesktopBody extends StatefulWidget {
-  final int? index;
-  final String? uid;
-  const DesktopBody({
-    super.key,
-    this.index,
-    this.uid,
-  });
+class HomeDrawer extends StatefulWidget {
+  const HomeDrawer({super.key});
+
   @override
-  State<DesktopBody> createState() => DesktopBodyState();
+  State<HomeDrawer> createState() => _HomeDrawerState();
 }
 
-class DesktopBodyState extends State<DesktopBody> {
+class _HomeDrawerState extends State<HomeDrawer> {
   int selectedIndex = 0;
-  String? uid;
-  List pages_ = [];
-  @override
-  void initState() {
-    init();
-
-    super.initState();
-  }
-
-  void init() {
-    selectedIndex = widget.index ?? 0;
-    uid = widget.uid ?? FirebaseAuth.instance.currentUser!.uid;
-    pages_ = [
-      const DashBoard(),
-      const EX_IM(),
-      const Check_Updates(),
-      // const Profile(),
-      // ProfileScreen(
-      //   uid: FirebaseAuth.instance.currentUser!.uid,
-      // ),
-      ProfilePageview(
-        uid: uid!,
-      ),
-      const Connections(),
-      const LaneWorks(),
-      // const ContractView()
-
-      // My_connections(),
-    ];
-  }
-
   void setSelectedIndex(int index) {
     setState(() {
       selectedIndex = index;
     });
   }
 
-  // final List pages_ =
+  final List pages_ = [
+    const DashBoard(),
+    const EX_IM(),
+    const Check_Updates(),
+    // const Profile(),
+    // ProfileScreen(
+    //   uid: FirebaseAuth.instance.currentUser!.uid,
+    // ),
+    ProfilePageview(
+      uid: FirebaseAuth.instance.currentUser!.uid,
+    ),
+    const Connections(),
+    const LaneWorks(),
+    // const ContractView()
+
+    // My_connections(),
+  ];
 
   @override
   Widget build(BuildContext context) {

@@ -24,44 +24,48 @@ class _HomeConnectionsState extends State<HomeConnections> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Card(
-            elevation: 3,
-            color: Colors.white,
-            child: Container(
-              decoration: BoxDecoration(
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            // padding: const EdgeInsets.all(4),
+            decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              height: double.infinity,
-              width: 550,
-              child: const PostScreen(),
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(0, 1),
+                      blurRadius: 2,
+                      spreadRadius: 2)
+                ]),
+            height: double.infinity,
+            width: 550,
+            child: const PostScreen(),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  // borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        offset: Offset(0, 1),
+                        blurRadius: 2,
+                        spreadRadius: 2)
+                  ]),
+              // width: double.infinity,
+              child: const MapView(),
             ),
           ),
-          Expanded(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Card(
-                    elevation: 3,
-                    color: Colors.white,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      width: double.infinity,
-                      child: const MapView(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

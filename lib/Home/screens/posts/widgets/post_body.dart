@@ -8,10 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
+import 'package:supplink/Home/desktop_Body.dart';
 // import 'package:supplink/Home/messages/msg_connections.dart';
 import 'package:supplink/Home/screens/comment/comment_screen.dart';
 import 'package:supplink/Home/screens/posts/widgets/action_button.dart';
-import 'package:supplink/Home/screens/profile/profile_screen.dart';
+// import 'package:supplink/Home/screens/profile/profile_screen.dart';
 // import 'package:supplink/Home/widgets/custom_button.dart';
 import 'package:supplink/Home/widgets/like_animation.dart';
 import 'package:supplink/Providers/firebase/post_provider.dart';
@@ -71,9 +72,8 @@ class _PostCardState extends State<PostCard> {
   Widget build(BuildContext context) {
     final UserData userData = Provider.of<UserProvider>(context).getUser;
     return Consumer<PostProvider>(builder: (context, postProvider, _) {
-      return Container(
-        color: Colors.white,
-        padding: const EdgeInsets.all(4),
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,21 +87,24 @@ class _PostCardState extends State<PostCard> {
                     radius: 20,
                     backgroundImage:
                         NetworkImage(widget.snapshot['profileUrl']),
+                    // TODO: user data in the post has to be updated when user update the profile
                   ),
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: HoverText(
-                              onTap: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ProfilePageview(uid: widgetUid))),
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DesktopBody(
+                                index: 3,
+                                uid: widgetUid,
+                              ))),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            HoverText(
+                              // onTap: () =>
+
                               text: widget.snapshot['name'],
                               defaultStyle:
                                   const TextStyle(fontWeight: FontWeight.bold),
@@ -110,17 +113,17 @@ class _PostCardState extends State<PostCard> {
                                 color: Colors.blue,
                               ),
                             ),
-                          ),
-                          Text(widget.snapshot['address']),
-                          Text(
-                            timeago.format(
-                                widget.snapshot['datePublished'].toDate()),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.black54,
-                            ),
-                          )
-                        ],
+                            Text(widget.snapshot['address']),
+                            Text(
+                              timeago.format(
+                                  widget.snapshot['datePublished'].toDate()),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.black54,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -187,7 +190,7 @@ class _PostCardState extends State<PostCard> {
                           });
                         },
                         child: const Icon(
-                          Icons.favorite,
+                          Icons.thumb_up_alt,
                           color: Colors.white,
                           size: 125,
                         )),
@@ -312,7 +315,7 @@ class _PostCardState extends State<PostCard> {
         alignment: const Alignment(1, 0),
         content: Container(
           height: 600,
-          margin: const EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 1),
           width: 450,
           child: CommentsScreen(
             snapshot: widget.snapshot,
