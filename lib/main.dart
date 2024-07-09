@@ -2,12 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:supplink/Adapots_dummy/theme/app_theme.dart';
+
 import 'package:supplink/AppIntro/welcome.dart';
 import 'package:supplink/Providers/authAppProvider.dart';
 import 'package:supplink/Routes/Routes.dart';
-// import 'package:supplink/Providers/firebase/firebase_providers.dart';
-// import 'package:supplink/Trails/comments.dart';
 import 'package:supplink/firebase_options.dart';
 import 'package:supplink/responsive/responsive_screen.dart';
 
@@ -27,8 +25,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "BrillsChain",
         routes: AppRoutes.routes,
-        // initialRoute: AppRoutes.loginRoute,
-        // home: ProfilePageTest(),
         home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
