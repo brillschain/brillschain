@@ -17,4 +17,9 @@ class DateTimeManager {
     String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
     return cdate;
   }
+
+  String formatDateTime(DateTime dateTime) {
+    final dateFormat = DateFormat('h:mm a');
+    return dateFormat.format(dateTime);
+  }
 }

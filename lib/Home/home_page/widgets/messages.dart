@@ -115,8 +115,10 @@ class _MessagesFloatingActionState extends State<MessagesFloatingAction> {
                                   ],
                                 ),
                               ),
-                              const Icon(
-                                Icons.arrow_drop_up,
+                              Icon(
+                                showMessages
+                                    ? Icons.arrow_drop_up
+                                    : Icons.arrow_drop_down,
                                 size: 32,
                                 color: Colors.black,
                               )
@@ -268,7 +270,7 @@ class UserItem extends StatelessWidget {
               color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          'Last seen:${timeago.format(user.lastseen)}',
+          'Last seen: ${timeago.format(user.lastseen)}',
           maxLines: 2,
           style: const TextStyle(
               color: Colors.black87,

@@ -114,7 +114,7 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
                       Text(
                         value.user!.name,
                         style: const TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),

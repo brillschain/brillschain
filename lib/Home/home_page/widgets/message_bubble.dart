@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 // import 'package:supplink/Home/messages/messages.dart';
 import 'package:supplink/models/message_model.dart';
+import 'package:supplink/utils/constants.dart';
 // import 'package:supplink/Home/drawer_pages/connectionsFolder/messages/messages.dart';
 // import 'package:timeago/timeago.dart' as timeago;
 
@@ -36,7 +37,7 @@ class MessageBubble extends StatelessWidget {
                   ),
           ),
           margin: const EdgeInsets.only(top: 10, right: 10, left: 10),
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             // crossAxisAlignment:
@@ -55,19 +56,19 @@ class MessageBubble extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
                             image: NetworkImage(message.content),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
                     )
                   : Text(
                       message.content,
-                      style: const TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
               const SizedBox(height: 5),
               Text(
-                textAlign: TextAlign.right,
-                _formatDateTime(message.sentTime),
+                textAlign: isMe ? TextAlign.right : TextAlign.left,
+                DateTimeManager().formatDateTime(message.sentTime),
                 // timeago.format(message.sentTime),
                 style: const TextStyle(
                   color: Colors.white,
@@ -78,10 +79,6 @@ class MessageBubble extends StatelessWidget {
           ),
         ),
       );
-  String _formatDateTime(DateTime dateTime) {
-    final dateFormat = DateFormat('h:mm a');
-    return dateFormat.format(dateTime);
-  }
 
   void _showImageDialog(BuildContext context, String imageUrl) {
     showDialog(
@@ -90,11 +87,11 @@ class MessageBubble extends StatelessWidget {
         return AlertDialog(
           content: Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.8,
+            height: MediaQuery.of(context).size.height * 0.6,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(imageUrl),
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
           ),
