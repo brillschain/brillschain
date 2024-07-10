@@ -1,5 +1,6 @@
 import 'package:supplink/Authentication/Logins/loginview.dart';
 import 'package:supplink/Authentication/signup.dart';
+import 'package:supplink/Home/drawer_pages/LanePages/laneview.dart';
 import 'package:supplink/responsive/responsive_screen.dart';
 
 class AppRoutes {
@@ -16,7 +17,7 @@ class AppRoutes {
     signUpRoute: (context) => const SignUp(),
     myhomepage: (context) => const ResponsiveLayout(),
     // PhonePageRoute: (context) => PhoneNumberAuthView(),
-    // LaneViewRoute: (context) => LaneView(),
+    // laneViewRoute: (context) => LaneView(),
 
     // WelcomeRoute: (context) => WelcomePage(),
   };

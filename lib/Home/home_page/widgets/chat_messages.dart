@@ -8,11 +8,13 @@ import 'chat_field.dart';
 import 'message_bubble.dart';
 
 class MessageCard extends StatefulWidget {
+  final Function(bool) onBack;
   final UserData selectedUser;
   // final String userId;
   const MessageCard({
     super.key,
     required this.selectedUser,
+    required this.onBack,
   });
 
   @override
@@ -40,7 +42,7 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
     Provider.of<FirebaseProvider>(context, listen: false)
       ..getUserById(userId)
       ..getMessages(userId);
-    print("message card: ${widget.selectedUser.name}");
+    // print("message card: ${widget.selectedUser.name}");
   }
 
   @override
@@ -52,6 +54,7 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: messageCardAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -83,6 +86,17 @@ class _MessageCardState extends State<MessageCard> with WidgetsBindingObserver {
         return value.user != null
             ? Row(
                 children: [
+                  IconButton(
+                      onPressed: () {
+                        widget.onBack(false);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.blue,
+                      )),
+                  const SizedBox(
+                    width: 15,
+                  ),
                   CircleAvatar(
                     radius: 20,
                     foregroundImage: value.user!.profileUrl != ''

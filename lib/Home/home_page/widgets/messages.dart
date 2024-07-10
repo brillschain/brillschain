@@ -32,128 +32,155 @@ class _MessagesFloatingActionState extends State<MessagesFloatingAction> {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          color: Colors.grey[300],
-          width: 370,
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          width: 400,
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: const [
+                BoxShadow(
+                    offset: Offset(0, 2),
+                    blurRadius: 2,
+                    spreadRadius: 2,
+                    color: Colors.black12)
+              ]),
           // height: 600,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GestureDetector(
-                child: HoverButton(
-                  onPressed: () {
-                    // print('ontap');
-                    setState(() {
-                      if (!showchat) {
-                        showMessages = !showMessages;
-                      }
-                      if (showchat) {
-                        showchat = false;
-                      }
-                    });
-                  },
-                  hoverColor: Colors.blue.withOpacity(0.3),
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
+          child: showchat
+              ? SizedBox(
+                  height: 550,
+                  child: MessageCard(
+                    onBack: (bool val) {
+                      setState(() {
+                        showchat = !showchat;
+                      });
+                    },
+                    selectedUser: userData!,
+                  ),
+                )
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      child: HoverButton(
+                        onPressed: () {
+                          // print('ontap');
+                          setState(() {
+                            if (!showchat) {
+                              showMessages = !showMessages;
+                            }
+                            if (showchat) {
+                              showchat = false;
+                            }
+                          });
+                        },
+                        hoverColor: Colors.blue.withOpacity(0.1),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 2, horizontal: 12),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Stack(
-                                alignment: Alignment.bottomRight,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 24,
-                                    backgroundImage:
-                                        NetworkImage(data.getUser.profileUrl),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        bottom: 6, right: 1),
-                                    child: CircleAvatar(
-                                        radius: 5,
-                                        backgroundColor: data.getUser.isonline
-                                            ? Colors.green
-                                            : Colors.red),
-                                  )
-                                ],
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.bottomRight,
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 24,
+                                          backgroundImage: NetworkImage(
+                                              data.getUser.profileUrl),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 6, right: 1),
+                                          child: CircleAvatar(
+                                              radius: 5,
+                                              backgroundColor:
+                                                  data.getUser.isonline
+                                                      ? Colors.green
+                                                      : Colors.red),
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    const Text(
+                                      'Messaging',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              const Text(
-                                'Messaging',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
+                              const Icon(
+                                Icons.arrow_drop_up,
+                                size: 32,
+                                color: Colors.black,
+                              )
                             ],
                           ),
                         ),
-                        const Icon(
-                          Icons.arrow_drop_up,
-                          size: 32,
-                          color: Colors.black,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              if (showMessages) ...[
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 15),
-                  child: TextFormField(
-                    // onChanged: widget.onSearch,
-                    // controller: searchController,
-                    decoration: InputDecoration(
-                      hintText: '    Search...',
-                      hintStyle: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
-                      suffixIcon: const Icon(
-                        Icons.search,
-                        size: 24,
-                        color: Colors.blue,
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      fillColor: const Color.fromARGB(117, 192, 223, 251),
-                      // contentPadding: const EdgeInsets.all(0),
                     ),
-                  ),
+                    if (showMessages) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 15),
+                        child: TextFormField(
+                          // onChanged: widget.onSearch,
+                          // controller: searchController,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.only(left: 10),
+                            hintText: 'Search...',
+                            hintStyle: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                            suffixIcon: const Icon(
+                              Icons.search,
+                              size: 24,
+                              color: Colors.blue,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: const Color.fromARGB(117, 192, 223, 251),
+                            // contentPadding: const EdgeInsets.all(0),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        height: 400,
+                        child: ChatScreen(
+                          onChatSelected: (UserData data) {
+                            setState(() {
+                              showchat = !showchat;
+                              // showMessages = !showMessages;
+                              userData = data;
+                              // print(data.name);
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                    // if (showchat) ...[
+                    //   SizedBox(
+                    //     height: 450,
+                    //     child: MessageCard(
+                    //       selectedUser: userData!,
+                    //     ),
+                    //   ),
+                    // Container(
+                    //   height: 500,
+                    //   color: Colors.red,
+                    // )
+                    // ]
+                  ],
                 ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  height: 400,
-                  child: ChatScreen(
-                    onChatSelected: (UserData data) {
-                      setState(() {
-                        showchat = !showchat;
-                        showMessages = !showMessages;
-                        userData = data;
-                        print(showchat);
-                      });
-                    },
-                  ),
-                ),
-              ],
-              if (showchat) ...[
-                // MessageCard(
-                //   selectedUser: userData!,
-                // ),
-                Container(
-                  height: 500,
-                  color: Colors.red,
-                )
-              ]
-            ],
-          ),
         ),
       );
     });
@@ -221,13 +248,13 @@ class UserItem extends StatelessWidget {
           alignment: Alignment.bottomRight,
           children: [
             CircleAvatar(
-              radius: 30,
+              radius: 25,
               foregroundImage:
                   user.profileUrl != '' ? NetworkImage(user.profileUrl) : null,
               child: user.profileUrl == '' ? Text(user.name[0]) : null,
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8, right: 5),
+              padding: const EdgeInsets.only(bottom: 4, right: 3),
               child: CircleAvatar(
                 radius: 5,
                 backgroundColor: user.isonline ? Colors.green : Colors.red,
