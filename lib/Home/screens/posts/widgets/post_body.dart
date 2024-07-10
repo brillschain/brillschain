@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:supplink/Backend/firebasefirestore/firestore_methods.dart';
 import 'package:supplink/Backend/firebasefirestore/firestore_post_methods.dart';
-import 'package:supplink/Home/desktop_Body.dart';
+import 'package:supplink/Home/home_page/desktop_Body.dart';
 // import 'package:supplink/Home/messages/msg_connections.dart';
 import 'package:supplink/Home/screens/comment/comment_screen.dart';
 import 'package:supplink/Home/screens/posts/widgets/action_button.dart';

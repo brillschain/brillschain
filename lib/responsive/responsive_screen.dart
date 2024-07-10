@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supplink/Home/desktop_Body.dart';
+import 'package:supplink/Home/home_page/desktop_Body.dart';
 import 'package:supplink/Providers/user_provider.dart';
-
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
 import 'package:supplink/responsive/mobile_screen.dart';
 
 class ResponsiveLayout extends StatefulWidget {
@@ -28,6 +29,23 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
     await userProvider.refreshUserData();
     userProvider.getPosts();
     userProvider.refreshAllUserData();
+    updatestatus(userProvider);
+  }
+
+  void updatestatus(UserProvider provider) {
+    html.document.onVisibilityChange.listen((event) async {
+      if (html.document.hidden!) {
+        // Page is hidden
+        await provider.updateUserStatus({'isonline': false});
+      } else {
+        // print('status');
+        // Page is visible
+        await provider.updateUserStatus({
+          'lastseen': DateTime.now(),
+          'isonline': true,
+        });
+      }
+    });
   }
 
   @override

@@ -62,7 +62,7 @@ class UserData {
         username: snapshot['username'] ?? "",
         connections: snapshot['connections'] ?? [],
         lastseen: (snapshot['lastseen'] as Timestamp).toDate(),
-        isonline: snapshot['isOnline'] ?? false,
+        isonline: snapshot['isonline'] ?? false,
         pincode: snapshot['pincode']);
   }
 }

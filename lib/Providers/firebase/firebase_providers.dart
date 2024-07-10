@@ -5,6 +5,7 @@ import 'package:supplink/models/message_model.dart';
 import 'package:supplink/models/user_model.dart';
 
 class FirebaseProvider extends ChangeNotifier {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   List<UserData> users = [];
   UserData? user;
   List<Message> messages = [];
@@ -12,7 +13,7 @@ class FirebaseProvider extends ChangeNotifier {
 
   List<UserData> getAllUsers() {
     // print("get all users method");
-    FirebaseFirestore.instance
+    _firestore
         .collection('Users')
         .orderBy('lastseen', descending: true)
         .snapshots(includeMetadataChanges: true)
@@ -24,7 +25,7 @@ class FirebaseProvider extends ChangeNotifier {
   }
 
   UserData? getUserById(String userId) {
-    FirebaseFirestore.instance
+    _firestore
         .collection('Users')
         .doc(userId)
         .snapshots(includeMetadataChanges: true)
@@ -36,7 +37,7 @@ class FirebaseProvider extends ChangeNotifier {
   }
 
   List<Message> getMessages(String receiverId) {
-    FirebaseFirestore.instance
+    _firestore
         .collection('Users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('chat')
@@ -52,6 +53,19 @@ class FirebaseProvider extends ChangeNotifier {
       scrollDown();
     });
     return messages;
+  }
+
+  Future<List<UserData>> searchUser(String name) async {
+    _firestore
+        .collection('Users')
+        .where("name", isGreaterThanOrEqualTo: name)
+        .snapshots(includeMetadataChanges: true)
+        .listen((users) {
+      this.users = users.docs.map((doc) => UserData.fromSnapshot(doc)).toList();
+      notifyListeners();
+    });
+    return users;
+    // return snapshot.docs.map((doc) => UserData.fromSnapshot(doc)).toList();
   }
 
   void scrollDown() => WidgetsBinding.instance.addPostFrameCallback((_) {

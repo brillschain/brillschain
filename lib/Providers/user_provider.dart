@@ -29,6 +29,7 @@ class UserProvider extends ChangeNotifier {
     try {
       var data = await _firestore.collection('Users').doc(user.uid).get();
       _userData = UserData.fromSnapshot(data);
+      // print(getUser.isonline);
       _isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -98,5 +99,15 @@ class UserProvider extends ChangeNotifier {
     }
 
     return res;
+  }
+
+  Future<void> updateUserStatus(Map<String, dynamic> data) async {
+    // print("update function  $data['isonline']");
+    await _firestore
+        .collection('Users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update(data);
+    refreshUserData();
+    notifyListeners();
   }
 }

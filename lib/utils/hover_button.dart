@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class HoverButton extends StatefulWidget {
   final VoidCallback onPressed;
   final Widget child;
+  final Color? hoverColor;
 
-  const HoverButton({super.key, required this.onPressed, required this.child});
+  const HoverButton(
+      {super.key,
+      required this.onPressed,
+      required this.child,
+      this.hoverColor});
 
   @override
   State<HoverButton> createState() => _HoverButtonState();
@@ -26,7 +31,9 @@ class _HoverButtonState extends State<HoverButton> {
         child: InkWell(
           child: Container(
             decoration: BoxDecoration(
-              color: isHovered ? Colors.grey[300] : Colors.transparent,
+              color: isHovered
+                  ? (widget.hoverColor ?? Colors.grey[400])
+                  : Colors.transparent,
               borderRadius: BorderRadius.circular(8),
             ),
             child: widget.child,
