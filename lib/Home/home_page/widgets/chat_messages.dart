@@ -175,10 +175,10 @@ class EmptyWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(icon, size: 100),
+            Icon(icon, size: 50),
             Text(
               text,
-              style: const TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 16),
             ),
           ],
         ),
