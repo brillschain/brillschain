@@ -174,18 +174,7 @@ class _MessagesFloatingActionState extends State<MessagesFloatingAction> {
                         ),
                       ),
                     ],
-                    // if (showchat) ...[
-                    //   SizedBox(
-                    //     height: 450,
-                    //     child: MessageCard(
-                    //       selectedUser: userData!,
-                    //     ),
-                    //   ),
-                    // Container(
-                    //   height: 500,
-                    //   color: Colors.red,
-                    // )
-                    // ]
+
                   ],
                 ),
         ),
