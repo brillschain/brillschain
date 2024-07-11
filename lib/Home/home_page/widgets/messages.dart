@@ -174,7 +174,6 @@ class _MessagesFloatingActionState extends State<MessagesFloatingAction> {
                         ),
                       ),
                     ],
-
                   ],
                 ),
         ),
