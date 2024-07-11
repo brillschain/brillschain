@@ -49,7 +49,7 @@ class _ProfilePageviewState extends State<ProfilePageview> {
         child: Padding(
           padding: const EdgeInsets.all(8.0).copyWith(bottom: 0),
           child: AppBar(
-            automaticallyImplyLeading: false,
+            // automaticallyImplyLeading: true,
             title: const Text(
               'Profile',
               style: TextStyle(

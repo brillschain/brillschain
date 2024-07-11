@@ -43,7 +43,7 @@ class DesktopBodyState extends State<DesktopBody> with WidgetsBindingObserver {
       const EX_IM(),
       const Check_Updates(),
       ProfilePageview(
-        uid: selectedIndex != 3 ? uid! : FirebaseAuth.instance.currentUser!.uid,
+        uid: uid!,
       ),
       const Connections(),
       const LaneWorks(),

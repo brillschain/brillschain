@@ -6,7 +6,10 @@ import 'package:supplink/models/user_model.dart';
 
 class FirebaseProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  List<UserData> users = [];
+
+  List<UserData> _users = [];
+  List<UserData> _allUsers = [];
+  List<UserData> get users => _users;
   UserData? user;
   List<Message> messages = [];
   ScrollController scrollController = ScrollController();
@@ -18,7 +21,8 @@ class FirebaseProvider extends ChangeNotifier {
         .orderBy('lastseen', descending: true)
         .snapshots(includeMetadataChanges: true)
         .listen((users) {
-      this.users = users.docs.map((doc) => UserData.fromSnapshot(doc)).toList();
+      _users = users.docs.map((doc) => UserData.fromSnapshot(doc)).toList();
+      _allUsers = _users;
       notifyListeners();
     });
     return users;
@@ -61,7 +65,7 @@ class FirebaseProvider extends ChangeNotifier {
         .where("name", isGreaterThanOrEqualTo: name)
         .snapshots(includeMetadataChanges: true)
         .listen((users) {
-      this.users = users.docs.map((doc) => UserData.fromSnapshot(doc)).toList();
+      _users = users.docs.map((doc) => UserData.fromSnapshot(doc)).toList();
       notifyListeners();
     });
     return users;
@@ -73,4 +77,28 @@ class FirebaseProvider extends ChangeNotifier {
           scrollController.jumpTo(scrollController.position.maxScrollExtent);
         }
       });
+
+  void onSearch(String? search) {
+    // _allUsers = users;
+
+    if (search!.isEmpty) {
+      _users = _allUsers;
+    }
+    _users = _allUsers
+        .where((user) => user.name.toLowerCase().contains(search.toLowerCase()))
+        .toList();
+    notifyListeners();
+  }
 }
+
+
+//  assignPropertySearchController.addListener(() {
+//       if (assignPropertySearchController.text.isEmpty) {
+//         viewModel.propertyNames = viewModel.properties;
+//       } else {
+//         viewModel.propertyNames = (viewModel.properties.where((property) =>
+//             property.toLowerCase().contains(
+//                 assignPropertySearchController.text.toLowerCase()))).toList();
+//       }
+//       viewModel.rebuildUi();
+//     });

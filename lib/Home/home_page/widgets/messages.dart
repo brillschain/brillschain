@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:supplink/Providers/firebase/firebase_providers.dart';
 import 'package:supplink/Providers/user_provider.dart';
@@ -24,7 +25,7 @@ class MessagesFloatingAction extends StatefulWidget {
 class _MessagesFloatingActionState extends State<MessagesFloatingAction> {
   bool showMessages = false;
   bool showchat = false;
-
+  TextEditingController searchController = TextEditingController();
   UserData? userData;
   @override
   Widget build(BuildContext context) {
@@ -131,32 +132,36 @@ class _MessagesFloatingActionState extends State<MessagesFloatingAction> {
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 15),
-                        child: TextFormField(
-                          // onChanged: widget.onSearch,
-                          // controller: searchController,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(left: 10),
-                            hintText: 'Search...',
-                            hintStyle: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                            suffixIcon: const Icon(
-                              Icons.search,
-                              size: 24,
-                              color: Colors.blue,
+                        child: Consumer<FirebaseProvider>(
+                            builder: (context, value, _) {
+                          return TextFormField(
+                            onChanged: value.onSearch,
+                            controller: searchController,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.only(left: 10),
+                              hintText: 'Search...',
+                              hintStyle: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                              suffixIcon: const Icon(
+                                Icons.search,
+                                size: 24,
+                                color: Colors.blue,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                              fillColor:
+                                  const Color.fromARGB(117, 192, 223, 251),
+                              // contentPadding: const EdgeInsets.all(0),
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide.none,
-                            ),
-                            filled: true,
-                            fillColor: const Color.fromARGB(117, 192, 223, 251),
-                            // contentPadding: const EdgeInsets.all(0),
-                          ),
-                        ),
+                          );
+                        }),
                       ),
                       const SizedBox(height: 10),
                       SizedBox(
-                        height: 400,
+                        height: 420,
                         child: ChatScreen(
                           onChatSelected: (UserData data) {
                             setState(() {
