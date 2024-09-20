@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer';
 
+import '../theme/app_theme.dart';
 import '../widgets/text_pairs.dart';
 import 'button_text.dart';
 
@@ -13,16 +14,16 @@ class ContainerCard {
     required String message,
     required Uri url,
   }) {
+    print(image);
     return Container(
       decoration: BoxDecoration(
-        // color: AppThemeData.cardGrey,
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: const Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), 
           ),
         ],
       ),
@@ -35,29 +36,24 @@ class ContainerCard {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(image, height: 70.0, width: 70.0),
+                Container(
+                  height: 200,
+                  width: 600,
+                  child: Image.asset(image,
+                            fit: BoxFit.cover,),
+                ),
                 const SizedBox(height: 20.0),
-                SelectableText(
-                  title,
-                  // style: TextStyle(
-                  //   fontSize:
-                  //       AppThemeData.darkTheme.textTheme.titleMedium!.fontSize,
-                  //   fontWeight: AppThemeData
-                  //       .darkTheme.textTheme.headlineSmall!.fontWeight,
-                  //   color: AppThemeData.textWhite,
-                  // ),
+                Center(
+                  child: SelectableText(
+                    title,
+                    textAlign : TextAlign.center,
+
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 10.0),
-            // SelectableText(description,
-            //     style: AppThemeData.darkTheme.textTheme.labelLarge),
-            const SizedBox(height: 20.0),
-            // ButtonTextSmall(
-            //   text: 'View More >>',
-            //   message: message,
-            //   url: url,
-            // ),
+            // const SizedBox(height: 10.0),
+            // const SizedBox(height: 20.0),
           ],
         ),
       ),
@@ -196,7 +192,7 @@ class ContainerCard {
                     message: message,
                     url: url,
                   )
-                : const Text(
+                : Text(
                     'See you soon with the link :)',
                     // style: AppThemeData.darkTheme.textTheme.labelMedium,
                   ),
@@ -243,4 +239,6 @@ class ContainerCard {
       ],
     );
   }
+
+
 }

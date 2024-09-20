@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:supplink/Home/drawer_pages/LanePages/createcontract.dart';
 // import 'package:path/path.dart';
 import 'package:supplink/Routes/routes.dart';
 import 'package:supplink/Backend/firebase/createContractFirebaseservice.dart';
@@ -21,7 +22,7 @@ class _ContractViewState extends State<ContractView> {
       appBar: AppBar(
         // toolbarHeight: 1000,
         title: const Text('Contracts'),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
@@ -30,7 +31,13 @@ class _ContractViewState extends State<ContractView> {
               child: ElevatedButton(
                   // style: ButtonStyle(
                   // ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CreateColloboration()),
+                    );
+                  },
                   child: const Text('Create New')),
             ),
           )
@@ -61,7 +68,7 @@ class _LaneAndContractAndDashViewState
   void initState() {
     super.initState();
     cfs = ContractFirebaseService();
-    currentUserUid = FirebaseAuth.instance.currentUser!.uid;
+    currentUserUid = '7o2CGFJGgAf4XZjBXWHBkmGjyXD2';
     _update(cfs, currentUserUid);
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../statics/data_values.dart';
 import '../statics/key_holders.dart';
+import '../theme/app_theme.dart';
 import '../widgets/container_banner.dart';
 import '../widgets/container_card.dart';
 import '../widgets/frame_title.dart';
@@ -23,47 +24,49 @@ class DS5Volunteering extends StatelessWidget {
                 title: DataValues.volunteeringTitle,
                 description: DataValues.volunteeringDescription),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: ContainerCard().type3(
-                    image: 'flutterscope',
-                    title: DataValues.volunteeringOrg1Title,
-                    role: DataValues.volunteeringOrg1Role,
-                    years: DataValues.volunteeringOrg1Years,
-                    values: DataValues.volunteeringOrg1Vales,
+                  child: ContainerCard().type1(
+                    title: DataValues.Values1,
+                    description: DataValues.ValuesDesp1,
+                    image: 'assets/images/Transparency.jpg',
                     message: DataValues.linkedinURL.toString(),
                     url: DataValues.linkedinURL,
-                    isButtonEnabled: true,
                   ),
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.03),
                 Expanded(
-                  child: ContainerCard().type3(
-                    image: 'mlsa',
-                    title: DataValues.volunteeringOrg2Title,
-                    role: DataValues.volunteeringOrg2Role,
-                    years: DataValues.volunteeringOrg2Years,
-                    values: DataValues.volunteeringOrg2Vales,
+                  child: ContainerCard().type1(
+                    title: DataValues.Values2,
+                    description: DataValues.ValuesDesp2,
+                    image: 'assets/images/Innovation.jpg',
                     message: DataValues.linkedinURL.toString(),
                     url: DataValues.linkedinURL,
-                    isButtonEnabled: true,
                   ),
                 ),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+                Expanded(
+                  child: ContainerCard().type1(
+                    title: DataValues.Values3,
+                    description: DataValues.ValuesDesp3,
+                    image: 'assets/images/Sustainabilty.jpg',
+                    message: DataValues.linkedinURL.toString(),
+                    url: DataValues.linkedinURL,
+                  ),
+                ),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+                Expanded(
+                  child: ContainerCard().type1(
+                    title: DataValues.Values4,
+                    description: DataValues.aboutMeProduct2Description,
+                    image: 'assets/images/Collborate.jpg',
+                    message: DataValues.linkedinURL.toString(),
+                    url: DataValues.linkedinURL,
+                  ),
+                ),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.03),
               ],
-            ),
-            const SizedBox(height: 80.0),
-            Center(
-              child: ContainerBanner().type1(
-                isDesktop: true,
-                title1: DataValues.volunteeringBanner,
-                title2: DataValues.volunteeringBannerTitle,
-                description: DataValues.volunteeringBannerWeb,
-                image: 'image',
-                message: 'Volunteering Profile',
-                url: DataValues.volunteeringURL,
-              ),
             ),
           ],
         ),

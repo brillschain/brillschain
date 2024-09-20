@@ -66,7 +66,7 @@ def find_pin_cordinates():
         return jsonify({'latitude': lat, 'longitude': long, 'location': final_loc})
         # return jsonify(location)
         # print(location.latitude, location.longitude)
-        return {}
+        # return {}
     except Exception as e:
         print(e)
         return jsonify({'error': str(e)})

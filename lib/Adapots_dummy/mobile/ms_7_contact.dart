@@ -3,12 +3,13 @@ import 'package:flutter/services.dart';
 
 import '../statics/data_values.dart';
 import '../statics/key_holders.dart';
+import '../theme/app_theme.dart';
 import '../widgets/container_banner.dart';
 import '../widgets/frame_title.dart';
 import '../widgets/social_profiles.dart';
 
 class MS7Contact extends StatelessWidget {
-  const MS7Contact({super.key});
+  const MS7Contact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,16 +46,16 @@ class MS7Contact extends StatelessWidget {
                       Clipboard.setData(
                         const ClipboardData(text: DataValues.contactEmail),
                       );
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(
                           'Email successfully copied to clipboard',
                           textAlign: TextAlign.center,
                           // style: AppThemeData.darkTheme.textTheme.bodyLarge,
                         ),
-                        duration: Duration(seconds: 2),
+                        duration: const Duration(seconds: 2),
                       ));
                     },
-                    child: const Tooltip(
+                    child: Tooltip(
                       message: 'Click to copy email to clipboard',
                       child: Text(
                         DataValues.contactEmail,

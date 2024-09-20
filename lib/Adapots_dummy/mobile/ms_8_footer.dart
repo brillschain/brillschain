@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../statics/data_values.dart';
+import '../theme/app_theme.dart';
 
 class MS8Footer extends StatelessWidget {
-  const MS8Footer({super.key});
+  const MS8Footer({Key? key}) : super(key: key);
 
   Widget getSourceCode(BuildContext context) {
     return MouseRegion(
@@ -30,7 +31,7 @@ class MS8Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
       // color: AppThemeData.backgroundBlack,
       child: Column(

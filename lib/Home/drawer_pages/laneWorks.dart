@@ -147,8 +147,9 @@ class _ContractListViewState extends State<ContractListView> {
   @override
   void initState() {
     ContractFirebaseService cfs = ContractFirebaseService();
-    String uid = FirebaseAuth.instance.currentUser!.uid;
-    contractInfo = cfs.getUserAllContractsInfo(uid);
+    // String uid = FirebaseAuth.instance.currentUser!.uid;
+    contractInfo = cfs.getUserAllContractsInfo('7o2CGFJGgAf4XZjBXWHBkmGjyXD2');
+
     super.initState();
   }
 
@@ -274,7 +275,7 @@ class _ContractListViewState extends State<ContractListView> {
           } else {
             final contractInfo = snapshot.data!;
             return ListView.builder(
-              physics: const ClampingScrollPhysics(),
+              // physics: const ClampingScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: contractInfo.length,
@@ -316,7 +317,7 @@ class MemberCompanyDetails extends StatelessWidget {
       children: [
         const ListTile(
           leading: FlutterLogo(),
-          title: Text('One-line with leading widget'),
+          title: Text('Contract Info'),
         ),
         const Divider(),
         SizedBox(

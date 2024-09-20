@@ -1,6 +1,6 @@
 class DataValues {
   // About App
-  static const String appName = 'Dileepa Bandara';
+  static const String appName = 'brillschain';
   static const String appNameLong = 'dileepabandara.dev';
   static const String appDescription =
       'Hello there, I\'m Dileepa Bandara. This is my personal website, which contains public information that anyone can find on the internet.';
@@ -10,15 +10,15 @@ class DataValues {
   static const String appBuildNumber = '1';
 
   // External links
-  static Uri devURL = Uri.parse('https://dileepabandara.dev');
-  static Uri hashnodeURL = Uri.parse('https://hashnode.com/@dileepabandara');
-  static Uri githubURL = Uri.parse('https://github.com/dileepabandara');
-  static Uri linkedinURL = Uri.parse('https://linkedin.com/in/dileepabandara');
-  static Uri twitterURL = Uri.parse('https://twitter.com/_dileepabandara');
-  static Uri youtubeURL = Uri.parse('https://youtube.com/@flutterscope');
-  static Uri telegramURL = Uri.parse('https://t.me/dileepabandara');
-  static Uri facebookURL = Uri.parse('https://facebook.com/0dileepabandara');
-  static Uri instagramURL = Uri.parse('https://instagram.com/_dileepabandara');
+  static Uri devURL = Uri.parse('');
+  static Uri hashnodeURL = Uri.parse('');
+  static Uri githubURL = Uri.parse('');
+  static Uri linkedinURL = Uri.parse('');
+  static Uri twitterURL = Uri.parse('');
+  static Uri youtubeURL = Uri.parse('');
+  static Uri telegramURL = Uri.parse('a');
+  static Uri facebookURL = Uri.parse('');
+  static Uri instagramURL = Uri.parse('');
   static Uri repoURL =
       Uri.parse('https://github.com/dileepabandara/dileepabandara.dev');
   static Uri biographyURL = Uri.parse('https://biography.dileepabandara.dev');
@@ -35,17 +35,20 @@ class DataValues {
   static const String headerTitle = 'Student | Developer | Volunteer';
 
   // Navigation Bar
-  static const String navBarAboutMe = 'About Me';
-  static const String navBarEducation = 'Education';
-  static const String navBarExperience = 'Experience';
-  static const String navBarVolunteering = 'Volunteering';
+  static const String navBarAboutProducts = 'Products';
+  static const String navBarAboutFeatures = 'Features';
+  static const String navBarAboutOurVision = 'Our Vision';
+  static const String navBarAboutOurMotto = 'Our Values';
   static const String navBarTechNotes = 'TechNotes';
-  static const String navBarContactMe = 'Contact Me';
+  static const String navBarContactUs = 'Contact Us';
 
   // About me
-  static const String aboutMeTitle = 'About Me';
+  static const String aboutMeTitle = 'Products';
   static const String aboutMeDescription =
-      'This website includes my public details, which anyone can find on the internet. So if you are looking for my personal information, such as my bio, education, experience, and other things that may make you wonder, feel free to scroll up and down to find out about me.';
+      'Our products seamlessly connecting farmers, manufacturers, and suppliers to optimize raw material availability, product tracking, and market demand management, minimizing waste through smart analytics.';
+  
+
+
   static const String aboutMeBiographyTitle = 'Biography';
   static const String aboutMeBiographyDescription =
       'Hi there! I\'m a computing student, solution developer, and community volunteer. I believe that personal growth and learning are essential for success, and I have dedicated my life to achieving both. '
@@ -74,15 +77,73 @@ class DataValues {
   static const String aboutMeWorkDomainTitle = 'Working Domain';
   static const String aboutMeWorkDomainDescription = 'dileepabandara.dev\n'
       '08:00 - 18:00 (GMT+5:30)';
-  static const String aboutMeStudentTitle = 'Computing Student';
-  static const String aboutMeStudentDescription =
-      'I study computing technologies as a student by focusing on learning how computer systems work, from the physical (hardware) to the apps and programs (software) that users interact with, and I learn all about critical thinking, problem-solving, and analytical research, regardless of whether I apply all the computing principles to solve problems in scenarios.';
-  static const String aboutMeDeveloperTitle = 'Solution Developer';
-  static const String aboutMeDeveloperDescription =
-      'I use various tools for creating and implementing innovative solutions to problems in order to accomplish particular goals. I employ a variety of techniques, including software development alongside app development, as well as design and develop structures such as UI/UX, graphics, data management, and other analytical methods with a focus on business points.';
-  static const String aboutMeVolunteerTitle = 'Community Volunteer';
-  static const String aboutMeVolunteerDescription =
-      'I\'ve been a volunteer for many years and have had the opportunity to make a difference in my social and technical communities. Volunteering has allowed me to learn more about the people and things around me while also making a positive difference in the lives of those I serve, and by volunteering, I would love to help others reach their life goals.';
+
+
+
+
+
+
+
+
+
+  static const String aboutProduct1 = 'Manage your own Imports and Exports of Supply chain';
+  static const String aboutMeProduct1Description =
+      '';
+
+
+
+  static const String Values1 = 'Transparency';
+  static const String ValuesDesp1 =
+      'We believe in fostering open communication and trust among all stakeholders in the supply chain.';
+  static const String Values2 = 'Innovation';
+  static const String ValuesDesp2 =
+      'We continuously seek cutting-edge AI solutions to enhance supply chain efficiency and sustainability.';
+
+    static const String Values3 = 'Sustainability';
+  static const String ValuesDesp3 =
+      'We are committed to reducing waste and promoting eco-friendly practices in supply chain operations.';
+
+    static const String Values4 = 'Collaboration';
+  static const String ValuesDesp4 =
+      'We prioritize strong partnerships and teamwork to drive mutual growth and success for all stakeholders.';
+
+
+  static const String aboutProduct4 = 'Connections and Social Media-Like Networking';
+
+
+  static const String vision1  = 'Enhance Supply Chain Transparency';
+  static const String vsision1Descp = 'Foster seamless communication and trust among all stakeholders in the supply chain through innovative AI-powered solutions.';
+
+
+    static const String vision2  = 'Minimize Waste and Maximize Efficiency';
+  static const String vsision2Descp = 'Utilize advanced AI analytics to optimize inventory management, reduce waste, and ensure the timely movement of goods from producers to consumers.';
+  
+
+  
+
+
+  static const String vision3  = 'Empower Stakeholders with Data-Driven Insights';
+  static const String vsision3Descp = 'Provide real-time data and predictive analytics to help farmers, manufacturers, distributors, and retailers make informed decisions, boosting overall productivity.';
+
+
+
+
+  static const String vision4  = 'Sustainably Drive Global Growth';
+  static const String vsisio4Descp = 'Build a supply chain platform that promotes sustainable practices and enables businesses to scale while minimizing environmental impact';
+
+
+
+  static const String product2 = 'AI-Powered Shelf Life and Inventory Analytics';
+  static const String aboutMeProduct2Description =
+      '';
+
+  static const String product4 = '';
+  
+  
+  static const String product3 = 'Create your own contracts with other stakeholders';
+  static const String aboutMeProduct3Description =
+      '';
+
   static const String aboutMeHobbiesTitle = 'Hobbies';
   static const String aboutMeHobbiesDescription = 'Learning New Things\n'
       'Watching Movies & TV Shows\n'
@@ -94,12 +155,13 @@ class DataValues {
   static const String aboutMeBanner = 'You can find my';
   static const String aboutMeBannerTitle = 'public profiles';
   static const String aboutMeBannerWeb =
-      'Visit profile.dileepabandara.dev to find all my public profiles.';
+      '';
 
   // Education
-  static const String educationTitle = 'Education';
+  static const String features = 'Features';
   static const String educationDescription =
-      'My educational background is not specific in any particular way and has come from various places. In this section, you can find out about my formal and other sources from 2003 to now. So, here are my school, undergraduate institution, and other learning platforms that I\'ve been involving for education.';
+  'The Supply Chain Management AI software solution provides a social media-like networking platform for stakeholders to connect, share updates, and foster transparency in product demands and logistics. Additionally, AI-powered analytics optimize inventory management by predicting future demands, tracking shelf life, and minimizing waste, ensuring efficient supply chain operations.';
+      // 'My educational background is not specific in any particular way and has come from various places. In this section, you can find out about my formal and other sources from 2003 to now. So, here are my school, undergraduate institution, and other learning platforms that I\'ve been involving for education.';
   static const String educationOrg1Title =
       'Maliyadeva Adarsha M.V. - Sri Lanka';
   static const String educationOrg1Course1Name = 'GCE Advanced Level';
@@ -134,9 +196,10 @@ class DataValues {
       'Click here to find out more about my online learning platforms.';
 
   // Experience
-  static const String experienceTitle = 'Experience';
+  static const String experienceTitle = 'Our Vision';
   static const String experienceDescription =
-      'Since I started my diploma in 2019, I\'ve started to learn and apply my knowledge in different places. So I started working as a freelance solution developer, and with time, I fell in love with different technologies. I received industrial training in my second year, and now I try out my experience.';
+  'Our vision is to create a transparent, efficient, and data-driven supply chain platform that empowers stakeholders, minimizes waste, and promotes sustainable global growth.';
+      // 'Since I started my diploma in 2019, I\'ve started to learn and apply my knowledge in different places. So I started working as a freelance solution developer, and with time, I fell in love with different technologies. I received industrial training in my second year, and now I try out my experience.';
   static const String experienceOrg1Title = 'Dileepa Bandara';
   static const String experienceOrg1Role = 'Solution Developer';
   static const String experienceOrg1Years = 'June 2019 - June 2022';
@@ -154,9 +217,10 @@ class DataValues {
       'Visit toolkit.dileepabandara.dev for more details >>';
 
   // Volunteering
-  static const String volunteeringTitle = 'Volunteering';
+  static const String volunteeringTitle = 'Our Values';
   static const String volunteeringDescription =
-      'Volunteering is an amazing way for me to give back to communities and make a difference. It\'s also a terrific opportunity to meet new people, learn new skills, and gain valuable experience. I do volunteer work for many different social and technical organizations. These are more focused organizations where I am presently volunteering.';
+  'Our values revolve around transparency, innovation, sustainability, and collaboration. We aim to foster trust through open communication, drive efficiency with cutting-edge AI solutions, reduce waste with sustainable practices, and build strong partnerships to ensure mutual growth and success across the supply chain.';
+      // 'Volunteering is an amazing way for me to give back to communities and make a difference. It\'s also a terrific opportunity to meet new people, learn new skills, and gain valuable experience. I do volunteer work for many different social and technical organizations. These are more focused organizations where I am presently volunteering.';
   static const String volunteeringOrg1Title = 'FlutterScope';
   static const String volunteeringOrg1Role = 'Content Creator';
   static const String volunteeringOrg1Years = 'January 2022 - Present';
@@ -192,13 +256,13 @@ class DataValues {
   // Contact
   static const String contactTitle = 'Contact';
   static const String contactDescription =
-      'Hey! I appreciate you looking at my public profile. Please feel free to ask me anything or to discuss anything with me. I\'m happy to chat with and meet new people. Regardless of the fact that I don\'t use social media much, you can find me there. So find me and get in touch with me. Send me an email if you need to discuss anything serious with me. I\'ll get back to you in 12 to 24 hours.';
+  'For specific contract inquiries or any questions related to our application, please reach out to us directly. Our team is here to assist with detailed information and support for your unique needs. Feel free to contact us to discuss contracts or address any queries you may have.';
   static const String contactBanner = 'Send me an email at';
-  static const String contactEmail = 'contact@dileepabandara.dev';
+  static const String contactEmail = 'brillschain.gmail.com';
 
   // Footer
   static const String copyright =
-      "Copyright ©2023 Dileepa Bandara. All Rights Reserved.";
+      "Copyright ©2023 Brillschain. All Rights Reserved.";
 
   static const String builtWith = "Built with Flutter and GitHub Pages.";
 }

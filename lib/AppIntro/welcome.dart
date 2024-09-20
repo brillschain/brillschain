@@ -17,17 +17,19 @@ import 'package:supplink/Adapots_dummy/mobile/ms_7_contact.dart';
 import 'package:supplink/Adapots_dummy/mobile/ms_8_footer.dart';
 import 'package:supplink/Adapots_dummy/statics/data_values.dart';
 import 'package:supplink/Adapots_dummy/statics/key_holders.dart';
+import 'package:supplink/Adapots_dummy/theme/app_theme.dart';
 import 'package:supplink/Adapots_dummy/theme/responsive_screen_provider.dart';
 import 'package:supplink/Adapots_dummy/widgets/button_rectangle.dart';
 import 'package:supplink/Adapots_dummy/widgets/button_text.dart';
 import 'package:supplink/Adapots_dummy/widgets/nav_bar.dart';
+import 'package:supplink/Home/widgets/main_app_bar.dart';
 import 'package:supplink/Routes/routes.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
   @override
-  State<WelcomePage> createState() => _WelcomePageState();
+  _WelcomePageState createState() => _WelcomePageState();
 }
 
 class _WelcomePageState extends State<WelcomePage>
@@ -92,7 +94,6 @@ class _WelcomePageState extends State<WelcomePage>
     _animationController.dispose();
     _titleAnimationController.dispose();
     _scrollController.dispose();
-
     super.dispose();
   }
 
@@ -106,58 +107,58 @@ class _WelcomePageState extends State<WelcomePage>
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ButtonTextLarge(
-          text: DataValues.navBarAboutMe,
+          text: DataValues.navBarAboutProducts,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.aboutKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
-          message: 'Go to ${DataValues.navBarAboutMe} section',
+          message: 'Go to ${DataValues.navBarAboutProducts} section',
         ),
         const SizedBox(width: 20.0),
         ButtonTextLarge(
-          text: DataValues.navBarEducation,
+          text: DataValues.navBarAboutFeatures,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.educationKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
-          message: 'Go to ${DataValues.navBarEducation} section',
+          message: 'Go to ${DataValues.navBarAboutFeatures} section',
         ),
         const SizedBox(width: 20.0),
         ButtonTextLarge(
-          text: DataValues.navBarExperience,
+          text: DataValues.navBarAboutOurVision,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.experienceKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
-          message: 'Go to ${DataValues.navBarExperience} section',
+          message: 'Go to ${DataValues.navBarAboutOurVision} section',
         ),
         const SizedBox(width: 20.0),
         ButtonTextLarge(
-          text: DataValues.navBarVolunteering,
+          text: DataValues.navBarAboutOurMotto,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.volunteeringKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
-          message: 'Go to ${DataValues.navBarVolunteering} section',
+          message: 'Go to ${DataValues.navBarAboutOurMotto} section',
         ),
         const SizedBox(width: 20.0),
-        ButtonTextLarge(
-          text: DataValues.navBarTechNotes,
-          onPressed: () => Scrollable.ensureVisible(
-            KeyHolders.technotesKey.currentContext!,
-            duration: const Duration(milliseconds: 1000),
-          ),
-          message: 'Go to ${DataValues.navBarTechNotes} section',
-        ),
-        const SizedBox(width: 20.0),
+        // ButtonTextLarge(
+        //   text: DataValues.navBarTechNotes,
+        //   onPressed: () => Scrollable.ensureVisible(
+        //     KeyHolders.technotesKey.currentContext!,
+        //     duration: const Duration(milliseconds: 1000),
+        //   ),
+        //   message: 'Go to ${DataValues.navBarTechNotes} section',
+        // ),
+        // const SizedBox(width: 20.0),
         ButtonRectangle(
-          name: DataValues.navBarContactMe,
+          name: DataValues.navBarContactUs,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.contactKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
           color: Colors.green,
-          message: 'Go to ${DataValues.navBarContactMe} section',
+          message: 'Go to ${DataValues.navBarContactUs} section',
         ),
       ],
     );
@@ -178,29 +179,6 @@ class _WelcomePageState extends State<WelcomePage>
               animate: true,
             ),
           ),
-          // leading: Positioned(
-          //         top: 4.0,
-          //         left: 4.0,
-          //         child: FadeTransition(
-          //           opacity: _titleAnimation,
-          //           child: Lottie.asset(
-          //             'assets/AppTitle.json',
-          //             width: 150,
-          //             height: 80,
-          //             repeat: false,
-          //             animate: true,
-          //           ),
-          //         ),
-          //       ),
-          // actions: [
-          //       Positioned(
-          //         bottom: 20.0,
-          //         left: 20.0,
-          //         right: 20.0,
-          //         child: desktopNavBar(),
-          //       ),
-          // ],
-
           actions: [desktopNavBar()],
           pinned: true,
           floating: false,
@@ -262,19 +240,18 @@ class _WelcomePageState extends State<WelcomePage>
                         const SizedBox(height: 20),
                         ScaleTransition(
                           scale: _animationController,
-                          child: InkWell(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(AppRoutes.loginRoute);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 40, vertical: 16),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 16),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
                               ),
+                            ),
+                            child: InkWell(
+                              onTap: () => Navigator.of(context)
+                                  .pushNamed(AppRoutes.loginRoute),
                               child: const Text(
                                 'Get Started',
                                 style: TextStyle(
@@ -318,7 +295,7 @@ class _WelcomePageState extends State<WelcomePage>
                     DS3Education(),
                     DS4Experience(),
                     DS5Volunteering(),
-                    DS6TechNotes(),
+                    // DS6TechNotes(),
                     DS7Contact(),
                     DS8Footer(),
                   ],

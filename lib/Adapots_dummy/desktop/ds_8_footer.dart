@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../statics/data_values.dart';
+import '../theme/app_theme.dart';
 
 class DS8Footer extends StatelessWidget {
   const DS8Footer({super.key});

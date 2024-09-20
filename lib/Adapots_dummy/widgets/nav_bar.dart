@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../statics/data_values.dart';
 import '../statics/key_holders.dart';
+import '../theme/app_theme.dart';
+import 'button_rectangle.dart';
 import 'button_text.dart';
 
 class NavBar {
@@ -10,39 +12,39 @@ class NavBar {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ButtonTextLarge(
-          text: DataValues.navBarAboutMe,
+          text: DataValues.navBarAboutProducts,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.aboutKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
-          message: 'Go to ${DataValues.navBarAboutMe} section',
+          message: 'Go to ${DataValues.navBarAboutProducts} section',
         ),
         const SizedBox(width: 20.0),
         ButtonTextLarge(
-          text: DataValues.navBarEducation,
+          text: DataValues.navBarAboutFeatures,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.educationKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
-          message: 'Go to ${DataValues.navBarEducation} section',
+          message: 'Go to ${DataValues.navBarAboutFeatures} section',
         ),
         const SizedBox(width: 20.0),
         ButtonTextLarge(
-          text: DataValues.navBarExperience,
+          text: DataValues.navBarAboutOurVision,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.experienceKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
-          message: 'Go to ${DataValues.navBarExperience} section',
+          message: 'Go to ${DataValues.navBarAboutOurVision} section',
         ),
         const SizedBox(width: 20.0),
         ButtonTextLarge(
-          text: DataValues.navBarVolunteering,
+          text: DataValues.navBarAboutOurMotto,
           onPressed: () => Scrollable.ensureVisible(
             KeyHolders.volunteeringKey.currentContext!,
             duration: const Duration(milliseconds: 1000),
           ),
-          message: 'Go to ${DataValues.navBarVolunteering} section',
+          message: 'Go to ${DataValues.navBarAboutOurMotto} section',
         ),
         const SizedBox(width: 20.0),
         ButtonTextLarge(
@@ -97,39 +99,39 @@ class NavBar {
           miniHeader(),
           const SizedBox(height: 20.0),
           ButtonTextLarge(
-            text: DataValues.navBarAboutMe,
+            text: DataValues.navBarAboutProducts,
             onPressed: () => Scrollable.ensureVisible(
               KeyHolders.aboutKey.currentContext!,
               duration: const Duration(milliseconds: 1000),
             ),
-            message: 'Go to ${DataValues.navBarAboutMe} section',
+            message: 'Go to ${DataValues.navBarAboutProducts} section',
           ),
           const SizedBox(height: 20.0),
           ButtonTextLarge(
-            text: DataValues.navBarEducation,
+            text: DataValues.navBarAboutFeatures,
             onPressed: () => Scrollable.ensureVisible(
               KeyHolders.educationKey.currentContext!,
               duration: const Duration(milliseconds: 1000),
             ),
-            message: 'Go to ${DataValues.navBarEducation} section',
+            message: 'Go to ${DataValues.navBarAboutFeatures} section',
           ),
           const SizedBox(height: 20.0),
           ButtonTextLarge(
-            text: DataValues.navBarExperience,
+            text: DataValues.navBarAboutOurVision,
             onPressed: () => Scrollable.ensureVisible(
               KeyHolders.experienceKey.currentContext!,
               duration: const Duration(milliseconds: 1000),
             ),
-            message: 'Go to ${DataValues.navBarExperience} section',
+            message: 'Go to ${DataValues.navBarAboutOurVision} section',
           ),
           const SizedBox(height: 20.0),
           ButtonTextLarge(
-            text: DataValues.navBarVolunteering,
+            text: DataValues.navBarAboutOurMotto,
             onPressed: () => Scrollable.ensureVisible(
               KeyHolders.volunteeringKey.currentContext!,
               duration: const Duration(milliseconds: 1000),
             ),
-            message: 'Go to ${DataValues.navBarVolunteering} section',
+            message: 'Go to ${DataValues.navBarAboutOurMotto} section',
           ),
           const SizedBox(height: 20.0),
           ButtonTextLarge(

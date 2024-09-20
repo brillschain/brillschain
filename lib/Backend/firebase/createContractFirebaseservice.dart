@@ -1,6 +1,7 @@
 // import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 // import 'package:supplink/Backend/firebase/firestore.dart';
 
 class ContractFirebaseService {
@@ -112,7 +113,8 @@ class ContractFirebaseService {
     }
   }
 
-  Future<void> createNewContract(List tobecreatedcontractauthIds) async {
+  Future<void> createNewContract(
+      List tobecreatedcontractauthIds, BuildContext context) async {
     DateTime now = DateTime.now();
     String randomString = generateRandomString(tobecreatedcontractauthIds);
     String documentName = randomString;
@@ -160,6 +162,9 @@ class ContractFirebaseService {
           .doc(documentName)
           .set({'created_at': now});
     }
+
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('contract created')));
   }
 
   String generateRandomString(List authIdlist) {

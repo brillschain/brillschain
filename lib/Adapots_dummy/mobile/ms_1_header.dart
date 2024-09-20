@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../statics/data_values.dart';
+import '../theme/app_theme.dart';
 import '../widgets/social_profiles.dart';
 
 class MS1Header extends StatelessWidget {
-  const MS1Header({super.key});
+  const MS1Header({Key? key}) : super(key: key);
 
   List<Widget> headerData() {
     return [
       Image.asset('assets/images/logo.png', height: 250.0, width: 250.0),
       const SizedBox(height: 40.0),
-      const Column(
+      Column(
         children: [
           SelectableText(
             DataValues.headerGreetings,
@@ -25,8 +26,8 @@ class MS1Header extends StatelessWidget {
             DataValues.headerTitle,
             // style: AppThemeData.darkTheme.textTheme.titleLarge,
           ),
-          SizedBox(height: 20.0),
-          SocialProfiles(),
+          const SizedBox(height: 20.0),
+          const SocialProfiles(),
         ],
       ),
     ];

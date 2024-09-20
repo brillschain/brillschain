@@ -8,6 +8,8 @@ import 'package:supplink/Backend/firebase/userDetailsmaintain.dart';
 // import 'package:supplink/Backend/firebase/users.dart';
 import 'package:supplink/Home/drawer_pages/LanePages/colloborationview.dart';
 
+import 'LaneView/widgets/date_select.dart';
+
 class CreateColloboration extends StatefulWidget {
   static const String routeName = '/EX_IM';
 
@@ -165,7 +167,8 @@ class _CreateColloborationState extends State<CreateColloboration> {
                             child: ListView.separated(
                                 physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
-                                separatorBuilder: (context, index) => const SizedBox(
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                 itemCount: people,
@@ -210,12 +213,11 @@ class _CreateColloborationState extends State<CreateColloboration> {
                             children: [
                               ElevatedButton(
                                   onPressed: () {
-                                    setState(() {
+                                    setState(() async {
                                       infoWindowVisible = false;
                                       String authId = _auth_ids[
                                           _users.indexOf(itemSelectedMember)];
-                                      toBeCreatedContractingPeoples
-                                          .add(authId);
+                                      toBeCreatedContractingPeoples.add(authId);
                                       MemberSelectedOpt.add([
                                         itemSelecteddomain,
                                         itemSelectedVillage,
@@ -229,8 +231,10 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                       // print(Auth_id);
                                       // print('printing all members');
                                       print(toBeCreatedContractingPeoples);
-                                      _firebaseService.createNewContract(
-                                          toBeCreatedContractingPeoples);
+                                      await _firebaseService.createNewContract(
+                                          toBeCreatedContractingPeoples,
+                                          context);
+                                      toBeCreatedContractingPeoples = [];
                                     });
                                   },
                                   child: const Text('create'))
@@ -373,7 +377,8 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                     showSearchBox: true,
                                     fit: FlexFit.loose,
                                   ),
-                                  dropdownButtonProps: const DropdownButtonProps(
+                                  dropdownButtonProps:
+                                      const DropdownButtonProps(
                                     color: Colors.blue,
                                   ),
                                   dropdownDecoratorProps:
@@ -398,36 +403,41 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                       : itemSelectedVillage,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              const SizedBox(
                                 width: 300,
                                 // height: 40,
-                                child: DropdownSearch<String>(
-                                  items: domainList,
-                                  popupProps: const PopupProps.menu(
-                                    showSearchBox: true,
-                                    fit: FlexFit.loose,
-                                  ),
-                                  dropdownButtonProps: const DropdownButtonProps(
-                                    color: Colors.blue,
-                                  ),
-                                  dropdownDecoratorProps:
-                                      const DropDownDecoratorProps(
-                                    textAlignVertical: TextAlignVertical.center,
-                                    dropdownSearchDecoration: InputDecoration(
-                                      labelText: "Date of Connection",
-                                      hintText: "Domain in menu mode",
-                                      border: OutlineInputBorder(
-                                          // borderRadius: BorderRadius.circular(50),
-                                          ),
-                                    ),
-                                  ),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      itemSelecteddomain = value.toString();
-                                    });
-                                  },
-                                  selectedItem: itemSelecteddomain,
-                                ),
+                                // child: DropdownSearch<String>(
+                                //   items: domainList,
+                                //   popupProps: const PopupProps.menu(
+                                //     showSearchBox: true,
+                                //     fit: FlexFit.loose,
+                                //   ),
+                                //   dropdownButtonProps:
+                                //       const DropdownButtonProps(
+                                //     color: Colors.blue,
+                                //   ),
+                                //   dropdownDecoratorProps:
+                                //       const DropDownDecoratorProps(
+                                //     textAlignVertical: TextAlignVertical.center,
+                                //     dropdownSearchDecoration: InputDecoration(
+                                //       labelText: "Date of Connection",
+                                //       hintText: "Domain in menu mode",
+                                //       border: OutlineInputBorder(
+                                //           // borderRadius: BorderRadius.circular(50),
+                                //           ),
+                                //     ),
+                                //   ),
+                                //   onChanged: (value) {
+                                //     setState(() {
+                                //       itemSelecteddomain = value.toString();
+                                //     });
+                                //   },
+                                //   selectedItem: itemSelecteddomain,
+                                // ),
+                                child: DatePickerButton(),
                               ),
                             ]),
                         const SizedBox(
@@ -437,7 +447,8 @@ class _CreateColloborationState extends State<CreateColloboration> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           // mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('Select Memeber :                          '),
+                            const Text(
+                                'Select Memeber :                          '),
                             SizedBox(
                               width: 300,
                               // height: 40,
@@ -450,7 +461,8 @@ class _CreateColloborationState extends State<CreateColloboration> {
                                 dropdownButtonProps: const DropdownButtonProps(
                                   color: Colors.blue,
                                 ),
-                                dropdownDecoratorProps: const DropDownDecoratorProps(
+                                dropdownDecoratorProps:
+                                    const DropDownDecoratorProps(
                                   textAlignVertical: TextAlignVertical.center,
                                   dropdownSearchDecoration: InputDecoration(
                                     labelText: "People",

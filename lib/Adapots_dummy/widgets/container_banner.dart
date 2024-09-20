@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer';
 
+import '../theme/app_theme.dart';
+import 'button_rectangle.dart';
 
 class ContainerBanner {
   Widget type1(
@@ -22,7 +24,7 @@ class ContainerBanner {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               isDesktop
-                  ? const Row(
+                  ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // SelectableText(
@@ -36,7 +38,7 @@ class ContainerBanner {
                         //   ),
                         // ),
 
-                        SizedBox(width: 4.0),
+                        const SizedBox(width: 4.0),
                         // SelectableText(
                         //   title2,
                         //   style: TextStyle(
@@ -78,7 +80,7 @@ class ContainerBanner {
               const SizedBox(height: 5.0),
               SelectableText(
                 description,
-                style: const TextStyle(
+                style: TextStyle(
                   // fontSize:
                       // AppThemeData.darkTheme.textTheme.labelLarge!.fontSize,
                   // fontWeight:

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import '../theme/responsive_screen_provider.dart';
 
 class FrameTitle extends StatelessWidget {
-  const FrameTitle({super.key, required this.title, required this.description});
+  const FrameTitle({Key? key, required this.title, required this.description})
+      : super(key: key);
 
   final String title;
   final String description;
@@ -16,7 +17,7 @@ class FrameTitle extends StatelessWidget {
         children: [
           SelectableText(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
               // fontSize : FontWeight.w600
               fontSize: 40

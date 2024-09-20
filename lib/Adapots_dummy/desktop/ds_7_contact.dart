@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../statics/data_values.dart';
 import '../statics/key_holders.dart';
+import '../theme/app_theme.dart';
 import '../widgets/container_banner.dart';
 import '../widgets/frame_title.dart';
 import '../widgets/social_profiles.dart';
@@ -76,8 +77,7 @@ class DS7Contact extends StatelessWidget {
               height: 20.0,
             ),
             ContainerBanner().type2(
-              message:
-                  'Visit profile.dileepabandara.dev to view my all profiles >>',
+              message: '',
               url: DataValues.profilesURL,
             ),
           ],

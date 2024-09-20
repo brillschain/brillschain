@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../statics/data_values.dart';
 import '../statics/key_holders.dart';
+import '../theme/app_theme.dart';
 import '../widgets/container_card.dart';
 import '../widgets/frame_title.dart';
 
 class MS3Education extends StatelessWidget {
-  const MS3Education({super.key});
+  const MS3Education({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MS3Education extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const FrameTitle(
-                title: DataValues.educationTitle,
+                title: DataValues.features,
                 description: DataValues.educationDescription),
             const SizedBox(height: 30.0),
             ContainerCard().type2(
