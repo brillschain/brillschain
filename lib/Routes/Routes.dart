@@ -8,17 +8,15 @@ class AppRoutes {
   static const String signUpRoute = '/signup';
   static const String myhomepage = '/homepage';
   static const String phonePageRoute = '/phoneverify';
-  static const String laneViewRoute = '/laneview';
-  static const String commentsRoute = '/comments';
-  // static const String WelcomeRoute = 'welcome';
+
+
 
   static final routes = {
     loginRoute: (context) => const LoginView(),
     signUpRoute: (context) => const SignUp(),
     myhomepage: (context) => const ResponsiveLayout(),
     // PhonePageRoute: (context) => PhoneNumberAuthView(),
-    // laneViewRoute: (context) => LaneView(),
 
-    // WelcomeRoute: (context) => WelcomePage(),
+
   };
 }
