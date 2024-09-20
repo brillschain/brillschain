@@ -9,14 +9,10 @@ class AppRoutes {
   static const String myhomepage = '/homepage';
   static const String phonePageRoute = '/phoneverify';
 
-
-
   static final routes = {
     loginRoute: (context) => const LoginView(),
     signUpRoute: (context) => const SignUp(),
     myhomepage: (context) => const ResponsiveLayout(),
     // PhonePageRoute: (context) => PhoneNumberAuthView(),
-
-
   };
 }

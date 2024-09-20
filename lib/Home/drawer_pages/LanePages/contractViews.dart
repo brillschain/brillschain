@@ -218,10 +218,7 @@ class _LaneAndContractAndDashViewState
                                                                   'ContractServerid'],
                                                               laneDetail[
                                                                   'docName']),
-                                                          settings:
-                                                              const RouteSettings(
-                                                                  name: AppRoutes
-                                                                      .laneViewRoute), // Provide a route name here
+                                                          // Provide a route name here
                                                         ),
                                                       );
                                                     },
